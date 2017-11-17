@@ -17,6 +17,15 @@ public class Notifications {
 			return null;
 		}
 	}
+	public static WebElement WindowNotificationNoException(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("/html/body/div[22]/div[2]/div/div/div/div"));
+		}
+		catch (Exception e) {
+			//Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
 	
 	public static WebElement TitleNotification(WebDriver driver_) {
 		try {

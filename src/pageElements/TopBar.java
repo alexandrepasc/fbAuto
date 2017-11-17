@@ -37,6 +37,15 @@ public class TopBar {
 			return null;
 		}
 	}
+	public static WebElement ButProfileNoException(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//*[@id='u_0_a']/div[1]/div[1]/div/a"));
+		}
+		catch (Exception e) {
+			//Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
 	
 	public static WebElement ButHomePage(WebDriver driver_) {
 		try {

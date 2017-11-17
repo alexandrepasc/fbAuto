@@ -128,7 +128,7 @@ public class DoLogin {
 	
 	public static boolean IsLoged(WebDriver driver_) {
 		try {			
-			if (Comm.checkElement(TopBar.ButProfile(driver_), driver_)) {
+			if (Comm.checkElement(TopBar.ButProfileNoException(driver_), driver_)) {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - User Logged in", "info");
 			}
 			else {

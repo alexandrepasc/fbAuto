@@ -34,7 +34,9 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			CheckNotifications.Notification(driver);
+			if (!CheckNotifications.Notification(driver)) {
+				EndApp(driver);
+			}
 			
 			Thread.sleep(10000);
 			
