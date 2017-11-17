@@ -12,5 +12,10 @@
 	<classpathentry kind="lib" path="/home/apascoal/Public/selenium-java-3.7.1/libs/httpcore-4.4.6.jar"/>
 	<classpathentry kind="lib" path="/home/apascoal/Public/selenium-java-3.7.1/client-combined-3.7.1.jar"/>
 	<classpathentry kind="lib" path="/home/apascoal/Public/selenium-java-3.7.1/client-combined-3.7.1-sources.jar"/>
+	<classpathentry kind="lib" path="/home/apascoal/Public/commons-io-2.6/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/home/apascoal/Public/commons-io-2.6/commons-io-2.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/apascoal/Public/commons-io-2.6/commons-io-2.6-sources.jar"/>
+	<classpathentry kind="lib" path="/home/apascoal/Public/commons-io-2.6/commons-io-2.6-tests.jar"/>
+	<classpathentry kind="lib" path="/home/apascoal/Public/commons-io-2.6/commons-io-2.6-test-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
