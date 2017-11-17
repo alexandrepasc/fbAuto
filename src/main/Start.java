@@ -17,7 +17,7 @@ public class Start {
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().setSize(new Dimension(1280, 960));
-		driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		
 		Logger_.setTimeStamp();
 		
@@ -30,13 +30,17 @@ public class Start {
 			driver.get(Configurations.config.url);
 			
 			
-			if (DoLogin.Login(driver, Configurations.config.login, Configurations.config.pwd)) {
-				CloseDriver(driver);
-				LogStartEndApp(false);
-				Comm.ExitApp();
+			if (!DoLogin.Login(driver, Configurations.config.login, Configurations.config.pwd)) {
+				EndApp(driver);
 			}
 			
+			CheckNotifications.Notification(driver);
+			
 			Thread.sleep(10000);
+			
+			if (!DoLogout.Logout(driver)) {
+				EndApp(driver);
+			}
 			
 			
 			CloseDriver(driver);
@@ -69,6 +73,12 @@ public class Start {
 	
 	private static void CloseDriver(WebDriver driver_) {
 		driver_.close();
+	}
+	
+	private static void EndApp(WebDriver driver_) {
+		CloseDriver(driver_);
+		LogStartEndApp(false);
+		Comm.ExitApp();
 	}
 
 }

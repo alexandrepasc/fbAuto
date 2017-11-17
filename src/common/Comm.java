@@ -1,7 +1,10 @@
 package common;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Comm {
 
@@ -80,5 +83,17 @@ public class Comm {
 	
 	public static void ExitApp() {
 		System.exit(1);
+	}
+	
+	public static void waitingUntil(WebDriver driver_, By by_, int time_, int what_) {
+		WebDriverWait wait = new WebDriverWait(driver_, time_);
+		switch (what_) {
+		case 1:
+			wait.until(ExpectedConditions.visibilityOfElementLocated(by_));
+			break;
+		case 2:
+			wait.until(ExpectedConditions.elementToBeClickable(by_));
+			break;
+		}
 	}
 }

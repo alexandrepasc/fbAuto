@@ -1,5 +1,6 @@
 package main;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import common.Comm;
@@ -23,7 +24,8 @@ public class DoLogin {
 				return false;
 			}
 			
-			if (IsLoged(driver_)) {
+			Comm.waitingUntil(driver_, By.xpath("//*[@id='u_0_a']/div[1]/div[1]/div/a"), 12, 1);
+			if (!IsLoged(driver_)) {
 				return false;
 			}
 			
@@ -124,8 +126,8 @@ public class DoLogin {
 		}
 	}
 	
-	private static boolean IsLoged(WebDriver driver_) {
-		try {
+	public static boolean IsLoged(WebDriver driver_) {
+		try {			
 			if (Comm.checkElement(TopBar.ButProfile(driver_), driver_)) {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - User Logged in", "info");
 			}
