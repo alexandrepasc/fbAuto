@@ -8,8 +8,7 @@ public class Comm {
 	public static String checkEnv() {
 		try {
 			
-			if ((System.getProperty("user.dir").contains("MEOCloud_maisis")) || (System.getProperty("user.dir").contains("JavaWorkspace")) 
-					|| (System.getProperty("user.dir").contains("alexandrepasc_git"))) {
+			if ((System.getProperty("user.dir").contains("MEOCloud_maisis")) || (System.getProperty("user.dir").contains("JavaWorkspace"))) {
 				return "";
 			}
 			else {

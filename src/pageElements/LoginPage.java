@@ -61,8 +61,7 @@ public class LoginPage {
 	
 	public static WebElement ButLogin(WebDriver driver_) {
 		try {
-			return driver_.findElement(By.xpath("//*[@id='loginbutton']"));
-			//return driver_.findElement(By.id("u_0_5"));
+			return driver_.findElement(By.id("u_0_5"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
