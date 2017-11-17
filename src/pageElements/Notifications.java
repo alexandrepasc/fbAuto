@@ -39,7 +39,7 @@ public class Notifications {
 	
 	public static WebElement ButNotNow(WebDriver driver_) {
 		try {
-			return driver_.findElement(By.xpath("/html/body/div[21]/div[2]/div/div/div/div/div[3]/div/div/div[2]/div/a[1]"));
+			return driver_.findElement(By.xpath("/html/body/div[22]/div[2]/div/div/div/div/div[3]/div/div/div[2]/div/a[1]"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
