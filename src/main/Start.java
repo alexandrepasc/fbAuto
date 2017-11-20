@@ -34,6 +34,7 @@ public class Start {
 				EndApp(driver);
 			}
 			
+			//driver.navigate().refresh();
 			if (!CheckNotifications.Notification(driver)) {
 				EndApp(driver);
 			}
@@ -51,6 +52,7 @@ public class Start {
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver);
+			EndApp(driver);
 		}
 		
 	}

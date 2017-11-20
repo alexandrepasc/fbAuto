@@ -37,7 +37,9 @@ public class UserMenu {
 	
 	public static WebElement[] ListButDropMenu(WebDriver driver_) {
 		try {
-			List<WebElement> list_ = driver_.findElement(By.xpath("/html/body/div[23]/div/div/div/div/div[1]/div/div/ul"))
+			/*List<WebElement> list_ = driver_.findElement(By.xpath("/html/body/div[23]/div/div/div/div/div[1]/div/div/ul"))
+					.findElements(By.tagName("li"));*/
+			List<WebElement> list_ = driver_.findElement(By.xpath("//ul[contains(@role, 'menu')]"))
 					.findElements(By.tagName("li"));
 			
 			return list_.toArray(new WebElement[0]);

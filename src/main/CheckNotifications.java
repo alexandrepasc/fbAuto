@@ -11,16 +11,26 @@ public class CheckNotifications {
 
 	public static boolean Notification(WebDriver driver_) {
 		try {
-			if (CheckWindow(driver_)) {
+			//if (CheckWindow(driver_)) {
 				
-				if (!Notifications.TitleNotification(driver_).getText().contains("Facebook Notifications")) {
+			if (Comm.checkElement(Notifications.TitleNotificationNoException(driver_), driver_)) {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Notification Window IS Present and Visible", "info");
+				if (!Notifications.TitleNotificationNoException(driver_).getText().contains("Facebook Notifications")) {
+					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " -  " + Notifications.TitleNotification(driver_).getText(), "info");
 					return false;
 				}
-				
-				if (!TurnOff(driver_)) {
-					return false;
+				else {
+					if (!TurnOff(driver_)) {
+						return false;
+					}
 				}
 			}
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Notification Window IS NOT Present and/or Visible", "info");
+				
+				/*if (!TurnOff(driver_)) {
+					return false;
+				}*/
+			//}
 			
 			return true;
 		}
