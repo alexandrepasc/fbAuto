@@ -38,9 +38,39 @@ public class LeftBar {
 		}
 	}
 	
+	public static WebElement PageShortcut(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.id("navItem_1121223238003357"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
 	public static WebElement Explore(WebDriver driver_) {
 		try {
 			return driver_.findElement(By.id("appsNav"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement GroupsExplore(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.id("navItem_1434659290104689"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement PagesExplore(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.id("navItem_2530096808"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
