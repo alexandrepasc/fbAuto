@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import common.Comm;
 import common.Logger_;
+import common.Translations;
 import pageElements.Groups;
 
 public class MembershipGroups {
@@ -30,8 +31,7 @@ public class MembershipGroups {
 		try {
 			if (Comm.checkElement(Groups.Membership(driver_), driver_)) {
 				if (Comm.checkElement(Groups.TitleMembership(driver_), driver_)) {
-					if (Groups.TitleMembership(driver_).getText().contains("Os teus grupos") || 
-							Groups.TitleMembership(driver_).getText().contains("Your Groups")) { //NEEDS TO HAVE A TRANSLATION\LANGUAGE SYSTEM
+					if (Groups.TitleMembership(driver_).getText().contains(Translations.MembershipListGroupTitle(driver_))) {
 						Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Membership Groups IS Present and Visible", "info");
 						return true;
 					}

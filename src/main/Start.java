@@ -48,8 +48,6 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			Thread.sleep(10000);
-			
 			if (!MembershipGroups.Memberships(driver)) {
 				EndApp(driver);
 			}
