@@ -12,6 +12,8 @@ import common.Logger_;
 import impl.CheckNotifications;
 import impl.DoLogin;
 import impl.DoLogout;
+import impl.GoToGroups;
+import pageElements.Groups;
 
 public class Start {
 
@@ -42,7 +44,11 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			Thread.sleep(10000);
+			if (!GoToGroups.Groups(driver)) {
+				EndApp(driver);
+			}
+			
+			//Thread.sleep(10000);
 			
 			if (!DoLogout.Logout(driver)) {
 				EndApp(driver);
