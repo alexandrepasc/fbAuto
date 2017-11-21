@@ -13,6 +13,7 @@ import impl.CheckNotifications;
 import impl.DoLogin;
 import impl.DoLogout;
 import impl.GoToGroups;
+import impl.MembershipGroups;
 
 public class Start {
 
@@ -47,7 +48,11 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			//Thread.sleep(10000);
+			Thread.sleep(10000);
+			
+			if (!MembershipGroups.Memberships(driver)) {
+				EndApp(driver);
+			}
 			
 			if (!DoLogout.Logout(driver)) {
 				EndApp(driver);

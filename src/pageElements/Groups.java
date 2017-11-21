@@ -80,7 +80,27 @@ public class Groups {
 	
 	public static WebElement TitleMembership(WebDriver driver_) {
 		try {
-			return driver_.findElement(By.xpath("//div[@id='GroupDiscoverCard_membership']/div/span"));
+			return driver_.findElement(By.xpath("//div[@id='GroupDiscoverCard_membership']/div[1]/span"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement LeftListMembership(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.id("group-discover-card-left-columnmembership"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement RightListMembership(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.id("group-discover-card-right-columnmembership"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
