@@ -13,7 +13,6 @@ import impl.CheckNotifications;
 import impl.DoLogin;
 import impl.DoLogout;
 import impl.GoToGroups;
-import pageElements.Groups;
 
 public class Start {
 

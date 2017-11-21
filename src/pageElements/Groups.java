@@ -78,6 +78,16 @@ public class Groups {
 		}
 	}
 	
+	public static WebElement TitleMembership(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@id='GroupDiscoverCard_membership']/div/span"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
 	public static WebElement Archived(WebDriver driver_) {
 		try {
 			return driver_.findElement(By.id("GroupDiscoverCard_archived"));
