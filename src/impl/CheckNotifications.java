@@ -1,4 +1,4 @@
-package main;
+package impl;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;

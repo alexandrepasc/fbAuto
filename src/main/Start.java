@@ -9,6 +9,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import common.Comm;
 import common.Configurations;
 import common.Logger_;
+import impl.CheckNotifications;
+import impl.DoLogin;
+import impl.DoLogout;
 
 public class Start {
 
