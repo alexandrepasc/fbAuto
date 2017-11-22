@@ -71,8 +71,6 @@ public class MembershipGroups {
 				groups_[arrayAux_] = ValuesListGroups(driver_, Groups.GroupsRightListMembership(driver_)[i]);
 			}
 			
-			//ValuesListGroups(driver_, Groups.GroupsLeftListMembership(driver_)[0]);
-			
 			return null;
 		}
 		catch (Exception e) {
