@@ -21,7 +21,7 @@ public class MembershipGroups {
 				return false;
 			}
 			
-			ListGroups(driver_);
+			FileXML.Write("GroupsList", Comm.checkEnv() + "data/", ListGroups(driver_));
 			
 			return true;
 		}
