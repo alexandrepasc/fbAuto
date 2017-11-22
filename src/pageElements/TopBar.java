@@ -49,7 +49,8 @@ public class TopBar {
 	
 	public static WebElement ButHomePage(WebDriver driver_) {
 		try {
-			return driver_.findElement(By.xpath("///*[@id='u_0_d']"));
+			return driver_.findElement(By.xpath("//div[@data-click='home_icon']/a"));
+			//return driver_.findElement(By.xpath("///*[@id='u_0_d']"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);

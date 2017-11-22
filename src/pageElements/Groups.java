@@ -1,5 +1,7 @@
 package pageElements;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -71,6 +73,60 @@ public class Groups {
 	public static WebElement Membership(WebDriver driver_) {
 		try {
 			return driver_.findElement(By.id("GroupDiscoverCard_membership"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement TitleMembership(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@id='GroupDiscoverCard_membership']/div[1]/span"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement LeftListMembership(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.id("group-discover-card-left-columnmembership"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement[] GroupsLeftListMembership(WebDriver driver_) {
+		try {
+			List<WebElement> list_ = LeftListMembership(driver_).findElements(By.tagName("li"));
+			
+			return list_.toArray(new WebElement[0]);
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement RightListMembership(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.id("group-discover-card-right-columnmembership"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement[] GroupsRightListMembership(WebDriver driver_) {
+		try {
+			List<WebElement> list_ = RightListMembership(driver_).findElements(By.tagName("li"));
+			
+			return list_.toArray(new WebElement[0]);
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
