@@ -1,5 +1,7 @@
 package common;
 
+import java.io.File;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -94,6 +96,18 @@ public class Comm {
 		case 2:
 			wait.until(ExpectedConditions.elementToBeClickable(by_));
 			break;
+		}
+	}
+	
+	public static void createFolder(String path_) {
+		try {
+			File theDir_ = new File (path_);
+			if (!theDir_.exists()) {
+				theDir_.mkdir();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

@@ -62,7 +62,7 @@ public class Logger_ {
 	
 	private static void SelectFile_(String type_) {
 		try {
-			createFolder(Comm.checkEnv() + "logs/");
+			Comm.createFolder(Comm.checkEnv() + "logs/");
 			switch (type_) {
 			case "info":
 				fh = new FileHandler(Comm.checkEnv() + "logs/FO_InfoLogger.log", true);
@@ -86,7 +86,7 @@ public class Logger_ {
 					test_ = testWin_;
 				}
 			}
-			createFolder(Comm.checkEnv() + "logs/");
+			Comm.createFolder(Comm.checkEnv() + "logs/");
 			fh = new FileHandler(Comm.checkEnv() + "logs/" + TimeStamp + "_FO_Test_" + test_ + "_Logger.log", true);
 			fh.setFormatter(new SimpleFormatter());
 		}
@@ -118,7 +118,7 @@ public class Logger_ {
 	
 	private static void screenShot(WebDriver driver_) {
 		try {
-			createFolder(Comm.checkEnv() + "prints/");
+			Comm.createFolder(Comm.checkEnv() + "prints/");
 			String timestamp_ = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 			WebDriver augmentedDriver = new Augmenter().augment(driver_);
 	        File screenshot = ((TakesScreenshot)augmentedDriver).
@@ -130,7 +130,7 @@ public class Logger_ {
 		}
 	}
 	
-	private static void createFolder(String path_) {
+	/*private static void createFolder(String path_) {
 		try {
 			File theDir_ = new File (path_);
 			if (!theDir_.exists()) {
@@ -140,5 +140,5 @@ public class Logger_ {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }
