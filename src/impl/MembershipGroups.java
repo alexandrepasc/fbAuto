@@ -1,8 +1,10 @@
 package impl;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import common.Comm;
 import common.Logger_;
@@ -20,6 +22,21 @@ public class MembershipGroups {
 			if (!CheckListMemberships(driver_)) {
 				return false;
 			}
+			
+			/*Actions action_ = new Actions(driver_);
+			action_.moveToElement(Groups.AboutFooter(driver_));
+			action_.perform();*/
+			
+			JavascriptExecutor jse_ = (JavascriptExecutor)driver_;
+			//jse_.executeScript("scroll(0, 250)");
+			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+			Thread.sleep(2000);
+			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+			Thread.sleep(2000);
+			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+			Thread.sleep(2000);
+			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+			Thread.sleep(2000);
 			
 			FileXML.Write("GroupsList", Comm.checkEnv() + "data/", ListGroups(driver_));
 			
@@ -63,15 +80,20 @@ public class MembershipGroups {
 				arrayAux_ = i;
 				
 				groups_[arrayAux_] = ValuesListGroups(driver_, Groups.GroupsLeftListMembership(driver_)[i]);
+				System.out.println(groups_[arrayAux_][0]);
 			}
 			
 			for (int i = 0; i < Groups.GroupsRightListMembership(driver_).length; i++) {
 				arrayAux_ += 1;
 				
 				groups_[arrayAux_] = ValuesListGroups(driver_, Groups.GroupsRightListMembership(driver_)[i]);
+				System.out.println(groups_[arrayAux_][0]);
 			}
 			
-			return null;
+			System.out.println(Groups.GroupsLeftListMembership(driver_).length);
+			System.out.println(Groups.GroupsRightListMembership(driver_).length);
+			System.out.println(groups_.length);
+			return groups_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
@@ -111,6 +133,8 @@ public class MembershipGroups {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Right List Membership Groups IS NOT Present and/or Visible", "info");
 				return false;
 			}
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Left and Right List Membership Groups IS Present and/or Visible", "info");
 			
 			return true;
 		}
