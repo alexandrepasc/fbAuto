@@ -12,6 +12,7 @@ import common.Logger_;
 import impl.CheckNotifications;
 import impl.DoLogin;
 import impl.DoLogout;
+import impl.FileXML;
 import impl.GoToGroups;
 import impl.MembershipGroups;
 
@@ -33,6 +34,9 @@ public class Start {
 			Configurations.KeepConfig(Configurations.ReadConfig());
 			
 			driver.get(Configurations.config.url);
+			
+			//TEST CODE
+			FileXML.Read(ConfigStructure.class, Comm.checkEnv(), "config.xml");
 			
 			
 			if (!DoLogin.Login(driver, Configurations.config.login, Configurations.config.pwd)) {

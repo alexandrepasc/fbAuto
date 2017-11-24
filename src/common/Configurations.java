@@ -8,18 +8,20 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+import main.ConfigStructure;
+
 public class Configurations {
 
-	public static class Configs {
+	/*public static class Configs {
 		
 		public String url;
 		
 		public String login;
 		
 		public String pwd;		
-	}
+	}*/
 	
-	public static Configs config = new Configs();
+	public static ConfigStructure config = new ConfigStructure();
 	
 	public static String[] ReadConfig() {
 		try {

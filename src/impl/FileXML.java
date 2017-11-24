@@ -1,6 +1,7 @@
 package impl;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,12 +29,14 @@ public class FileXML {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(DocAddValues(doc_, data_));
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Get Values", "info");
 			
 			Comm.createFolder(path_);
 			
 			StreamResult result = new StreamResult(new File(path_ + fileName_ + ".xml"));
 			
 			transformer.transform(source, result);
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Saved", "info");
 			
 			return true;
 		}
@@ -82,8 +85,19 @@ public class FileXML {
 		}
 	}
 	
-	public static boolean Read() {
+	public static boolean Read(Class<?> structure_, String path_, String fileName_) {
 		try {
+			//TEST CODE
+			System.out.println(structure_.getName());
+			Field[] fields = structure_.getFields();
+			System.out.println(fields[0].getName());
+			
+			File fXmlFile_ = new File(path_ + fileName_);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc_ = dBuilder.parse(fXmlFile_);
+			doc_.getDocumentElement().normalize();
+			
 			return true;
 		}
 		catch (Exception e) {
