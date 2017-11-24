@@ -15,6 +15,8 @@ public class MembershipGroups {
 
 	public static boolean Memberships(WebDriver driver_) {
 		try {
+			Thread.sleep(2000);
+			
 			if (!CheckMembershipGroups(driver_)) {
 				return false;
 			}
@@ -23,6 +25,7 @@ public class MembershipGroups {
 				return false;
 			}
 			
+			//NEEDS TO BE REVIEWED
 			/*Actions action_ = new Actions(driver_);
 			action_.moveToElement(Groups.AboutFooter(driver_));
 			action_.perform();*/
@@ -80,18 +83,18 @@ public class MembershipGroups {
 				arrayAux_ = i;
 				
 				groups_[arrayAux_] = ValuesListGroups(driver_, Groups.GroupsLeftListMembership(driver_)[i]);
-				System.out.println(groups_[arrayAux_][0]);
+				//System.out.println(groups_[arrayAux_][0]);
 			}
 			
 			for (int i = 0; i < Groups.GroupsRightListMembership(driver_).length; i++) {
 				arrayAux_ += 1;
 				
 				groups_[arrayAux_] = ValuesListGroups(driver_, Groups.GroupsRightListMembership(driver_)[i]);
-				System.out.println(groups_[arrayAux_][0]);
+				//System.out.println(groups_[arrayAux_][0]);
 			}
 			
-			System.out.println(Groups.GroupsLeftListMembership(driver_).length);
-			System.out.println(Groups.GroupsRightListMembership(driver_).length);
+			//System.out.println(Groups.GroupsLeftListMembership(driver_).length);
+			//System.out.println(Groups.GroupsRightListMembership(driver_).length);
 			System.out.println(groups_.length);
 			return groups_;
 		}

@@ -129,16 +129,4 @@ public class Logger_ {
 			e.printStackTrace();
 		}
 	}
-	
-	/*private static void createFolder(String path_) {
-		try {
-			File theDir_ = new File (path_);
-			if (!theDir_.exists()) {
-				theDir_.mkdir();
-			}
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
 }
