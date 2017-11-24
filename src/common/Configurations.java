@@ -21,7 +21,7 @@ public class Configurations {
 		public String pwd;		
 	}*/
 	
-	public static ConfigStructure config = new ConfigStructure();
+	//public static ConfigStructure config = new ConfigStructure();
 	
 	public static String[] ReadConfig() {
 		try {
@@ -57,11 +57,11 @@ public class Configurations {
 		}
 	}
 	
-	public static void KeepConfig(String[] configs) {
+	public static void KeepConfig(String[] configs_, ConfigStructure config_) {
 		try {
-			config.url = configs[0];
-			config.login = configs[1];
-			config.pwd = configs[2];
+			config_.url = configs_[0];
+			config_.login = configs_[1];
+			config_.pwd = configs_[2];
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);

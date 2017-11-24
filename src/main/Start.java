@@ -31,15 +31,17 @@ public class Start {
 			
 			LogStartEndApp(true);
 			
-			Configurations.KeepConfig(Configurations.ReadConfig());
+			ConfigStructure configStructure_ = new ConfigStructure();
 			
-			driver.get(Configurations.config.url);
+			Configurations.KeepConfig(Configurations.ReadConfig(), configStructure_);
+			
+			driver.get(configStructure_.url);
 			
 			//TEST CODE
-			FileXML.Read(ConfigStructure.class, Comm.checkEnv(), "config.xml");
+			FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
 			
 			
-			if (!DoLogin.Login(driver, Configurations.config.login, Configurations.config.pwd)) {
+			if (!DoLogin.Login(driver, configStructure_.login, configStructure_.pwd)) {
 				EndApp(driver);
 			}
 			

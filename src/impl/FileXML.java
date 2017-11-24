@@ -16,6 +16,8 @@ import org.w3c.dom.Element;
 
 import common.Comm;
 import common.Logger_;
+import main.ConfigStructure;
+import main.GroupStructure;
 
 public class FileXML {
 
@@ -85,12 +87,45 @@ public class FileXML {
 		}
 	}
 	
-	public static boolean Read(Class<?> structure_, String path_, String fileName_) {
+	public static boolean Read(ConfigStructure structure_, String path_, String fileName_) {
 		try {
 			//TEST CODE
-			System.out.println(structure_.getName());
-			Field[] fields = structure_.getFields();
+			//System.out.println(structure_.getName());
+			Field[] fields = structure_.getClass().getFields();
 			System.out.println(fields[0].getName());
+			System.out.println(structure_.login);
+			structure_.login = "asd";
+			System.out.println(structure_.login);
+			
+			//ConfigStructure configStruc_ = new ConfigStructure();
+			/*System.out.println(configStruc_.login);
+			configStruc_.login = "asdasdasd";
+			System.out.println(configStruc_.login);*/
+			
+			File fXmlFile_ = new File(path_ + fileName_);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc_ = dBuilder.parse(fXmlFile_);
+			doc_.getDocumentElement().normalize();
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	public static boolean Read(GroupStructure structure_, String path_, String fileName_) {
+		try {
+			//TEST CODE
+			//System.out.println(structure_.getName());
+			//Field[] fields = structure_.getClass().getFields();
+			//System.out.println(fields[0].getName());
+			
+			//ConfigStructure configStruc_ = new ConfigStructure();
+			/*System.out.println(configStruc_.login);
+			configStruc_.login = "asdasdasd";
+			System.out.println(configStruc_.login);*/
 			
 			File fXmlFile_ = new File(path_ + fileName_);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
