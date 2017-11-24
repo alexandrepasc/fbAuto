@@ -8,18 +8,20 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+import main.ConfigStructure;
+
 public class Configurations {
 
-	public static class Configs {
+	/*public static class Configs {
 		
 		public String url;
 		
 		public String login;
 		
 		public String pwd;		
-	}
+	}*/
 	
-	public static Configs config = new Configs();
+	//public static ConfigStructure config = new ConfigStructure();
 	
 	public static String[] ReadConfig() {
 		try {
@@ -55,11 +57,11 @@ public class Configurations {
 		}
 	}
 	
-	public static void KeepConfig(String[] configs) {
+	public static void KeepConfig(String[] configs_, ConfigStructure config_) {
 		try {
-			config.url = configs[0];
-			config.login = configs[1];
-			config.pwd = configs[2];
+			config_.url = configs_[0];
+			config_.login = configs_[1];
+			config_.pwd = configs_[2];
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);

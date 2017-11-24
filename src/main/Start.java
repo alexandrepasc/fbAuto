@@ -12,6 +12,7 @@ import common.Logger_;
 import impl.CheckNotifications;
 import impl.DoLogin;
 import impl.DoLogout;
+import impl.FileXML;
 import impl.GoToGroups;
 import impl.MembershipGroups;
 
@@ -22,7 +23,7 @@ public class Start {
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().setSize(new Dimension(1280, 960));
-		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
 		
 		Logger_.setTimeStamp();
 		
@@ -30,12 +31,17 @@ public class Start {
 			
 			LogStartEndApp(true);
 			
-			Configurations.KeepConfig(Configurations.ReadConfig());
+			ConfigStructure configStructure_ = new ConfigStructure();
 			
-			driver.get(Configurations.config.url);
+			Configurations.KeepConfig(Configurations.ReadConfig(), configStructure_);
+			
+			driver.get(configStructure_.url);
+			
+			//TEST CODE
+			FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
 			
 			
-			if (!DoLogin.Login(driver, Configurations.config.login, Configurations.config.pwd)) {
+			if (!DoLogin.Login(driver, configStructure_.login, configStructure_.pwd)) {
 				EndApp(driver);
 			}
 			

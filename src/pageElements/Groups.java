@@ -104,6 +104,8 @@ public class Groups {
 		try {
 			List<WebElement> list_ = LeftListMembership(driver_).findElements(By.tagName("li"));
 			
+			//System.out.println(list_.size());
+			
 			return list_.toArray(new WebElement[0]);
 		}
 		catch (Exception e) {
@@ -126,6 +128,8 @@ public class Groups {
 		try {
 			List<WebElement> list_ = RightListMembership(driver_).findElements(By.tagName("li"));
 			
+			//System.out.println(list_.size());
+			
 			return list_.toArray(new WebElement[0]);
 		}
 		catch (Exception e) {
@@ -137,6 +141,26 @@ public class Groups {
 	public static WebElement Archived(WebDriver driver_) {
 		try {
 			return driver_.findElement(By.id("GroupDiscoverCard_archived"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement AboutFooter(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@id='pageFooter']/div[2]/table[1]/tbody[1]/tr[1]/td[1]/a"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement FacebookTradeFoot(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@id='pageFooter']/div[3]/div/span"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);

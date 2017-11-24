@@ -1,6 +1,7 @@
 package impl;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,7 +14,10 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import common.Comm;
 import common.Logger_;
+import main.ConfigStructure;
+import main.GroupStructure;
 
 public class FileXML {
 
@@ -27,10 +31,14 @@ public class FileXML {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(DocAddValues(doc_, data_));
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Get Values", "info");
+			
+			Comm.createFolder(path_);
 			
 			StreamResult result = new StreamResult(new File(path_ + fileName_ + ".xml"));
 			
 			transformer.transform(source, result);
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Saved", "info");
 			
 			return true;
 		}
@@ -45,26 +53,30 @@ public class FileXML {
 			Element rootElement_ = doc_.createElement("groups");
 			doc_.appendChild(rootElement_);
 			
+			Element total_ = doc_.createElement("total");
+			total_.appendChild(doc_.createTextNode(String.valueOf(values_.length)));
+			rootElement_.appendChild(total_);
+			
 			for (int i = 0; i < values_.length; i++) {
-				Element staff = doc_.createElement("group");
-				rootElement_.appendChild(staff);
+				Element group_ = doc_.createElement("group");
+				rootElement_.appendChild(group_);
 
-				// set attribute to staff element
+				// set attribute to group element
 				Attr attr_ = doc_.createAttribute("id");
 				attr_.setValue(String.valueOf(i));
-				staff.setAttributeNode(attr_);
+				group_.setAttributeNode(attr_);
 				
 				Element id_ = doc_.createElement("id");
 				id_.appendChild(doc_.createTextNode(values_[i][0]));
-				staff.appendChild(id_);
+				group_.appendChild(id_);
 				
 				Element name_ = doc_.createElement("name");
 				name_.appendChild(doc_.createTextNode(values_[i][1]));
-				staff.appendChild(name_);
+				group_.appendChild(name_);
 				
 				Element url_ = doc_.createElement("url");
 				url_.appendChild(doc_.createTextNode(values_[i][2]));
-				staff.appendChild(url_);
+				group_.appendChild(url_);
 			}
 			
 			return doc_;
@@ -75,8 +87,52 @@ public class FileXML {
 		}
 	}
 	
-	public static boolean Read() {
+	public static boolean Read(ConfigStructure structure_, String path_, String fileName_) {
 		try {
+			//TEST CODE
+			//System.out.println(structure_.getName());
+			Field[] fields = structure_.getClass().getFields();
+			System.out.println(fields[0].getName());
+			System.out.println(structure_.login);
+			structure_.login = "asd";
+			System.out.println(structure_.login);
+			
+			//ConfigStructure configStruc_ = new ConfigStructure();
+			/*System.out.println(configStruc_.login);
+			configStruc_.login = "asdasdasd";
+			System.out.println(configStruc_.login);*/
+			
+			File fXmlFile_ = new File(path_ + fileName_);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc_ = dBuilder.parse(fXmlFile_);
+			doc_.getDocumentElement().normalize();
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	public static boolean Read(GroupStructure structure_, String path_, String fileName_) {
+		try {
+			//TEST CODE
+			//System.out.println(structure_.getName());
+			//Field[] fields = structure_.getClass().getFields();
+			//System.out.println(fields[0].getName());
+			
+			//ConfigStructure configStruc_ = new ConfigStructure();
+			/*System.out.println(configStruc_.login);
+			configStruc_.login = "asdasdasd";
+			System.out.println(configStruc_.login);*/
+			
+			File fXmlFile_ = new File(path_ + fileName_);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc_ = dBuilder.parse(fXmlFile_);
+			doc_.getDocumentElement().normalize();
+			
 			return true;
 		}
 		catch (Exception e) {
