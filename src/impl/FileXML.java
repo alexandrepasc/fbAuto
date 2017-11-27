@@ -13,6 +13,9 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import common.Comm;
 import common.Logger_;
@@ -31,14 +34,14 @@ public class FileXML {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(DocAddValues(doc_, data_));
-			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Get Values", "info");
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Get Values: " + path_ + fileName_, "info");
 			
 			Comm.createFolder(path_);
 			
 			StreamResult result = new StreamResult(new File(path_ + fileName_ + ".xml"));
 			
 			transformer.transform(source, result);
-			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Saved", "info");
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Saved: " + path_ + fileName_, "info");
 			
 			return true;
 		}
@@ -91,12 +94,14 @@ public class FileXML {
 		try {
 			//TEST CODE
 			//System.out.println(structure_.getName());
-			Field[] fields = structure_.getClass().getFields();
-			System.out.println(fields[0].getName());
-			System.out.println(structure_.login);
-			structure_.login = "asd";
-			System.out.println(structure_.login);
-			
+			//Field[] fields = structure_.getClass().getFields();
+			//System.out.println(fields[0].getName());
+			//System.out.println(structure_.login);
+			//structure_.login = "asd";
+			//System.out.println(structure_.login);
+			//Field asd = structure_.getClass().getDeclaredField("login");
+			//asd.set(structure_, "")
+			//fields[1].set(structure_, "thegur3n@gmail.com");
 			//ConfigStructure configStruc_ = new ConfigStructure();
 			/*System.out.println(configStruc_.login);
 			configStruc_.login = "asdasdasd";
@@ -107,6 +112,36 @@ public class FileXML {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc_ = dBuilder.parse(fXmlFile_);
 			doc_.getDocumentElement().normalize();
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Reading File: " + path_ + fileName_, "info");
+			
+			if (doc_.hasChildNodes()) {
+
+				for (int i = 0; i < doc_.getChildNodes().getLength(); i++) {
+					
+					Node tempNode_ = doc_.getChildNodes().item(i);
+					
+					if (tempNode_.getNodeType() == Node.ELEMENT_NODE) {
+						
+						//System.out.println("\nNode Name =" + tempNode_.getNodeName() + " [OPEN]");
+						//System.out.println("Node Value =" + tempNode_.getTextContent());
+						
+						NodeList nList_ = tempNode_.getChildNodes();
+						
+						for (int x = 1; x < nList_.getLength(); x++) {
+							if (nList_.item(x).getNodeType() == Node.ELEMENT_NODE) {
+								//System.out.println("Name " + nList_.item(x).getNodeName());
+								//System.out.println("Text " + nList_.item(x).getTextContent());
+								Field structField_ = structure_.getClass().getDeclaredField(nList_.item(x).getNodeName());
+								structField_.set(structure_, nList_.item(x).getTextContent());
+							}
+						}
+					}
+				}
+
+			}
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Read: " + path_ + fileName_, "info");
 			
 			return true;
 		}
