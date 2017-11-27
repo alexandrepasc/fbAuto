@@ -8,7 +8,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import impl.FileXML;
 import main.ConfigStructure;
 
 public class Configurations {
@@ -24,19 +23,6 @@ public class Configurations {
 	
 	//public static ConfigStructure config = new ConfigStructure();
 	
-	public static boolean ReadConfig(ConfigStructure config_, String path_, String file_){
-		try {
-			if (!FileXML.Read(config_, path_, file_)) {
-				return false;
-			}
-			
-			return true;
-		}
-		catch (Exception e) {
-			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
-		}
-	}
 	public static String[] ReadConfig() {
 		try {
 			File xml_ = new File(Comm.checkEnv() + "config.xml");
