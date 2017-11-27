@@ -33,12 +33,13 @@ public class Start {
 			
 			ConfigStructure configStructure_ = new ConfigStructure();
 			
-			Configurations.KeepConfig(Configurations.ReadConfig(), configStructure_);
+			//Configurations.KeepConfig(Configurations.ReadConfig(), configStructure_);
+			FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
 			
 			driver.get(configStructure_.url);
 			
 			//TEST CODE
-			FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
+			//FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
 			
 			
 			if (!DoLogin.Login(driver, configStructure_.login, configStructure_.pwd)) {
