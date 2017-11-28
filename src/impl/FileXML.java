@@ -150,23 +150,57 @@ public class FileXML {
 			return false;
 		}
 	}
-	public static boolean Read(GroupStructure structure_, String path_, String fileName_) {
+	public static boolean Read(GroupStructure[] groupStructure_, String path_, String fileName_) {
 		try {
-			//TEST CODE
-			//System.out.println(structure_.getName());
-			//Field[] fields = structure_.getClass().getFields();
-			//System.out.println(fields[0].getName());
-			
-			//ConfigStructure configStruc_ = new ConfigStructure();
-			/*System.out.println(configStruc_.login);
-			configStruc_.login = "asdasdasd";
-			System.out.println(configStruc_.login);*/
-			
 			File fXmlFile_ = new File(path_ + fileName_);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc_ = dBuilder.parse(fXmlFile_);
 			doc_.getDocumentElement().normalize();
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Reading File: " + path_ + fileName_, "info");
+			
+			if (doc_.hasChildNodes()) {
+				
+				//for (int i = 0; i < doc_.getChildNodes().getLength(); i++) {
+					
+					Node tempNode_ = doc_.getChildNodes().item(0);
+					
+					if (tempNode_.getNodeType() == Node.ELEMENT_NODE) {
+						System.out.println("\nNode Name =" + tempNode_.getNodeName() + " [OPEN]");
+						//System.out.println("Node Value =" + tempNode_.getTextContent());
+						
+						NodeList nList_ = tempNode_.getChildNodes();
+						
+						//GroupStructure[] groupStructure_ = null;
+						if (nList_.item(0).getNodeName().equals("total")) {
+							groupStructure_ = new GroupStructure[Integer.valueOf(nList_.item(0).getTextContent())];
+							System.out.println(groupStructure_.length);
+							System.out.println(nList_.getLength());
+						}
+						
+						if ((nList_.getLength() - 1) == groupStructure_.length) {
+							for (int x = 1; x < nList_.getLength(); x++) {
+								if (nList_.item(x).getNodeType() == Node.ELEMENT_NODE) {
+									System.out.println("Name " + nList_.item(x).getNodeName());
+									System.out.println("Text " + nList_.item(x).getTextContent());
+									System.out.println("Text " + nList_.item(x).getAttributes().item(0).getTextContent());
+									
+									NodeList subnList_ = nList_.item(x).getChildNodes();
+									
+									for (int i = 0; i < subnList_.getLength(); i++) {
+										System.out.println("Name sub " + subnList_.item(i).getNodeName());
+										
+										Field structField_ = groupStructure_.getClass().getDeclaredField("name");
+										//structField_[""]
+										//structField_.set(groupStructure_, nList_.item(i).getTextContent());
+									}
+								}
+							}
+						}
+					}
+				//}
+			}
 			
 			return true;
 		}

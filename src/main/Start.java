@@ -32,14 +32,22 @@ public class Start {
 			LogStartEndApp(true);
 			
 			ConfigStructure configStructure_ = new ConfigStructure();
+			GroupStructure[] groupStructure_ = null;
 			
 			//Configurations.KeepConfig(Configurations.ReadConfig(), configStructure_);
-			FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
+			//FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
+			if (!Configurations.ReadConfig(configStructure_, Comm.checkEnv(), "config.xml")) {
+				EndApp(driver);
+			}
+			
+			FileXML.Read(groupStructure_, Comm.checkEnv() + "data/", "GroupsList.xml");
+			EndApp(driver);
 			
 			driver.get(configStructure_.url);
 			
 			//TEST CODE
 			//FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
+			//FileXML.Read(groupStructure_, Comm.checkEnv(), "config.xml");
 			
 			
 			if (!DoLogin.Login(driver, configStructure_.login, configStructure_.pwd)) {
