@@ -146,4 +146,14 @@ public class MembershipGroups {
 			return false;
 		}
 	}
+	
+	private static boolean addDataToStructure(String[][] data_) {
+		try {
+			
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
 }
