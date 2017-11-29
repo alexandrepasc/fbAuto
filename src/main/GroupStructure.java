@@ -2,7 +2,7 @@ package main;
 
 public class GroupStructure {
 
-	public int group;
+	public String group;
 	
 	public String id;
 	

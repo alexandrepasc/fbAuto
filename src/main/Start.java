@@ -1,5 +1,6 @@
 package main;
 
+import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
@@ -32,20 +33,36 @@ public class Start {
 			LogStartEndApp(true);
 			
 			ConfigStructure configStructure_ = new ConfigStructure();
+			//GroupStructure[] groupStructure_ = null;
 			
-			Configurations.KeepConfig(Configurations.ReadConfig(), configStructure_);
+			//Configurations.KeepConfig(Configurations.ReadConfig(), configStructure_);
+			//FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
+			if (!Configurations.ReadConfig(configStructure_, Comm.checkEnv(), "config.xml")) {
+				EndApp(driver);
+			}
+			
+			GroupStructure[] groupStructure_ = FileXML.Read(Comm.checkEnv() + "data/", "GroupsList.xml");
+			
+			if (groupStructure_ == null) {
+				EndApp(driver);
+			}
+			
+			for (int i = 0; i < groupStructure_.length; i++) {
+				Field[] fields_ = groupStructure_[i].getClass().getDeclaredFields();
+								
+				for (int x = 0; x < fields_.length; x++) {
+					System.out.println(fields_[x].get(groupStructure_[i]));
+				}
+			}
+			
+			//EndApp(driver);
 			
 			driver.get(configStructure_.url);
-			
-			//TEST CODE
-			FileXML.Read(configStructure_, Comm.checkEnv(), "config.xml");
-			
 			
 			if (!DoLogin.Login(driver, configStructure_.login, configStructure_.pwd)) {
 				EndApp(driver);
 			}
 			
-			//driver.navigate().refresh();
 			if (!CheckNotifications.Notification(driver)) {
 				EndApp(driver);
 			}
