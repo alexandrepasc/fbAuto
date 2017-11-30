@@ -138,6 +138,19 @@ public class Groups {
 		}
 	}
 	
+	public static WebElement LoadingMembershipGroups(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@id='group-discover-card-see-moremembership']/div/span"));
+		}
+		catch (Nosu) {
+			
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
 	public static WebElement Archived(WebDriver driver_) {
 		try {
 			return driver_.findElement(By.id("GroupDiscoverCard_archived"));
