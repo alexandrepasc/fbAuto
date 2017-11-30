@@ -1,5 +1,7 @@
 package impl;
 
+import java.lang.reflect.Field;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,20 +11,21 @@ import org.openqa.selenium.interactions.Actions;
 import common.Comm;
 import common.Logger_;
 import common.Translations;
+import main.GroupStructure;
 import pageElements.Groups;
 
 public class MembershipGroups {
 
-	public static boolean Memberships(WebDriver driver_) {
+	public static GroupStructure[] Memberships(WebDriver driver_) {
 		try {
 			Thread.sleep(2000);
 			
 			if (!CheckMembershipGroups(driver_)) {
-				return false;
+				return null;
 			}
 			
 			if (!CheckListMemberships(driver_)) {
-				return false;
+				return null;
 			}
 			
 			//NEEDS TO BE REVIEWED
@@ -41,13 +44,13 @@ public class MembershipGroups {
 			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 			Thread.sleep(2000);
 			
-			FileXML.Write("GroupsList", Comm.checkEnv() + "data/", ListGroups(driver_));
+			//FileXML.Write("GroupsList", Comm.checkEnv() + "data/", ListGroups(driver_));
 			
-			return true;
+			return AddDataToStructure(ListGroups(driver_));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
-			return false;
+			return null;
 		}
 	}
 	
@@ -95,7 +98,7 @@ public class MembershipGroups {
 			
 			//System.out.println(Groups.GroupsLeftListMembership(driver_).length);
 			//System.out.println(Groups.GroupsRightListMembership(driver_).length);
-			System.out.println(groups_.length);
+			//System.out.println(groups_.length);
 			return groups_;
 		}
 		catch (Exception e) {
@@ -147,13 +150,31 @@ public class MembershipGroups {
 		}
 	}
 	
-	private static boolean addDataToStructure(String[][] data_) {
+	private static GroupStructure[] AddDataToStructure(String[][] data_) {
+		
 		try {
 			
+			GroupStructure[] groupStructure_ = new GroupStructure[data_.length];
+			
+			for (int i = 0; i < data_.length; i++) {
+				
+				groupStructure_[i] = new GroupStructure();
+				
+				Field[] structFields = groupStructure_[i].getClass().getDeclaredFields();
+				
+				structFields[0].set(groupStructure_[i], String.valueOf(i));
+				
+				for (int x = 0; x < data_[i].length; x++) {
+					
+					structFields[x + 1].set(groupStructure_[i], data_[i][x]);
+				}
+			}
+			
+			return groupStructure_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
+			return null;
 		}
 	}
 }
