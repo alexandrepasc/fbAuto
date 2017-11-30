@@ -19,14 +19,14 @@ public class Translations {
 			}
 		}
 		catch (Exception e) {
-			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage() + " - Problem Getting Language", "severe", e);
 			return null;
 		}
 	}
 	
 	private static Languages GetLanguage(WebDriver driver_) {
 		try {
-			final String aux_ = TopBar.ButHomePage(driver_).getText().substring(0, TopBar.ButHomePage(driver_).getText().length() - 1);
+			final String aux_ = TopBar.ButHomePage(driver_).getText();//.substring(0, TopBar.ButHomePage(driver_).getText().length() - 1);
 			
 			switch (aux_) {
 				case "Home":
