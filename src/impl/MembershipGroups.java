@@ -177,4 +177,15 @@ public class MembershipGroups {
 			return null;
 		}
 	}
+	
+	private static boolean ScrollDown(WebDriver driver_) {
+		try {
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
 }
