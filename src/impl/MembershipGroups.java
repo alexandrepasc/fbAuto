@@ -188,6 +188,8 @@ public class MembershipGroups {
 	private static boolean DoScrollDown(WebDriver driver_, int scrollDownNumb_) {
 		try {
 			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Scrolling page", "info");
+			
 			for (int i = 0; i < scrollDownNumb_; i++) {
 				
 				if (!CheckScrollDown(driver_)) {

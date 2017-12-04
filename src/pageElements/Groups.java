@@ -3,6 +3,7 @@ package pageElements;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -142,8 +143,8 @@ public class Groups {
 		try {
 			return driver_.findElement(By.xpath("//div[@id='group-discover-card-see-moremembership']/div/span"));
 		}
-		catch (Nosu) {
-			
+		catch (NoSuchElementException e) {
+			return null;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
