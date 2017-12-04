@@ -33,7 +33,11 @@ public class MembershipGroups {
 			action_.moveToElement(Groups.AboutFooter(driver_));
 			action_.perform();*/
 			
-			JavascriptExecutor jse_ = (JavascriptExecutor)driver_;
+			if (!DoScrollDown(driver_, 10)) {
+				return null;
+			}
+			
+			/*JavascriptExecutor jse_ = (JavascriptExecutor)driver_;
 			//jse_.executeScript("scroll(0, 250)");
 			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 			Thread.sleep(2000);
@@ -42,7 +46,7 @@ public class MembershipGroups {
 			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 			Thread.sleep(2000);
 			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-			Thread.sleep(2000);
+			Thread.sleep(2000);*/
 			
 			//FileXML.Write("GroupsList", Comm.checkEnv() + "data/", ListGroups(driver_));
 			
@@ -76,6 +80,9 @@ public class MembershipGroups {
 	
 	private static String[][] ListGroups(WebDriver driver_) {
 		try {
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Listing Groups", "info");
+			
 			final int x_ = Groups.GroupsLeftListMembership(driver_).length + Groups.GroupsRightListMembership(driver_).length;
 			
 			String[][] groups_ = new String [x_][3];
@@ -175,6 +182,63 @@ public class MembershipGroups {
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 			return null;
+		}
+	}
+	
+	private static boolean DoScrollDown(WebDriver driver_, int scrollDownNumb_) {
+		try {
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Scrolling page", "info");
+			
+			for (int i = 0; i < scrollDownNumb_; i++) {
+				
+				if (!CheckScrollDown(driver_)) {
+					return false;
+				}
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
+	
+	private static boolean CheckScrollDown(WebDriver driver_) {
+		try {
+			
+			if (!Comm.checkElement(Groups.LoadingMembershipGroups(driver_), driver_)) {
+				
+				if (!ScrollDown(driver_)) {
+					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Problem Doing the ScrollDown", "severe", driver_);
+					return false;
+				}
+			}
+			else {
+				
+				Thread.sleep(2000);
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
+	
+	private static boolean ScrollDown(WebDriver driver_) {
+		try {
+
+			JavascriptExecutor jse_ = (JavascriptExecutor)driver_;
+			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
 		}
 	}
 }
