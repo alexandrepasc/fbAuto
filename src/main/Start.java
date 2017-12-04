@@ -1,6 +1,5 @@
 package main;
 
-import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
