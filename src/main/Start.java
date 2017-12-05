@@ -10,6 +10,7 @@ import common.Comm;
 import common.Configurations;
 import common.Logger_;
 import impl.CheckNotifications;
+import impl.CompareGroupStructures;
 import impl.DoLogin;
 import impl.DoLogout;
 import impl.FileXML;
@@ -59,8 +60,12 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver);
+			/*GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver);
 			if (webGroupStructure_ == null) {
+				EndApp(driver);
+			}*/
+			
+			if (GetAndCompareGroupList(driver, groupStructure_)) {
 				EndApp(driver);
 			}
 			
@@ -87,6 +92,26 @@ public class Start {
 			EndApp(driver);
 		}
 		
+	}
+	
+	private static boolean GetAndCompareGroupList(WebDriver driver_, GroupStructure[] groupStructure_) {
+		try {
+			
+			GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver_);
+			if (webGroupStructure_ == null) {
+				return false;
+			}
+			
+			if (!CompareGroupStructures.Compare(groupStructure_, webGroupStructure_)) {
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
 	}
 	
 	private static void LogStartEndApp(boolean start_) {
