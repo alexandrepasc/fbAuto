@@ -102,8 +102,14 @@ public class Start {
 				return false;
 			}
 			
-			if (!CompareGroupStructures.Compare(groupStructure_, webGroupStructure_)) {
+			if (CompareGroupStructures.Compare(groupStructure_, webGroupStructure_) == null) {
 				return false;
+			}
+			else if (!CompareGroupStructures.Compare(groupStructure_, webGroupStructure_)) {
+				//HAVE CHANGES
+			}
+			else {
+				//NO CHANGES
 			}
 			
 			return true;

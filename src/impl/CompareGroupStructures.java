@@ -5,7 +5,7 @@ import main.GroupStructure;
 
 public class CompareGroupStructures {
 
-	public static boolean Compare(GroupStructure[] fromFileStructure_, GroupStructure[] fromWebStructure_) {
+	public static Boolean Compare(GroupStructure[] fromFileStructure_, GroupStructure[] fromWebStructure_) { //FALSE = DIFFERENT   TRUE = SAME
 		try {
 			
 			if (fromFileStructure_.length == fromWebStructure_.length) {
@@ -16,17 +16,19 @@ public class CompareGroupStructures {
 				
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Group Changes", "info");
 				
-				if (CehckDifferences(fromFileStructure_, fromWebStructure_)) {
+				if (!CehckDifferences(fromFileStructure_, fromWebStructure_)) {
 					
-					return false;
+					return null;
 				}
+				
+				return false;
 			}
 			
 			return true;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
+			return null;
 		}
 	}
 	
