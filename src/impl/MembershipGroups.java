@@ -1,28 +1,30 @@
 package impl;
 
+import java.lang.reflect.Field;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import common.Comm;
 import common.Logger_;
 import common.Translations;
+import main.GroupStructure;
 import pageElements.Groups;
 
 public class MembershipGroups {
 
-	public static boolean Memberships(WebDriver driver_) {
+	public static GroupStructure[] Memberships(WebDriver driver_) {
 		try {
 			Thread.sleep(2000);
 			
 			if (!CheckMembershipGroups(driver_)) {
-				return false;
+				return null;
 			}
 			
 			if (!CheckListMemberships(driver_)) {
-				return false;
+				return null;
 			}
 			
 			//NEEDS TO BE REVIEWED
@@ -30,7 +32,11 @@ public class MembershipGroups {
 			action_.moveToElement(Groups.AboutFooter(driver_));
 			action_.perform();*/
 			
-			JavascriptExecutor jse_ = (JavascriptExecutor)driver_;
+			if (!DoScrollDown(driver_, 10)) {
+				return null;
+			}
+			
+			/*JavascriptExecutor jse_ = (JavascriptExecutor)driver_;
 			//jse_.executeScript("scroll(0, 250)");
 			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 			Thread.sleep(2000);
@@ -39,15 +45,15 @@ public class MembershipGroups {
 			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 			Thread.sleep(2000);
 			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-			Thread.sleep(2000);
+			Thread.sleep(2000);*/
 			
-			FileXML.Write("GroupsList", Comm.checkEnv() + "data/", ListGroups(driver_));
+			//FileXML.Write("GroupsList", Comm.checkEnv() + "data/", ListGroups(driver_));
 			
-			return true;
+			return AddDataToStructure(ListGroups(driver_));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
-			return false;
+			return null;
 		}
 	}
 	
@@ -73,6 +79,9 @@ public class MembershipGroups {
 	
 	private static String[][] ListGroups(WebDriver driver_) {
 		try {
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Listing Groups", "info");
+			
 			final int x_ = Groups.GroupsLeftListMembership(driver_).length + Groups.GroupsRightListMembership(driver_).length;
 			
 			String[][] groups_ = new String [x_][3];
@@ -95,7 +104,7 @@ public class MembershipGroups {
 			
 			//System.out.println(Groups.GroupsLeftListMembership(driver_).length);
 			//System.out.println(Groups.GroupsRightListMembership(driver_).length);
-			System.out.println(groups_.length);
+			//System.out.println(groups_.length);
 			return groups_;
 		}
 		catch (Exception e) {
@@ -138,6 +147,91 @@ public class MembershipGroups {
 			}
 			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Left and Right List Membership Groups IS Present and/or Visible", "info");
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
+	
+	private static GroupStructure[] AddDataToStructure(String[][] data_) {
+		
+		try {
+			
+			GroupStructure[] groupStructure_ = new GroupStructure[data_.length];
+			
+			for (int i = 0; i < data_.length; i++) {
+				
+				groupStructure_[i] = new GroupStructure();
+				
+				Field[] structFields = groupStructure_[i].getClass().getDeclaredFields();
+				
+				structFields[0].set(groupStructure_[i], String.valueOf(i));
+				
+				for (int x = 0; x < data_[i].length; x++) {
+					
+					structFields[x + 1].set(groupStructure_[i], data_[i][x]);
+				}
+			}
+			
+			return groupStructure_;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	private static boolean DoScrollDown(WebDriver driver_, int scrollDownNumb_) {
+		try {
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Scrolling page", "info");
+			
+			for (int i = 0; i < scrollDownNumb_; i++) {
+				
+				if (!CheckScrollDown(driver_)) {
+					return false;
+				}
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
+	
+	private static boolean CheckScrollDown(WebDriver driver_) {
+		try {
+			
+			if (!Comm.checkElement(Groups.LoadingMembershipGroups(driver_), driver_)) {
+				
+				if (!ScrollDown(driver_)) {
+					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Problem Doing the ScrollDown", "severe", driver_);
+					return false;
+				}
+			}
+			else {
+				
+				Thread.sleep(2000);
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
+	
+	private static boolean ScrollDown(WebDriver driver_) {
+		try {
+
+			JavascriptExecutor jse_ = (JavascriptExecutor)driver_;
+			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 			
 			return true;
 		}

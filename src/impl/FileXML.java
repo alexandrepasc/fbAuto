@@ -211,6 +211,8 @@ public class FileXML {
 				}
 			}
 			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Read: " + path_ + fileName_, "info");
+			
 			return groupStructure_;
 		}
 		catch (Exception e) {

@@ -1,6 +1,5 @@
 package impl;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import common.Comm;
@@ -40,7 +39,7 @@ public class CheckNotifications {
 		}
 	}
 	
-	private static boolean CheckWindow(WebDriver driver_) {
+	/*private static boolean CheckWindow(WebDriver driver_) {
 		try {
 			if (!Comm.checkElement(Notifications.WindowNotificationNoException(driver_), driver_)) {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Notification Window IS NOT Present and/or Visible", "info");
@@ -57,7 +56,7 @@ public class CheckNotifications {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
 			return false;
 		}
-	}
+	}*/
 	
 	private static boolean TurnOff(WebDriver driver_) {
 		try {

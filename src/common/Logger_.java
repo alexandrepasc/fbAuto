@@ -34,6 +34,13 @@ public class Logger_ {
 		screenShot(driver_);
 		fh.close();
 	}
+	public static void Logging_(String message_, String type_, WebDriver driver_) {
+		SelectFile_(type_);
+		log.addHandler(fh);
+		Log_(message_, type_);
+		screenShot(driver_);
+		fh.close();
+	}
 	public static void Logging_(String message_, String type_, Exception e_) {
 		SelectFile_(type_);
 		log.addHandler(fh);

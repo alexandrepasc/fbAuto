@@ -1,6 +1,5 @@
 package main;
 
-import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
@@ -11,6 +10,7 @@ import common.Comm;
 import common.Configurations;
 import common.Logger_;
 import impl.CheckNotifications;
+import impl.CompareGroupStructures;
 import impl.DoLogin;
 import impl.DoLogout;
 import impl.FileXML;
@@ -22,7 +22,7 @@ public class Start {
 	public static void main(String[] args) {
 		
 		WebDriver driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().setSize(new Dimension(1280, 960));
 		driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
 		
@@ -42,20 +42,9 @@ public class Start {
 			}
 			
 			GroupStructure[] groupStructure_ = FileXML.Read(Comm.checkEnv() + "data/", "GroupsList.xml");
-			
 			if (groupStructure_ == null) {
 				EndApp(driver);
 			}
-			
-			for (int i = 0; i < groupStructure_.length; i++) {
-				Field[] fields_ = groupStructure_[i].getClass().getDeclaredFields();
-								
-				for (int x = 0; x < fields_.length; x++) {
-					System.out.println(fields_[x].get(groupStructure_[i]));
-				}
-			}
-			
-			//EndApp(driver);
 			
 			driver.get(configStructure_.url);
 			
@@ -71,9 +60,23 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			if (!MembershipGroups.Memberships(driver)) {
+			/*GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver);
+			if (webGroupStructure_ == null) {
+				EndApp(driver);
+			}*/
+			
+			if (GetAndCompareGroupList(driver, groupStructure_)) {
 				EndApp(driver);
 			}
+			
+			/*for (int i = 0; i < webGroupStructure_.length; i++) {
+				Field[] fields_ = webGroupStructure_[i].getClass().getDeclaredFields();
+								
+				for (int x = 0; x < fields_.length; x++) {
+					System.out.println(fields_[x].get(webGroupStructure_[i]));
+				}
+			}
+			EndApp(driver);*/
 			
 			if (!DoLogout.Logout(driver)) {
 				EndApp(driver);
@@ -89,6 +92,32 @@ public class Start {
 			EndApp(driver);
 		}
 		
+	}
+	
+	private static boolean GetAndCompareGroupList(WebDriver driver_, GroupStructure[] groupStructure_) {
+		try {
+			
+			GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver_);
+			if (webGroupStructure_ == null) {
+				return false;
+			}
+			
+			if (CompareGroupStructures.Compare(groupStructure_, webGroupStructure_) == null) {
+				return false;
+			}
+			else if (!CompareGroupStructures.Compare(groupStructure_, webGroupStructure_)) {
+				//HAVE CHANGES
+			}
+			else {
+				//NO CHANGES
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
 	}
 	
 	private static void LogStartEndApp(boolean start_) {
