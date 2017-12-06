@@ -42,9 +42,9 @@ public class Start {
 			}
 			
 			GroupStructure[] groupStructure_ = FileXML.Read(Comm.checkEnv() + "data/", "GroupsList.xml");
-			if (groupStructure_ == null) {
+			/*if (groupStructure_ == null) {
 				EndApp(driver);
-			}
+			}*/
 			
 			driver.get(configStructure_.url);
 			

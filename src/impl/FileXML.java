@@ -1,6 +1,7 @@
 package impl;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -214,6 +215,9 @@ public class FileXML {
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Read: " + path_ + fileName_, "info");
 			
 			return groupStructure_;
+		}
+		catch (FileNotFoundException e) {
+			return null;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
