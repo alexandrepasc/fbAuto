@@ -24,7 +24,7 @@ public class DoLogin {
 				return false;
 			}
 			
-			Comm.waitingUntil(driver_, By.xpath("//*[@id='u_0_a']/div[1]/div[1]/div/a"), 12, 1);
+			Comm.waitingUntil(driver_, By.xpath("//*[@id='u_0_a']/div[1]/div[1]/div/a"), 12, 1); //SAME AS TopBar.ButProfile
 			if (!IsLoged(driver_)) {
 				return false;
 			}
