@@ -24,7 +24,7 @@ public class Start {
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().setSize(new Dimension(1280, 960));
-		driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(80, TimeUnit.SECONDS);
 		
 		Logger_.setTimeStamp();
 		
@@ -100,6 +100,10 @@ public class Start {
 			GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver_);
 			if (webGroupStructure_ == null) {
 				return false;
+			}
+			
+			if (groupStructure_ == null) {
+				//SAVE THE FILE
 			}
 			
 			if (CompareGroupStructures.Compare(groupStructure_, webGroupStructure_) == null) {

@@ -50,6 +50,39 @@ public class FileXML {
 			return false;
 		}
 	}
+	public static boolean Write(String fileName_, String path_, GroupStructure[] groupStructure_) {
+		try {
+			DocumentBuilderFactory docFactory_ = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder_ = docFactory_.newDocumentBuilder();
+			
+			Document doc_ = docBuilder_.newDocument();
+			
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			
+			String[][] data_ = StructureToArray(groupStructure_);
+			
+			if (data_ == null) {
+				return false;
+			}
+			
+			DOMSource source = new DOMSource(DocAddValues(doc_, data_));
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Get Values: " + path_ + fileName_, "info");
+			
+			Comm.createFolder(path_);
+			
+			StreamResult result = new StreamResult(new File(path_ + fileName_ + ".xml"));
+			
+			transformer.transform(source, result);
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Saved: " + path_ + fileName_, "info");
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
 	
 	private static Document DocAddValues(Document doc_, String[][] values_) {
 		try {
@@ -83,6 +116,24 @@ public class FileXML {
 			}
 			
 			return doc_;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	private static String[][] StructureToArray(GroupStructure[] groupStructure_) { //COULD BE CHANGES TO NOT BE HARD CODED
+		try {
+			String[][] array_ = new String[groupStructure_.length][3];
+			
+			for (int i = 0; i < array_.length; i++) {
+				array_[i][0] = groupStructure_[i].id;
+				array_[i][1] = groupStructure_[i].name;
+				array_[i][2] = groupStructure_[i].url;
+			}
+			
+			return array_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
