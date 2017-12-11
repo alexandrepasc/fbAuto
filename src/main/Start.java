@@ -15,6 +15,7 @@ import impl.DoLogin;
 import impl.DoLogout;
 import impl.FileXML;
 import impl.GoToGroups;
+import impl.ManageGroupsListFiles;
 import impl.MembershipGroups;
 
 public class Start {
@@ -65,7 +66,7 @@ public class Start {
 				EndApp(driver);
 			}*/
 			
-			if (GetAndCompareGroupList(driver, groupStructure_)) {
+			if (!ManageGroupsListFiles.GetAndCompareGroupList(driver, groupStructure_)) {
 				EndApp(driver);
 			}
 			
@@ -94,7 +95,7 @@ public class Start {
 		
 	}
 	
-	private static boolean GetAndCompareGroupList(WebDriver driver_, GroupStructure[] groupStructure_) {
+	/*private static boolean GetAndCompareGroupList(WebDriver driver_, GroupStructure[] groupStructure_) {
 		try {
 			
 			GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver_);
@@ -122,7 +123,7 @@ public class Start {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
 			return false;
 		}
-	}
+	}*/
 	
 	private static void LogStartEndApp(boolean start_) {
 		try {

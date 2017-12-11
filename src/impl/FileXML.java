@@ -50,7 +50,7 @@ public class FileXML {
 			return false;
 		}
 	}
-	public static boolean Write(String fileName_, String path_, GroupStructure[] groupStructure_) {
+	/*public static boolean Write(String fileName_, String path_, GroupStructure[] groupStructure_) {
 		try {
 			DocumentBuilderFactory docFactory_ = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder_ = docFactory_.newDocumentBuilder();
@@ -82,7 +82,7 @@ public class FileXML {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 			return false;
 		}
-	}
+	}*/
 	
 	private static Document DocAddValues(Document doc_, String[][] values_) {
 		try {
@@ -123,7 +123,7 @@ public class FileXML {
 		}
 	}
 	
-	private static String[][] StructureToArray(GroupStructure[] groupStructure_) { //COULD BE CHANGES TO NOT BE HARD CODED
+	/*private static String[][] StructureToArray(GroupStructure[] groupStructure_) { //COULD BE CHANGES TO NOT BE HARD CODED
 		try {
 			String[][] array_ = new String[groupStructure_.length][3];
 			
@@ -139,7 +139,7 @@ public class FileXML {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 			return null;
 		}
-	}
+	}*/
 	
 	public static boolean Read(ConfigStructure structure_, String path_, String fileName_) {
 		try {
