@@ -15,6 +15,7 @@ import impl.DoLogin;
 import impl.DoLogout;
 import impl.FileXML;
 import impl.GoToGroups;
+import impl.ManageGroupsListFiles;
 import impl.MembershipGroups;
 
 public class Start {
@@ -24,7 +25,7 @@ public class Start {
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().setSize(new Dimension(1280, 960));
-		driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(80, TimeUnit.SECONDS);
 		
 		Logger_.setTimeStamp();
 		
@@ -42,9 +43,9 @@ public class Start {
 			}
 			
 			GroupStructure[] groupStructure_ = FileXML.Read(Comm.checkEnv() + "data/", "GroupsList.xml");
-			if (groupStructure_ == null) {
+			/*if (groupStructure_ == null) {
 				EndApp(driver);
-			}
+			}*/
 			
 			driver.get(configStructure_.url);
 			
@@ -65,7 +66,7 @@ public class Start {
 				EndApp(driver);
 			}*/
 			
-			if (GetAndCompareGroupList(driver, groupStructure_)) {
+			if (!ManageGroupsListFiles.GetAndCompareGroupList(driver, groupStructure_)) {
 				EndApp(driver);
 			}
 			
@@ -94,12 +95,16 @@ public class Start {
 		
 	}
 	
-	private static boolean GetAndCompareGroupList(WebDriver driver_, GroupStructure[] groupStructure_) {
+	/*private static boolean GetAndCompareGroupList(WebDriver driver_, GroupStructure[] groupStructure_) {
 		try {
 			
 			GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver_);
 			if (webGroupStructure_ == null) {
 				return false;
+			}
+			
+			if (groupStructure_ == null) {
+				//SAVE THE FILE
 			}
 			
 			if (CompareGroupStructures.Compare(groupStructure_, webGroupStructure_) == null) {
@@ -118,7 +123,7 @@ public class Start {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
 			return false;
 		}
-	}
+	}*/
 	
 	private static void LogStartEndApp(boolean start_) {
 		try {

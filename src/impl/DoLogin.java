@@ -24,7 +24,7 @@ public class DoLogin {
 				return false;
 			}
 			
-			Comm.waitingUntil(driver_, By.xpath("//*[@id='u_0_a']/div[1]/div[1]/div/a"), 12, 1);
+			Comm.waitingUntil(driver_, By.xpath("//*[@id='u_0_a']/div[1]/div[1]/div/a"), 12, 1); //SAME AS TopBar.ButProfile
 			if (!IsLoged(driver_)) {
 				return false;
 			}
@@ -40,7 +40,7 @@ public class DoLogin {
 	private static boolean CheckPage(WebDriver driver_) {
 		try {
 			if (Comm.checkElement(LoginPage.Banner(driver_), driver_)) {
-				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " -  Page: Login", "info");
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Page: Login", "info");
 			}
 			else {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - EXIT WRONG Page: Login", "info");
@@ -92,7 +92,7 @@ public class DoLogin {
 			
 			
 			if (Comm.checkElement(LoginPage.ButLogin(driver_), driver_)) {
-				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " -Login Button IS Present and Visible", "info");
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Login Button IS Present and Visible", "info");
 			}
 			else {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Login Button IS NOT Present and/or Visible", "info");

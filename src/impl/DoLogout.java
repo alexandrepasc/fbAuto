@@ -22,7 +22,7 @@ public class DoLogout {
 				return false;
 			}
 			
-			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - User not Logged in", "info");
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - User NOT Logged in", "info");
 			
 			return true;
 		}
