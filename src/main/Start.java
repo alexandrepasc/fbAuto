@@ -2,6 +2,8 @@ package main;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.DropMode;
+
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,14 +11,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import common.Comm;
 import common.Configurations;
 import common.Logger_;
+import common.Translations;
 import impl.CheckNotifications;
 import impl.CompareGroupStructures;
 import impl.DoLogin;
 import impl.DoLogout;
 import impl.FileXML;
+import impl.GetDropMenuElement;
 import impl.GoToGroups;
 import impl.ManageGroupsListFiles;
 import impl.MembershipGroups;
+import pageElements.UserMenu;
 
 public class Start {
 
@@ -56,6 +61,16 @@ public class Start {
 			if (!CheckNotifications.Notification(driver)) {
 				EndApp(driver);
 			}
+			
+			//TEST CODE
+			Thread.sleep(2000);
+			if (!UserMenu.IsOpenButDropMenu(driver)) {
+				UserMenu.ButDropMenu(driver).click();
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Drop Menu Button Click", "info");
+			}
+			Thread.sleep(2000);
+			GetDropMenuElement.GetElement(Translations.DropMenuManagePage(driver), UserMenu.ListButDropMenu(driver));
+			EndApp(driver);
 			
 			if (!GoToGroups.Groups(driver)) {
 				EndApp(driver);
