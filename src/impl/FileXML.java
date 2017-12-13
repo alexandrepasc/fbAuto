@@ -268,7 +268,7 @@ public class FileXML {
 			return groupStructure_;
 		}
 		catch (FileNotFoundException e) {
-			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File " + path_ + fileName_ + "does NOT EXISTS", "info");
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File " + path_ + fileName_ + " does NOT EXISTS", "info");
 			return null;
 		}
 		catch (Exception e) {
