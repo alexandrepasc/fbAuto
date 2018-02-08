@@ -32,9 +32,9 @@ public class GetDropMenuElement {
 			for (int i = 0; i < elementsList_.length; i++) {
 				
 				System.out.println(elementsList_[i].getText());
-				/*if (elementsList_[i].getText()) {
-					
-				}*/
+				if (elementsList_[i].getText().equals(text_)) {
+					aux_ = i;
+				}
 			}
 			
 			return aux_;

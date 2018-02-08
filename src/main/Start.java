@@ -63,14 +63,14 @@ public class Start {
 			}
 			
 			//TEST CODE
-			Thread.sleep(2000);
+			/*Thread.sleep(2000);
 			if (!UserMenu.IsOpenButDropMenu(driver)) {
 				UserMenu.ButDropMenu(driver).click();
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Drop Menu Button Click", "info");
 			}
 			Thread.sleep(2000);
-			GetDropMenuElement.GetElement(Translations.DropMenuManagePage(driver), UserMenu.ListButDropMenu(driver));
-			EndApp(driver);
+			GetDropMenuElement.GetElement(Translations.DropMenuManagePages(driver), UserMenu.ListButDropMenu(driver));
+			EndApp(driver);*/
 			
 			if (!GoToGroups.Groups(driver)) {
 				EndApp(driver);
