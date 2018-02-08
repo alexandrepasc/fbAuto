@@ -19,6 +19,7 @@ import impl.DoLogout;
 import impl.FileXML;
 import impl.GetDropMenuElement;
 import impl.GoToGroups;
+import impl.GoToManagePages;
 import impl.ManageGroupsListFiles;
 import impl.MembershipGroups;
 import pageElements.UserMenu;
@@ -93,6 +94,10 @@ public class Start {
 				}
 			}
 			EndApp(driver);*/
+			
+			if (!GoToManagePages.ManagePages(driver)) {
+				EndApp(driver);
+			}
 			
 			if (!DoLogout.Logout(driver)) {
 				EndApp(driver);
