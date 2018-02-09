@@ -32,7 +32,7 @@ public class MembershipGroups {
 			action_.moveToElement(Groups.AboutFooter(driver_));
 			action_.perform();*/
 			
-			if (!DoScrollDown(driver_, 10)) {
+			if (!DoScrollDown(driver_, 5)) {
 				return null;
 			}
 			

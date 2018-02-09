@@ -16,6 +16,7 @@ import impl.FileXML;
 import impl.GoToGroups;
 import impl.GoToManagePages;
 import impl.ManageGroupsListFiles;
+import impl.PageManager;
 
 public class Start {
 
@@ -166,6 +167,9 @@ public class Start {
 			if (!GoToManagePages.ManagePages(driver_)) {
 				return false;
 			}
+			
+			//FOR TESTS
+			PageManager.Pages(driver_);
 			
 			return true;
 		}
