@@ -73,6 +73,8 @@ public class GoToManagePages {
 	
 	private static boolean CheckManagePagesPage(WebDriver driver_) {
 		try {
+			Comm.WaitingUntil(driver_, ManagePages.TitleManagePages(driver_), 5, 1);
+			
 			if (!Comm.checkElement(ManagePages.TitleManagePages(driver_), driver_)) {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - EXIT WRONG Page: Manage Pages", "info");
 				return false;
