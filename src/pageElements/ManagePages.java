@@ -33,7 +33,7 @@ public class ManagePages {
 	
 	public static WebElement Pages(WebDriver driver_) {
 		try {
-			return driver_.findElement(By.className("_bui nonDroppableNav _3-96"));
+			return driver_.findElement(By.xpath("//div[@id='bookmarksSeeAllEntSection']/ul"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);

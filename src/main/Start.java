@@ -2,8 +2,6 @@ package main;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.DropMode;
-
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,18 +9,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import common.Comm;
 import common.Configurations;
 import common.Logger_;
-import common.Translations;
 import impl.CheckNotifications;
-import impl.CompareGroupStructures;
 import impl.DoLogin;
 import impl.DoLogout;
 import impl.FileXML;
-import impl.GetDropMenuElement;
 import impl.GoToGroups;
 import impl.GoToManagePages;
 import impl.ManageGroupsListFiles;
-import impl.MembershipGroups;
-import pageElements.UserMenu;
+import impl.PageManager;
 
 public class Start {
 
@@ -53,13 +47,17 @@ public class Start {
 				EndApp(driver);
 			}*/
 			
-			driver.get(configStructure_.url);
+			//driver.get(configStructure_.url);
 			
-			if (!DoLogin.Login(driver, configStructure_.login, configStructure_.pwd)) {
-				EndApp(driver);
-			}
+			//if (!DoLogin.Login(driver, configStructure_.login, configStructure_.pwd)) {
+			//	EndApp(driver);
+			//}
 			
-			if (!CheckNotifications.Notification(driver)) {
+			//if (!CheckNotifications.Notification(driver)) {
+			//	EndApp(driver);
+			//}
+			
+			if (!GoToPage(driver, configStructure_.url, configStructure_.login, configStructure_.pwd)) {
 				EndApp(driver);
 			}
 			
@@ -73,16 +71,20 @@ public class Start {
 			GetDropMenuElement.GetElement(Translations.DropMenuManagePages(driver), UserMenu.ListButDropMenu(driver));
 			EndApp(driver);*/
 			
-			if (!GoToGroups.Groups(driver)) {
-				EndApp(driver);
-			}
+			//if (!GoToGroups.Groups(driver)) {
+			//	EndApp(driver);
+			//}
 			
 			/*GroupStructure[] webGroupStructure_ = MembershipGroups.Memberships(driver);
 			if (webGroupStructure_ == null) {
 				EndApp(driver);
 			}*/
 			
-			if (!ManageGroupsListFiles.GetAndCompareGroupList(driver, groupStructure_)) {
+			//if (!ManageGroupsListFiles.GetAndCompareGroupList(driver, groupStructure_)) {
+			//	EndApp(driver);
+			//}
+			
+			if (!Groups(driver, groupStructure_)) {
 				EndApp(driver);
 			}
 			
@@ -95,7 +97,11 @@ public class Start {
 			}
 			EndApp(driver);*/
 			
-			if (!GoToManagePages.ManagePages(driver)) {
+			//if (!GoToManagePages.ManagePages(driver)) {
+			//	EndApp(driver);
+			//}
+			
+			if (!ManagePages(driver)) {
 				EndApp(driver);
 			}
 			
@@ -113,6 +119,64 @@ public class Start {
 			EndApp(driver);
 		}
 		
+	}
+	
+	private static boolean GoToPage(WebDriver driver_, String url_, String login_, String pwd_) {
+		try {
+			
+			driver_.get(url_);
+			
+			if (!DoLogin.Login(driver_, login_, pwd_)) {
+				return false;
+			}
+			
+			if (!CheckNotifications.Notification(driver_)) {
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	
+	private static boolean Groups(WebDriver driver_, GroupStructure[] groupStructure_) {
+		try {
+			
+			if (!GoToGroups.Groups(driver_)) {
+				return false;
+			}
+			
+			if (!ManageGroupsListFiles.GetAndCompareGroupList(driver_, groupStructure_)) {
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	
+	private static boolean ManagePages(WebDriver driver_) {
+		try {
+			
+			if (!GoToManagePages.ManagePages(driver_)) {
+				return false;
+			}
+			
+			//FOR TESTS
+			PageManager.Pages(driver_);
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
 	}
 	
 	/*private static boolean GetAndCompareGroupList(WebDriver driver_, GroupStructure[] groupStructure_) {
