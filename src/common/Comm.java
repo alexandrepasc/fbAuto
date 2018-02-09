@@ -87,7 +87,7 @@ public class Comm {
 		System.exit(1);
 	}
 	
-	public static void waitingUntil(WebDriver driver_, By by_, int time_, int what_) {
+	/*public static void waitingUntil(WebDriver driver_, By by_, int time_, int what_) {
 		WebDriverWait wait = new WebDriverWait(driver_, time_);
 		switch (what_) {
 		case 1:
@@ -97,7 +97,7 @@ public class Comm {
 			wait.until(ExpectedConditions.elementToBeClickable(by_));
 			break;
 		}
-	}
+	}*/
 	public static void WaitingUntil(WebDriver driver_, WebElement element_, int time_, int what_) {
 		WebDriverWait wait = new WebDriverWait(driver_, time_);
 		switch (what_) {
