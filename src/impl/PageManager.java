@@ -1,5 +1,7 @@
 package impl;
 
+import java.lang.reflect.Field;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,10 +20,7 @@ public class PageManager {
 				return null;
 			}
 			
-			ListPages(driver_);
-			Thread.sleep(2000);
-			
-			return null;
+			return AddDataToStructure(ListPages(driver_));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
@@ -71,13 +70,40 @@ public class PageManager {
 		try {
 			
 			final String name_ = page_.getText();
-			System.out.println(name_);
+			//System.out.println(name_);
 			
 			final String url_ = page_.findElement(By.className("_5afe")).getAttribute("href").split("ref=")[0].
 					substring(0, page_.findElement(By.className("_5afe")).getAttribute("href").split("ref=")[0].length() - 1);
-			System.out.println(url_);
+			//System.out.println(url_);
 			
 			return new String[] {name_, url_};
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	private static PageStructure[] AddDataToStructure(String[][] data_) {
+		try {
+			
+			PageStructure[] pageStructure_ = new PageStructure[data_.length];
+			
+			for (int i = 0; i < data_.length; i++) {
+				
+				pageStructure_[i] = new PageStructure();
+				
+				Field[] structFields = pageStructure_[i].getClass().getDeclaredFields();
+				
+				structFields[0].set(pageStructure_[i], String.valueOf(i));
+				
+				for (int x = 0; x < data_[i].length; x++) {
+					
+					structFields[x + 1].set(pageStructure_[i], data_[i][x]);
+				}
+			}
+			
+			return pageStructure_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
