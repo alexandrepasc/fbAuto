@@ -2,6 +2,7 @@
 
 Example for the file
 config.xml
+The file should be located on the project root folder.
 
 \<?xml version="1.0" encoding="UTF-8"?> <br>
 \<config> </br>
