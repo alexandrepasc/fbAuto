@@ -42,7 +42,8 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			GroupStructure[] groupStructure_ = FileXML.Read(Comm.checkEnv() + "data/", "GroupsList.xml");
+			GroupStructure[] groupStructure_ = FileXML.ReadGroup(Comm.checkEnv() + "data/", "GroupsList.xml");
+			PageStructure[] pageStructure_ = FileXML.ReadPage(Comm.checkEnv() + "data/", "PagesList.xml");
 			/*if (groupStructure_ == null) {
 				EndApp(driver);
 			}*/
