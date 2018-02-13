@@ -16,6 +16,7 @@ import impl.FileXML;
 import impl.GoToGroups;
 import impl.GoToManagePages;
 import impl.ManageGroupsListFiles;
+import impl.ManagePagesFiles;
 import impl.PageManager;
 
 public class Start {
@@ -102,7 +103,7 @@ public class Start {
 			//	EndApp(driver);
 			//}
 			
-			if (!ManagePages(driver)) {
+			if (!ManagePages(driver, pageStructure_)) {
 				EndApp(driver);
 			}
 			
@@ -162,15 +163,19 @@ public class Start {
 		}
 	}
 	
-	private static boolean ManagePages(WebDriver driver_) {
+	private static boolean ManagePages(WebDriver driver_, PageStructure[] pageStructure_) {
 		try {
 			
 			if (!GoToManagePages.ManagePages(driver_)) {
 				return false;
 			}
 			
+			if (!ManagePagesFiles.GetAndComparePageList(driver_, pageStructure_)) {
+				return false;
+			}
+			
 			//FOR TESTS
-			PageManager.Pages(driver_);
+			//PageManager.Pages(driver_);
 			
 			return true;
 		}

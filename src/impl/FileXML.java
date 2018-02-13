@@ -19,13 +19,14 @@ import org.w3c.dom.NodeList;
 
 import common.Comm;
 import common.Logger_;
+import common.StructureType;
 import main.ConfigStructure;
 import main.GroupStructure;
 import main.PageStructure;
 
 public class FileXML {
 
-	public static boolean Write(String fileName_, String path_, String[][] data_) {
+	public static boolean Write(String fileName_, String path_, String[][] data_, StructureType type_) {
 		try {
 			DocumentBuilderFactory docFactory_ = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder_ = docFactory_.newDocumentBuilder();
@@ -34,7 +35,16 @@ public class FileXML {
 			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(DocAddValues(doc_, data_));
+			
+			DOMSource source = null;
+			
+			if (type_ == StructureType.GROUP) {
+				source = new DOMSource(DocAddGroupValues(doc_, data_));
+			}
+			else if (type_ == StructureType.PAGE) {
+				source = new DOMSource(DocAddPageValues(doc_, data_));
+			}
+			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Get Values: " + path_ + fileName_, "info");
 			
 			Comm.createFolder(path_);
@@ -85,7 +95,7 @@ public class FileXML {
 		}
 	}*/
 	
-	private static Document DocAddValues(Document doc_, String[][] values_) {
+	private static Document DocAddGroupValues(Document doc_, String[][] values_) {
 		try {
 			Element rootElement_ = doc_.createElement("groups");
 			doc_.appendChild(rootElement_);
@@ -113,6 +123,45 @@ public class FileXML {
 				
 				Element url_ = doc_.createElement("url");
 				url_.appendChild(doc_.createTextNode(values_[i][2]));
+				group_.appendChild(url_);
+			}
+			
+			return doc_;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	private static Document DocAddPageValues(Document doc_, String[][] values_) {
+		try {
+			Element rootElement_ = doc_.createElement("pages");
+			doc_.appendChild(rootElement_);
+			
+			Element total_ = doc_.createElement("total");
+			total_.appendChild(doc_.createTextNode(String.valueOf(values_.length)));
+			rootElement_.appendChild(total_);
+			
+			for (int i = 0; i < values_.length; i++) {
+				Element group_ = doc_.createElement("page");
+				rootElement_.appendChild(group_);
+
+				// set attribute to group element
+				Attr attr_ = doc_.createAttribute("id");
+				attr_.setValue(String.valueOf(i));
+				group_.setAttributeNode(attr_);
+				
+				/*Element id_ = doc_.createElement("id");
+				id_.appendChild(doc_.createTextNode(values_[i][0]));
+				group_.appendChild(id_);*/
+				
+				Element name_ = doc_.createElement("name");
+				name_.appendChild(doc_.createTextNode(values_[i][0]));
+				group_.appendChild(name_);
+				
+				Element url_ = doc_.createElement("url");
+				url_.appendChild(doc_.createTextNode(values_[i][1]));
 				group_.appendChild(url_);
 			}
 			

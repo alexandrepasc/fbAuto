@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import common.Comm;
 import common.Logger_;
 import common.StructureToArray;
+import common.StructureType;
 import main.GroupStructure;
 
 public class ManageGroupsListFiles {
@@ -58,7 +59,7 @@ public class ManageGroupsListFiles {
 			
 			String[][] array_ = StructureToArray.ConvertToArray(newStructure_); //StructureToArray(newStructure_);
 			
-			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", array_)) {
+			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", array_, StructureType.GROUP)) {
 				return false;
 			}
 			
@@ -72,11 +73,11 @@ public class ManageGroupsListFiles {
 	private static boolean WriteFile(GroupStructure[] oldStructure_, GroupStructure[] newStructure_) { //COULD BE RENAMED
 		try {
 			
-			if (!FileXML.Write("GroupsList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_))) { //StructureToArray(oldStructure_)
+			if (!FileXML.Write("GroupsList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.GROUP)) { //StructureToArray(oldStructure_)
 				return false;
 			}
 			
-			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_))) { //StructureToArray(newStructure_)
+			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.GROUP)) { //StructureToArray(newStructure_)
 				return false;
 			}
 			
