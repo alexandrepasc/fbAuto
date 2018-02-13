@@ -1,6 +1,5 @@
 package impl;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import common.Comm;
@@ -24,7 +23,6 @@ public class DoLogin {
 				return false;
 			}
 			
-			//Comm.waitingUntil(driver_, By.xpath("//*[@id='u_0_a']/div[1]/div[1]/div/a"), 12, 1); //SAME AS TopBar.ButProfile
 			Comm.WaitingUntil(driver_, TopBar.ButProfile(driver_), 12, 1);
 			if (!IsLoged(driver_)) {
 				return false;
