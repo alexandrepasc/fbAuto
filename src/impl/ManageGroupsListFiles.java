@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 import common.Comm;
 import common.Logger_;
+import common.StructureToArray;
+import common.StructureType;
 import main.GroupStructure;
 
 public class ManageGroupsListFiles {
@@ -25,7 +27,7 @@ public class ManageGroupsListFiles {
 			}
 			else {
 				
-				Boolean aux_ = CompareGroupStructures.Compare(groupStructure_, webGroupStructure_);
+				Boolean aux_ = CompareStructures.Compare(groupStructure_, webGroupStructure_);
 				
 				if (aux_ == null) {
 					return false;
@@ -55,9 +57,9 @@ public class ManageGroupsListFiles {
 	private static boolean WriteFile(GroupStructure[] newStructure_) { //COULD BE RENAMED
 		try {
 			
-			String[][] array_ = StructureToArray(newStructure_);
+			String[][] array_ = StructureToArray.ConvertToArray(newStructure_); //StructureToArray(newStructure_);
 			
-			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", array_)) {
+			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", array_, StructureType.GROUP)) {
 				return false;
 			}
 			
@@ -71,11 +73,11 @@ public class ManageGroupsListFiles {
 	private static boolean WriteFile(GroupStructure[] oldStructure_, GroupStructure[] newStructure_) { //COULD BE RENAMED
 		try {
 			
-			if (!FileXML.Write("GroupsList_OLD", Comm.checkEnv() + "data/", StructureToArray(oldStructure_))) {
+			if (!FileXML.Write("GroupsList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.GROUP)) { //StructureToArray(oldStructure_)
 				return false;
 			}
 			
-			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", StructureToArray(newStructure_))) {
+			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.GROUP)) { //StructureToArray(newStructure_)
 				return false;
 			}
 			
@@ -87,7 +89,7 @@ public class ManageGroupsListFiles {
 		}
 	}
 	
-	private static String[][] StructureToArray(GroupStructure[] groupStructure_) { //COULD BE CHANGES TO NOT BE HARD CODED
+	/*private static String[][] StructureToArray(GroupStructure[] groupStructure_) { //COULD BE CHANGES TO NOT BE HARD CODED
 		try {
 			String[][] array_ = new String[groupStructure_.length][3];
 			
@@ -103,5 +105,5 @@ public class ManageGroupsListFiles {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 			return null;
 		}
-	}
+	}*/
 }
