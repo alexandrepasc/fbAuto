@@ -23,6 +23,7 @@ import common.StructureType;
 import main.ConfigStructure;
 import main.GroupStructure;
 import main.PageStructure;
+import main.SearchStructure;
 
 public class FileXML {
 
@@ -178,6 +179,7 @@ public class FileXML {
 			return false;
 		}
 	}
+	
 	public static GroupStructure[] ReadGroup(String path_, String fileName_) {
 		try {
 			File fXmlFile_ = new File(path_ + fileName_);
@@ -237,6 +239,7 @@ public class FileXML {
 			return null;
 		}
 	}
+	
 	public static PageStructure[] ReadPage(String path_, String fileName_) {
 		try {
 			File fXmlFile_ = new File(path_ + fileName_);
@@ -288,6 +291,68 @@ public class FileXML {
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Read: " + path_ + fileName_, "info");
 			
 			return pageStructure_;
+		}
+		catch (FileNotFoundException e) {
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File " + path_ + fileName_ + " does NOT EXISTS", "info");
+			return null;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	public static SearchStructure[] ReadSearch(String path_, String fileName_) {
+		try {
+			File fXmlFile_ = new File(path_ + fileName_);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc_ = dBuilder.parse(fXmlFile_);
+			doc_.getDocumentElement().normalize();
+			
+			SearchStructure[] searchStructure_ = null;
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Reading File: " + path_ + fileName_, "info");
+			
+			if (doc_.hasChildNodes()) {
+									
+				Node tempNode_ = doc_.getChildNodes().item(0);
+				
+				if (tempNode_.getNodeType() == Node.ELEMENT_NODE) {
+					
+					NodeList nList_ = tempNode_.getChildNodes();
+					
+					if (nList_.item(0).getNodeName().equals("total")) {
+						searchStructure_ = new SearchStructure[Integer.valueOf(nList_.item(0).getTextContent())];
+					}
+					
+					if ((nList_.getLength() - 1) == searchStructure_.length) {
+						
+						for (int x = 1; x < nList_.getLength(); x++) {
+							
+							if (nList_.item(x).getNodeType() == Node.ELEMENT_NODE) {
+								
+								NodeList subnList_ = nList_.item(x).getChildNodes();
+								
+								searchStructure_[x - 1] = new SearchStructure();
+
+								Field[] structField_ = searchStructure_[x - 1].getClass().getDeclaredFields();
+								
+								structField_[0].set(searchStructure_[x - 1], nList_.item(x).getAttributes().item(0).getTextContent());
+								
+								for (int i = 0; i < subnList_.getLength(); i++) {
+									
+									structField_[i + 1].set(searchStructure_[x - 1], subnList_.item(i).getTextContent());
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Read: " + path_ + fileName_, "info");
+			
+			return searchStructure_;
 		}
 		catch (FileNotFoundException e) {
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File " + path_ + fileName_ + " does NOT EXISTS", "info");

@@ -41,6 +41,7 @@ public class Start {
 			
 			GroupStructure[] groupStructure_ = FileXML.ReadGroup(Comm.checkEnv() + "data/", "GroupsList.xml");
 			PageStructure[] pageStructure_ = FileXML.ReadPage(Comm.checkEnv() + "data/", "PagesList.xml");
+			SearchStructure[] searchStructure_ = null;
 			
 			if (!GoToPage(driver, configStructure_.url, configStructure_.login, configStructure_.pwd)) {
 				EndApp(driver);
@@ -118,6 +119,23 @@ public class Start {
 			}
 			
 			if (!ManagePagesFiles.GetAndComparePageList(driver_, pageStructure_)) {
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	
+	private static boolean SearchPagePosts(WebDriver driver_, SearchStructure[] searchStructure_) {
+		try {
+			
+			searchStructure_ = FileXML.ReadSearch(Comm.checkEnv(), "search.xml");
+			
+			if (searchStructure_ == null) {
 				return false;
 			}
 			
