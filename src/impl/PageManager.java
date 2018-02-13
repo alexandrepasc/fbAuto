@@ -70,11 +70,9 @@ public class PageManager {
 		try {
 			
 			final String name_ = page_.getText();
-			//System.out.println(name_);
 			
 			final String url_ = page_.findElement(By.className("_5afe")).getAttribute("href").split("ref=")[0].
 					substring(0, page_.findElement(By.className("_5afe")).getAttribute("href").split("ref=")[0].length() - 1);
-			//System.out.println(url_);
 			
 			return new String[] {name_, url_};
 		}

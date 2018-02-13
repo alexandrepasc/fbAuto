@@ -73,11 +73,11 @@ public class ManageGroupsListFiles {
 	private static boolean WriteFile(GroupStructure[] oldStructure_, GroupStructure[] newStructure_) { //COULD BE RENAMED
 		try {
 			
-			if (!FileXML.Write("GroupsList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.GROUP)) { //StructureToArray(oldStructure_)
+			if (!FileXML.Write("GroupsList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.GROUP)) {
 				return false;
 			}
 			
-			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.GROUP)) { //StructureToArray(newStructure_)
+			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.GROUP)) {
 				return false;
 			}
 			
@@ -88,22 +88,4 @@ public class ManageGroupsListFiles {
 			return false;
 		}
 	}
-	
-	/*private static String[][] StructureToArray(GroupStructure[] groupStructure_) { //COULD BE CHANGES TO NOT BE HARD CODED
-		try {
-			String[][] array_ = new String[groupStructure_.length][3];
-			
-			for (int i = 0; i < array_.length; i++) {
-				array_[i][0] = groupStructure_[i].id;
-				array_[i][1] = groupStructure_[i].name;
-				array_[i][2] = groupStructure_[i].url;
-			}
-			
-			return array_;
-		}
-		catch (Exception e) {
-			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return null;
-		}
-	}*/
 }

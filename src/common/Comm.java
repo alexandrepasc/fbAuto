@@ -2,7 +2,6 @@ package common;
 
 import java.io.File;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,20 +30,17 @@ public class Comm {
 		}
 	}
 	
-	public static boolean checkElement(WebElement element_,/* String text_,*/ WebDriver driver_) {
+	public static boolean checkElement(WebElement element_, WebDriver driver_) {
 		try {
-			if (isPresent(element_/*, text_*/)) {
-				if (isVisible(element_,/* text_,*/ driver_)) {
-					//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - " + text_ + " Element IS Present and Visible", "info");
+			if (isPresent(element_)) {
+				if (isVisible(element_, driver_)) {
 					return true;
 				}
 				else {
-					//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - " + text_ + " Element IS NOT Present or Visible", "info");
 					return false;
 				}
 			}
 			else {
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - " + text_ + " Element IS NOT Present or Visible", "info");
 				return false;
 			}
 		}
@@ -54,26 +50,22 @@ public class Comm {
 		}
 	}
 	
-	public static boolean isPresent(WebElement element_/*, String text_*/) {
+	public static boolean isPresent(WebElement element_) {
 		try {
 			element_.getLocation();
-			//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - " + text_ + " IS Present", "info");
 			return true;
 		}
 		catch (Exception e) {
-			//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - " + text_ + " IS NOT Present", "info");
 			return false;
 		}
 	}
 	
-	public static boolean isVisible(WebElement element_,/* String text_,*/ WebDriver driver_) {
+	public static boolean isVisible(WebElement element_, WebDriver driver_) {
 		try {
 			if (element_.isDisplayed()) {
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - " + text_ + " IS Displayed", "info");
 				return true;
 			}
 			else {
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - " + text_ + " IS NOT Displayed", "info");
 				return false;
 			}
 		}
@@ -87,17 +79,6 @@ public class Comm {
 		System.exit(1);
 	}
 	
-	/*public static void waitingUntil(WebDriver driver_, By by_, int time_, int what_) {
-		WebDriverWait wait = new WebDriverWait(driver_, time_);
-		switch (what_) {
-		case 1:
-			wait.until(ExpectedConditions.visibilityOfElementLocated(by_));
-			break;
-		case 2:
-			wait.until(ExpectedConditions.elementToBeClickable(by_));
-			break;
-		}
-	}*/
 	public static void WaitingUntil(WebDriver driver_, WebElement element_, int time_, int what_) {
 		WebDriverWait wait = new WebDriverWait(driver_, time_);
 		switch (what_) {

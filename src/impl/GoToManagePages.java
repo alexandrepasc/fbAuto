@@ -17,11 +17,6 @@ public class GoToManagePages {
 				return false;
 			}
 			
-			/*WebElement butManagePages = GetDropMenuElement.GetElement(Translations.DropMenuManagePages(driver_), UserMenu.ListButDropMenu(driver_));
-			
-			butManagePages.click();
-			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Manage Pages Button Click", "info");*/
-			
 			if (!ClickButManagePages(GetDropMenuElement.GetElement(Translations.DropMenuManagePages(driver_), UserMenu.ListButDropMenu(driver_)))) {
 				return false;
 			}

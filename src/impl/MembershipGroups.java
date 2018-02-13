@@ -36,19 +36,6 @@ public class MembershipGroups {
 				return null;
 			}
 			
-			/*JavascriptExecutor jse_ = (JavascriptExecutor)driver_;
-			//jse_.executeScript("scroll(0, 250)");
-			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-			Thread.sleep(2000);
-			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-			Thread.sleep(2000);
-			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-			Thread.sleep(2000);
-			jse_.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-			Thread.sleep(2000);*/
-			
-			//FileXML.Write("GroupsList", Comm.checkEnv() + "data/", ListGroups(driver_));
-			
 			return AddDataToStructure(ListGroups(driver_));
 		}
 		catch (Exception e) {
@@ -92,19 +79,14 @@ public class MembershipGroups {
 				arrayAux_ = i;
 				
 				groups_[arrayAux_] = ValuesListGroups(driver_, Groups.GroupsLeftListMembership(driver_)[i]);
-				//System.out.println(groups_[arrayAux_][0]);
 			}
 			
 			for (int i = 0; i < Groups.GroupsRightListMembership(driver_).length; i++) {
 				arrayAux_ += 1;
 				
 				groups_[arrayAux_] = ValuesListGroups(driver_, Groups.GroupsRightListMembership(driver_)[i]);
-				//System.out.println(groups_[arrayAux_][0]);
 			}
 			
-			//System.out.println(Groups.GroupsLeftListMembership(driver_).length);
-			//System.out.println(Groups.GroupsRightListMembership(driver_).length);
-			//System.out.println(groups_.length);
 			return groups_;
 		}
 		catch (Exception e) {
@@ -115,15 +97,12 @@ public class MembershipGroups {
 	
 	private static String[] ValuesListGroups(WebDriver driver_, WebElement group_) {
 		try {
-			//System.out.println(group_.findElement(By.tagName("a")).getText());
+			//
 			final String name_ = group_.findElement(By.tagName("a")).getText();
 
-			//System.out.println(group_.findElement(By.tagName("a")).getAttribute("href").split("ref=")[0].
-					//substring(0, group_.findElement(By.tagName("a")).getAttribute("href").split("ref=")[0].length() - 1));
 			final String url_ = group_.findElement(By.tagName("a")).getAttribute("href").split("ref=")[0].
 					substring(0, group_.findElement(By.tagName("a")).getAttribute("href").split("ref=")[0].length() - 1);
 			
-			//System.out.println(group_.findElement(By.tagName("a")).getAttribute("data-hovercard").split("id=")[1]);
 			final String id_ = group_.findElement(By.tagName("a")).getAttribute("data-hovercard").split("id=")[1].split("&ref")[0];
 			
 			return new String[] {id_, name_, url_};
