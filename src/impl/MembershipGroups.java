@@ -124,7 +124,7 @@ public class MembershipGroups {
 					substring(0, group_.findElement(By.tagName("a")).getAttribute("href").split("ref=")[0].length() - 1);
 			
 			//System.out.println(group_.findElement(By.tagName("a")).getAttribute("data-hovercard").split("id=")[1]);
-			final String id_ = group_.findElement(By.tagName("a")).getAttribute("data-hovercard").split("id=")[1];
+			final String id_ = group_.findElement(By.tagName("a")).getAttribute("data-hovercard").split("id=")[1].split("&ref")[0];
 			
 			return new String[] {id_, name_, url_};
 		}
