@@ -26,7 +26,7 @@ public class ManageGroupsListFiles {
 			}
 			else {
 				
-				Boolean aux_ = CompareGroupStructures.Compare(groupStructure_, webGroupStructure_);
+				Boolean aux_ = CompareStructures.Compare(groupStructure_, webGroupStructure_);
 				
 				if (aux_ == null) {
 					return false;
