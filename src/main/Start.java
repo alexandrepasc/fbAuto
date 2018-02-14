@@ -17,6 +17,7 @@ import impl.GoToGroups;
 import impl.GoToManagePages;
 import impl.ManageGroupsListFiles;
 import impl.ManagePagesFiles;
+import impl.Posts;
 
 public class Start {
 
@@ -41,6 +42,7 @@ public class Start {
 			
 			GroupStructure[] groupStructure_ = FileXML.ReadGroup(Comm.checkEnv() + "data/", "GroupsList.xml");
 			PageStructure[] pageStructure_ = FileXML.ReadPage(Comm.checkEnv() + "data/", "PagesList.xml");
+			//SearchStructure searchStructure_ = null;
 			
 			if (!GoToPage(driver, configStructure_.url, configStructure_.login, configStructure_.pwd)) {
 				EndApp(driver);
@@ -51,6 +53,10 @@ public class Start {
 			}
 			
 			if (!ManagePages(driver, pageStructure_)) {
+				EndApp(driver);
+			}
+			
+			if (!PagePosts(driver)) {
 				EndApp(driver);
 			}
 			
@@ -118,6 +124,21 @@ public class Start {
 			}
 			
 			if (!ManagePagesFiles.GetAndComparePageList(driver_, pageStructure_)) {
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	
+	private static boolean PagePosts(WebDriver driver_) {
+		try {
+			
+			if (!Posts.GetPagePosts(driver_)) {
 				return false;
 			}
 			

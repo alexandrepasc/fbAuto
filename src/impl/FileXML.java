@@ -23,6 +23,7 @@ import common.StructureType;
 import main.ConfigStructure;
 import main.GroupStructure;
 import main.PageStructure;
+import main.SearchStructure;
 
 public class FileXML {
 
@@ -178,6 +179,58 @@ public class FileXML {
 			return false;
 		}
 	}
+	
+	public static SearchStructure ReadSearch(String path_, String fileName_/*, SearchStructure structure_*/) {
+		try {
+			File fXmlFile_ = new File(path_ + fileName_);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc_ = dBuilder.parse(fXmlFile_);
+			doc_.getDocumentElement().normalize();
+			
+			SearchStructure structure_ = new SearchStructure();
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Reading File: " + path_ + fileName_, "info");
+			
+			if (doc_.hasChildNodes()) {
+
+				for (int i = 0; i < doc_.getChildNodes().getLength(); i++) {
+					
+					Node tempNode_ = doc_.getChildNodes().item(i);
+					
+					if (tempNode_.getNodeType() == Node.ELEMENT_NODE) {
+						
+						NodeList nList_ = tempNode_.getChildNodes();
+						
+						for (int x = 1; x < nList_.getLength(); x++) {
+							if (nList_.item(x).getNodeType() == Node.ELEMENT_NODE) {
+								
+								//System.out.println(nList_.item(x).getNodeName());
+								//System.out.println(nList_.item(x).getTextContent());
+								
+								Field structField_ = structure_.getClass().getDeclaredField(nList_.item(x).getNodeName());
+								structField_.set(structure_, nList_.item(x).getTextContent());
+							}
+						}
+					}
+				}
+
+			}
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File Read: " + path_ + fileName_, "info");
+			
+			return structure_;
+		}
+		catch (FileNotFoundException e) {
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - File " + path_ + fileName_ + " does NOT EXISTS", "info");
+			return null;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
 	public static GroupStructure[] ReadGroup(String path_, String fileName_) {
 		try {
 			File fXmlFile_ = new File(path_ + fileName_);
@@ -237,6 +290,7 @@ public class FileXML {
 			return null;
 		}
 	}
+	
 	public static PageStructure[] ReadPage(String path_, String fileName_) {
 		try {
 			File fXmlFile_ = new File(path_ + fileName_);
