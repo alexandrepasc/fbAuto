@@ -150,4 +150,40 @@ public class Translations {
 			return null;
 		}
 	}
+	
+	public static String ButPageTopMenu(WebDriver driver_) {
+		try {
+			switch (GetLanguage(driver_)) {
+				case ENG:
+					return "Page";
+				case PT:
+					return "Página";
+				default:
+					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Problem Getting Language", "info");
+					return null;
+			}
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage() + " - Problem Getting Language", "severe", e);
+			return null;
+		}
+	}
+	
+	public static String ButPostsLeftMenu(WebDriver driver_) {
+		try {
+			switch (GetLanguage(driver_)) {
+				case ENG:
+					return "Posts";
+				case PT:
+					return "Publicações";
+				default:
+					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Problem Getting Language", "info");
+					return null;
+			}
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage() + " - Problem Getting Language", "severe", e);
+			return null;
+		}
+	}
 }
