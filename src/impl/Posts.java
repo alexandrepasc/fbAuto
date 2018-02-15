@@ -101,4 +101,14 @@ public class Posts {
 			return false;
 		}
 	}
+	
+	private static boolean ListPagePosts(WebDriver driver_) {
+		try {
+			
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
 }
