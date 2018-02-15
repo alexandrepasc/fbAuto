@@ -22,6 +22,10 @@ public class Posts {
 				return false;
 			}
 			
+			if (!GoToPosts(driver_)) {
+				return false;
+			}
+			
 			return true;
 		}
 		catch (Exception e) {
@@ -45,6 +49,10 @@ public class Posts {
 		try {
 			
 			if (!PostsButtonClick(driver_)) {
+				return false;
+			}
+			
+			if (!CheckPostsPage(driver_)) {
 				return false;
 			}
 			
@@ -80,9 +88,13 @@ public class Posts {
 	private static boolean CheckPostsPage(WebDriver driver_) {
 		try {
 			
-			if (!Page.ButPostsLeftMenuSelected(driver_)) {
-				
+			if (!Page.ButPostsLeftMenuSelected(driver_).getAttribute("class").contains("_2yap")) {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - EXIT WRONG Page: Posts", "info");
+				return false;
 			}
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Page: Posts", "info");
+			return true;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
