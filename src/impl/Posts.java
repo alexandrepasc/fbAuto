@@ -6,6 +6,7 @@ import common.Comm;
 import common.Logger_;
 import main.SearchStructure;
 import pageElements.Page;
+import pageElements.PagePosts;
 
 public class Posts {
 
@@ -25,6 +26,8 @@ public class Posts {
 			if (!GoToPosts(driver_)) {
 				return false;
 			}
+			
+			ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
 			
 			return true;
 		}
@@ -102,9 +105,15 @@ public class Posts {
 		}
 	}
 	
-	private static boolean ListPagePosts(WebDriver driver_) {
+	private static boolean ListPagePosts(WebDriver driver_, int postsNum) {
 		try {
 			
+			Thread.sleep(5000);
+			Comm.WaitingUntil(driver_, PagePosts.PagePostsCreatePost(driver_), 10, 1);
+			
+			System.out.println(PagePosts.PagePostsList(driver_).length);
+			
+			return true;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
