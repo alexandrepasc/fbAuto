@@ -22,9 +22,19 @@ public class PagePosts {
 	
 	public static WebElement[] PagePostsList(WebDriver driver_) {
 		try {
-			List<WebElement> list_ =  driver_.findElements(By.className("_4-u2 _4-u8"));
+			List<WebElement> list_ =  driver_.findElements(By.xpath("//div[contains(@class, '_1xnd')]/div"));
 			
 			return list_.toArray(new WebElement[0]);
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement PagePostsCreatePost(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.id("PageComposerPagelet_Admin_View"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
