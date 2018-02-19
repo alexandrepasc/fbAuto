@@ -18,6 +18,7 @@ import impl.GoToGroups;
 import impl.GoToManagePages;
 import impl.ManageGroupsListFiles;
 import impl.ManagePagesFiles;
+import impl.PagePostsFiles;
 import impl.Posts;
 
 public class Start {
@@ -142,6 +143,10 @@ public class Start {
 			WebElement[] listSelectedPagePosts_ = Posts.GetPagePosts(driver_, searchStructure_);
 			
 			if (listSelectedPagePosts_ == null) {
+				return false;
+			}
+			
+			if (!PagePostsFiles.GetAndComparePagePostsList(driver_, listSelectedPagePosts_, searchStructure_.pageName)) {
 				return false;
 			}
 			
