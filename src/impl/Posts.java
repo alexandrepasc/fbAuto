@@ -1,6 +1,7 @@
 package impl;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import common.Comm;
 import common.Logger_;
@@ -27,7 +28,10 @@ public class Posts {
 				return false;
 			}
 			
-			ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
+			WebElement[] listPosts_ = ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
+			if (listPosts_ == null) {
+				return false;
+			}
 			
 			return true;
 		}
@@ -105,19 +109,19 @@ public class Posts {
 		}
 	}
 	
-	private static boolean ListPagePosts(WebDriver driver_, int postsNum) {
+	private static WebElement[] ListPagePosts(WebDriver driver_, int postsNum_) {
 		try {
 			
 			Thread.sleep(5000);
 			Comm.WaitingUntil(driver_, PagePosts.PagePostsCreatePost(driver_), 10, 1);
 			
-			System.out.println(PagePosts.PagePostsList(driver_).length);
+			WebElement[] listPosts_ = GetListPagePosts.List(driver_, postsNum_);
 			
-			return true;
+			return listPosts_;
 		}
 		catch (Exception e) {
-			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
-			return false;
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
 		}
 	}
 }
