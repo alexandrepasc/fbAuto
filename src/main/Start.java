@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import common.Comm;
@@ -42,6 +43,7 @@ public class Start {
 			
 			GroupStructure[] groupStructure_ = FileXML.ReadGroup(Comm.checkEnv() + "data/", "GroupsList.xml");
 			PageStructure[] pageStructure_ = FileXML.ReadPage(Comm.checkEnv() + "data/", "PagesList.xml");
+			SearchStructure searchStructure_ = FileXML.ReadSearch(Comm.checkEnv(), "search.xml");
 			//SearchStructure searchStructure_ = null;
 			
 			if (!GoToPage(driver, configStructure_.url, configStructure_.login, configStructure_.pwd)) {
@@ -56,14 +58,13 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			if (!PagePosts(driver)) {
+			if (!PagePosts(driver, searchStructure_)) {
 				EndApp(driver);
 			}
 			
 			if (!DoLogout.Logout(driver)) {
 				EndApp(driver);
 			}
-			
 			
 			CloseDriver(driver);
 			
@@ -135,10 +136,12 @@ public class Start {
 		}
 	}
 	
-	private static boolean PagePosts(WebDriver driver_) {
+	private static boolean PagePosts(WebDriver driver_, SearchStructure searchStructure_) {
 		try {
 			
-			if (!Posts.GetPagePosts(driver_)) {
+			WebElement[] listSelectedPagePosts_ = Posts.GetPagePosts(driver_, searchStructure_);
+			
+			if (listSelectedPagePosts_ == null) {
 				return false;
 			}
 			

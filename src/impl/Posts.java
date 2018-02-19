@@ -1,40 +1,48 @@
 package impl;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import common.Comm;
 import common.Logger_;
 import main.SearchStructure;
 import pageElements.Page;
+import pageElements.PagePosts;
 
 public class Posts {
 
-	public static boolean GetPagePosts(WebDriver driver_) {
+	public static WebElement[] GetPagePosts(WebDriver driver_, SearchStructure searchStructure_) {
 		try {
 			
-			SearchStructure searchStructure_ = GetConfiguration();
+			/*SearchStructure searchStructure_ = GetConfiguration();
 			
 			if (searchStructure_ == null) {
-				return false;
-			}
+				return null;
+			}*/
 			
 			if (!GoToPage.Go(driver_, searchStructure_)) {
-				return false;
+				return null;
 			}
 			
 			if (!GoToPosts(driver_)) {
-				return false;
+				return null;
 			}
 			
-			return true;
+			WebElement[] listPosts_ = ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
+			
+			if (listPosts_ == null) {
+				return null;
+			}
+			
+			return listPosts_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
+			return null;
 		}
 	}
 	
-	private static SearchStructure GetConfiguration() {
+	/*private static SearchStructure GetConfiguration() {
 		try {
 			
 			return FileXML.ReadSearch(Comm.checkEnv(), "search.xml");
@@ -43,7 +51,7 @@ public class Posts {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 			return null;
 		}
-	}
+	}*/
 	
 	private static boolean GoToPosts(WebDriver driver_) {
 		try {
@@ -99,6 +107,22 @@ public class Posts {
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
 			return false;
+		}
+	}
+	
+	private static WebElement[] ListPagePosts(WebDriver driver_, int postsNum_) {
+		try {
+			
+			Thread.sleep(5000);
+			Comm.WaitingUntil(driver_, PagePosts.PagePostsCreatePost(driver_), 10, 1);
+			
+			WebElement[] listPosts_ = GetListPagePosts.List(driver_, postsNum_);
+			
+			return listPosts_;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
 		}
 	}
 }
