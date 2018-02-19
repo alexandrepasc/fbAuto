@@ -11,38 +11,38 @@ import pageElements.PagePosts;
 
 public class Posts {
 
-	public static boolean GetPagePosts(WebDriver driver_) {
+	public static WebElement[] GetPagePosts(WebDriver driver_, SearchStructure searchStructure_) {
 		try {
 			
-			SearchStructure searchStructure_ = GetConfiguration();
+			/*SearchStructure searchStructure_ = GetConfiguration();
 			
 			if (searchStructure_ == null) {
-				return false;
-			}
+				return null;
+			}*/
 			
 			if (!GoToPage.Go(driver_, searchStructure_)) {
-				return false;
+				return null;
 			}
 			
 			if (!GoToPosts(driver_)) {
-				return false;
+				return null;
 			}
 			
 			WebElement[] listPosts_ = ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
 			
 			if (listPosts_ == null) {
-				return false;
+				return null;
 			}
 			
-			return true;
+			return listPosts_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
+			return null;
 		}
 	}
 	
-	private static SearchStructure GetConfiguration() {
+	/*private static SearchStructure GetConfiguration() {
 		try {
 			
 			return FileXML.ReadSearch(Comm.checkEnv(), "search.xml");
@@ -51,7 +51,7 @@ public class Posts {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 			return null;
 		}
-	}
+	}*/
 	
 	private static boolean GoToPosts(WebDriver driver_) {
 		try {
