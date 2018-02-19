@@ -29,6 +29,7 @@ public class Posts {
 			}
 			
 			WebElement[] listPosts_ = ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
+			
 			if (listPosts_ == null) {
 				return false;
 			}

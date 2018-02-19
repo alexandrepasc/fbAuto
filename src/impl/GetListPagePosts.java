@@ -26,6 +26,8 @@ public class GetListPagePosts {
 		
 		try {
 			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Listing Posts", "info");
+			
 			return PagePosts.PagePostsList(driver_);
 		}
 		catch (Exception e) {
@@ -40,9 +42,12 @@ public class GetListPagePosts {
 			
 			WebElement[] listPosts_ = new WebElement[postsNum_];
 			
+			int aux_ = 0;
 			for (int i = 5; i < (postsNum_ + 5); i++) {
 				
-				listPosts_[i] = allPosts_[i];
+				listPosts_[aux_] = allPosts_[i];
+				
+				aux_ += 1;
 			}
 			
 			return listPosts_;
