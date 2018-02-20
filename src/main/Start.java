@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import common.Comm;
@@ -140,11 +139,7 @@ public class Start {
 	private static boolean PagePosts(WebDriver driver_, SearchStructure searchStructure_) {
 		try {
 			
-			WebElement[] listSelectedPagePosts_ = Posts.GetPagePosts(driver_, searchStructure_);
-			
-			if (listSelectedPagePosts_ == null) {
-				return false;
-			}
+			PagePostsStructure[] listSelectedPagePosts_= Posts.GetPagePosts(driver_, searchStructure_);
 			
 			if (!PagePostsFiles.GetAndComparePagePostsList(driver_, listSelectedPagePosts_, searchStructure_.pageName)) {
 				return false;

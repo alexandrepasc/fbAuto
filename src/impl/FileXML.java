@@ -159,7 +159,7 @@ public class FileXML {
 				attr_.setValue(String.valueOf(i));
 				post_.setAttributeNode(attr_);
 				
-				Element name_ = doc_.createElement("text");
+				Element name_ = doc_.createElement("url");
 				name_.appendChild(doc_.createTextNode(values_[i][0]));
 				post_.appendChild(name_);
 				
