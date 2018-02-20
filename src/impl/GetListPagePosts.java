@@ -14,6 +14,10 @@ public class GetListPagePosts {
 			
 			WebElement[] listPosts_ = GetNumList(driver_, GetList(driver_), postsNum_);
 			
+			/*for (int i = 0; i < listPosts_.length; i++) {
+				System.out.println("listPosts_: " + listPosts_[i].getText());
+			}*/
+			
 			return listPosts_;
 		}
 		catch (Exception e) {
@@ -28,7 +32,7 @@ public class GetListPagePosts {
 			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Listing Posts", "info");
 			
-			return PagePosts.PagePostsList(driver_);
+			return PagePosts.PagePostsLinkUrl(driver_);
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
@@ -40,14 +44,32 @@ public class GetListPagePosts {
 		
 		try {
 			
+			int aux_ = 0;
+			
+			/*for (int i = 0; i < allPosts_.length; i++) {
+				if ((!allPosts_[i].getAttribute("href").contains("?ref=page_internal#")) && (!allPosts_[i].getAttribute("href").contains("uren.guren.1"))) {
+					aux_ += 1;
+					System.out.println("allPosts_: " + allPosts_[i].getAttribute("href"));
+				}
+			}*/
+			
 			WebElement[] listPosts_ = new WebElement[postsNum_];
 			
-			int aux_ = 0;
-			for (int i = 5; i < (postsNum_ + 5); i++) {
+			for (int i = 0; i < allPosts_.length; i++) {
 				
-				listPosts_[aux_] = allPosts_[i];
+				if ((!allPosts_[i].getAttribute("href").contains("?ref=page_internal#")) && 
+						(!allPosts_[i].getAttribute("href").contains("uren.guren.1"))) {
+					listPosts_[aux_] = allPosts_[i];
+					aux_ += 1;
+				}
 				
-				aux_ += 1;
+				if (aux_ >= postsNum_) {
+					break;
+				}
+				//System.out.println("listPosts_: " + listPosts_[aux_].getText());
+				//System.out.println("allPosts_: " + allPosts_[i].getText());
+				
+				//aux_ += 1;
 			}
 			
 			return listPosts_;

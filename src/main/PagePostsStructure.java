@@ -4,5 +4,5 @@ public class PagePostsStructure {
 
 	public String postsNum;
 	
-	public String text;
+	public String url;
 }

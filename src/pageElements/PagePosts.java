@@ -41,4 +41,16 @@ public class PagePosts {
 			return null;
 		}
 	}
+	
+	public static WebElement[] PagePostsLinkUrl(WebDriver driver_) {
+		try {
+			List<WebElement> list_ = driver_.findElements(By.className("_5pcq"));
+			
+			return list_.toArray(new WebElement[0]);
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
 }

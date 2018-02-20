@@ -49,7 +49,7 @@ public class StructureToArray {
 			for (int i = 0; i < array_.length; i++) {
 				//array_[i][0] = pageStructure_[i].id;
 				//array_[i][0] = pageStructure_[i].name;
-				array_[i][1] = pageStructure_[i].text;
+				array_[i][1] = pageStructure_[i].url;
 			}
 			
 			return array_;
