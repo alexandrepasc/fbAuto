@@ -2,7 +2,7 @@ package main;
 
 public class PagePostsStructure {
 
-	String postsNum;
+	public String postsNum;
 	
-	String text;
+	public String text;
 }
