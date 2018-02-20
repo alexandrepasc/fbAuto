@@ -1,17 +1,22 @@
 package impl;
 
+import java.lang.reflect.Field;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import common.Comm;
 import common.Logger_;
+import main.PagePostsStructure;
+import main.PageStructure;
 import main.SearchStructure;
 import pageElements.Page;
 import pageElements.PagePosts;
 
 public class Posts {
 
-	public static WebElement[] GetPagePosts(WebDriver driver_, SearchStructure searchStructure_) {
+	public static PagePostsStructure[] GetPagePosts(WebDriver driver_, SearchStructure searchStructure_) {
 		try {
 			
 			/*SearchStructure searchStructure_ = GetConfiguration();
@@ -28,13 +33,17 @@ public class Posts {
 				return null;
 			}
 			
-			WebElement[] listPosts_ = ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
+			String[] listPosts_ = ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
 			
-			if (listPosts_ == null) {
+			/*if (listPosts_ == null) {
 				return null;
-			}
+			}*/
 			
-			return listPosts_;
+			/*for (int i = 0; i < listPosts_.length; i++) {
+				System.out.println(listPosts_[i]);
+			}*/
+			
+			return AddDataToStructure(listPosts_);
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
@@ -110,15 +119,86 @@ public class Posts {
 		}
 	}
 	
-	private static WebElement[] ListPagePosts(WebDriver driver_, int postsNum_) {
+	private static String[] ListPagePosts(WebDriver driver_, int postsNum_) {
 		try {
 			
 			Thread.sleep(5000);
 			Comm.WaitingUntil(driver_, PagePosts.PagePostsCreatePost(driver_), 10, 1);
 			
-			WebElement[] listPosts_ = GetListPagePosts.List(driver_, postsNum_);
+			//WebElement[] listPosts_ = GetListPagePosts.List(driver_, postsNum_);
 			
-			return listPosts_;
+			return PostsValues(driver_, GetListPagePosts.List(driver_, postsNum_));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	private static String[] PostsValues(WebDriver driver_, WebElement[] listPosts_) {
+		try {
+			
+			String[] postsValues = new String[listPosts_.length];
+			
+			/*for (int i = 0; i < listPosts_.length; i++) {
+				System.out.println(listPosts_[i].getAttribute("href"));
+			}*/
+			
+			for (int i = 0; i < listPosts_.length; i++) {
+				
+				postsValues[i] = getPostValue(driver_, listPosts_[i]);
+			}
+			
+			/*for (int i = 0; i < postsValues.length; i++) {
+				System.out.println(postsValues[i]);
+			}*/
+			
+			return postsValues;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	private static String getPostValue(WebDriver driver_, WebElement post_) {
+		try {
+			
+			//System.out.println(post_.findElement(By.xpath("//div/div/div/div[2]/div[1]/div[3]/div[2]/p")).getText());
+			
+			return post_.getAttribute("href");
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	private static PagePostsStructure[] AddDataToStructure(String[] data_) {
+		try {
+			
+			PagePostsStructure[] pagePostsStructure_ = new PagePostsStructure[data_.length];
+			
+			for (int i = 0; i < data_.length; i++) {
+				
+				pagePostsStructure_[i] = new PagePostsStructure();
+				
+				Field[] structFields = pagePostsStructure_[i].getClass().getDeclaredFields();
+				
+				structFields[0].set(pagePostsStructure_[i], String.valueOf(i));
+				
+				/*for (int x = 0; x < data_[i].length; x++) {
+					
+					structFields[x + 1].set(pageStructure_[i], data_[i][x]);
+				}*/
+				structFields[1].set(pagePostsStructure_[i], data_[i]);
+			}
+			
+			/*for (int i = 0; i < pagePostsStructure_.length; i++) {
+				System.out.println(pagePostsStructure_[i].url);
+			}*/
+			
+			return pagePostsStructure_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
