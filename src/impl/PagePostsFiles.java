@@ -34,6 +34,23 @@ public class PagePostsFiles {
 			}
 			else {
 				
+				Boolean aux_ = CompareStructures.Compare(pagePostsStructure_, webPagePostsStructure_);
+				
+				if (aux_ == null) {
+					return false;
+				}
+				else if (!aux_) {
+					//HAVE CHANGES
+					if (!WriteFile(pagePostsStructure_, webPagePostsStructure_, pageName_)) {
+						return false;
+					}
+				}
+				else {
+					//NO CHANGES
+					if (!WriteFile(webPagePostsStructure_, pageName_)) {
+						return false;
+					}
+				}
 			}
 			
 			return true;
@@ -50,6 +67,25 @@ public class PagePostsFiles {
 			String[][] array_ = StructureToArray.ConvertToArray(newStructure_); //StructureToArray(newStructure_);
 			
 			if (!FileXML.Write(pageName_ + "_PagePostsList", Comm.checkEnv() + "data/", array_, StructureType.POSTS)) {
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	
+	private static boolean WriteFile(PagePostsStructure[] oldStructure_, PagePostsStructure[] newStructure_, String pageName_) { //COULD BE RENAMED
+		try {
+			
+			if (!FileXML.Write(pageName_ + "_PagePostsList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.POSTS)) { //StructureToArray(oldStructure_)
+				return false;
+			}
+			
+			if (!FileXML.Write(pageName_ + "_PagePostsList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.POSTS)) { //StructureToArray(newStructure_)
 				return false;
 			}
 			

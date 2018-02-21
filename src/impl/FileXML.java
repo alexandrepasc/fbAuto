@@ -159,13 +159,13 @@ public class FileXML {
 				attr_.setValue(String.valueOf(i));
 				post_.setAttributeNode(attr_);
 				
-				Element name_ = doc_.createElement("url");
-				name_.appendChild(doc_.createTextNode(values_[i][0]));
-				post_.appendChild(name_);
+				Element url_ = doc_.createElement("url");
+				url_.appendChild(doc_.createTextNode(values_[i][0]));
+				post_.appendChild(url_);
 				
-				/*Element url_ = doc_.createElement("url");
-				url_.appendChild(doc_.createTextNode(values_[i][1]));
-				post_.appendChild(url_);*/
+				Element text_ = doc_.createElement("text");
+				text_.appendChild(doc_.createTextNode(values_[i][1]));
+				post_.appendChild(text_);
 			}
 			
 			return doc_;

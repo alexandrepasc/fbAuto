@@ -2,14 +2,12 @@ package impl;
 
 import java.lang.reflect.Field;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import common.Comm;
 import common.Logger_;
 import main.PagePostsStructure;
-import main.PageStructure;
 import main.SearchStructure;
 import pageElements.Page;
 import pageElements.PagePosts;
@@ -33,7 +31,7 @@ public class Posts {
 				return null;
 			}
 			
-			String[] listPosts_ = ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
+			String[][] listPosts_ = ListPagePosts(driver_, Integer.parseInt(searchStructure_.postsNum));
 			
 			/*if (listPosts_ == null) {
 				return null;
@@ -119,15 +117,19 @@ public class Posts {
 		}
 	}
 	
-	private static String[] ListPagePosts(WebDriver driver_, int postsNum_) {
+	private static String[][] ListPagePosts(WebDriver driver_, int postsNum_) {
 		try {
 			
 			Thread.sleep(5000);
 			Comm.WaitingUntil(driver_, PagePosts.PagePostsCreatePost(driver_), 10, 1);
 			
 			//WebElement[] listPosts_ = GetListPagePosts.List(driver_, postsNum_);
+			//FOR TESTS
+			/*for (int i = 0; i < PagePosts.PagePostsText(driver_).length; i++) {
+				System.out.println(i + ": " + PagePosts.PagePostsText(driver_)[i].getText());
+			}*/
 			
-			return PostsValues(driver_, GetListPagePosts.List(driver_, postsNum_));
+			return PostsValues(driver_, GetListPagePosts.ListUrl(driver_, postsNum_), GetListPagePosts.ListText(driver_, postsNum_));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
@@ -135,18 +137,18 @@ public class Posts {
 		}
 	}
 	
-	private static String[] PostsValues(WebDriver driver_, WebElement[] listPosts_) {
+	private static String[][] PostsValues(WebDriver driver_, WebElement[] listPostsUrl_, WebElement[] ListPostsText_) {
 		try {
 			
-			String[] postsValues = new String[listPosts_.length];
+			String[][] postsValues = new String[listPostsUrl_.length][2];
 			
 			/*for (int i = 0; i < listPosts_.length; i++) {
 				System.out.println(listPosts_[i].getAttribute("href"));
 			}*/
 			
-			for (int i = 0; i < listPosts_.length; i++) {
+			for (int i = 0; i < listPostsUrl_.length; i++) {
 				
-				postsValues[i] = getPostValue(driver_, listPosts_[i]);
+				postsValues[i] = getPostValue(driver_, listPostsUrl_[i], ListPostsText_[i]);
 			}
 			
 			/*for (int i = 0; i < postsValues.length; i++) {
@@ -161,12 +163,12 @@ public class Posts {
 		}
 	}
 	
-	private static String getPostValue(WebDriver driver_, WebElement post_) {
+	private static String[] getPostValue(WebDriver driver_, WebElement postUrl_, WebElement postText_) {
 		try {
 			
 			//System.out.println(post_.findElement(By.xpath("//div/div/div/div[2]/div[1]/div[3]/div[2]/p")).getText());
 			
-			return post_.getAttribute("href");
+			return new String[] {postUrl_.getAttribute("href"), postText_.getText()};
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
@@ -174,7 +176,7 @@ public class Posts {
 		}
 	}
 	
-	private static PagePostsStructure[] AddDataToStructure(String[] data_) {
+	private static PagePostsStructure[] AddDataToStructure(String[][] data_) {
 		try {
 			
 			PagePostsStructure[] pagePostsStructure_ = new PagePostsStructure[data_.length];
@@ -191,7 +193,8 @@ public class Posts {
 					
 					structFields[x + 1].set(pageStructure_[i], data_[i][x]);
 				}*/
-				structFields[1].set(pagePostsStructure_[i], data_[i]);
+				structFields[1].set(pagePostsStructure_[i], data_[i][0]);
+				structFields[2].set(pagePostsStructure_[i], data_[i][1]);
 			}
 			
 			/*for (int i = 0; i < pagePostsStructure_.length; i++) {

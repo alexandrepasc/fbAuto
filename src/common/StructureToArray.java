@@ -44,12 +44,13 @@ public class StructureToArray {
 	
 	public static String[][] ConvertToArray(PagePostsStructure[] pageStructure_) { //COULD BE CHANGES TO NOT BE HARD CODED
 		try {
-			String[][] array_ = new String[pageStructure_.length][1];
+			String[][] array_ = new String[pageStructure_.length][2];
 			
 			for (int i = 0; i < array_.length; i++) {
 				//array_[i][0] = pageStructure_[i].id;
 				//array_[i][0] = pageStructure_[i].name;
-				array_[i][1] = pageStructure_[i].url;
+				array_[i][0] = pageStructure_[i].url;
+				array_[i][1] = pageStructure_[i].text;
 			}
 			
 			return array_;

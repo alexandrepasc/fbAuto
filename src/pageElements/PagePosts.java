@@ -53,4 +53,16 @@ public class PagePosts {
 			return null;
 		}
 	}
+	
+	public static WebElement[] PagePostsText(WebDriver driver_) {
+		try {
+			List<WebElement> list_ = driver_.findElements(By.xpath("//div[contains(@class, 'userContent')]/p[1]"));
+			
+			return list_.toArray(new WebElement[0]);
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
 }
