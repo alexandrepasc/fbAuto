@@ -1,14 +1,12 @@
 package impl;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import common.Comm;
 import common.Logger_;
 import common.StructureToArray;
 import common.StructureType;
 import main.PagePostsStructure;
-import main.PageStructure;
 
 public class PagePostsFiles {
 
@@ -51,7 +49,7 @@ public class PagePostsFiles {
 			
 			String[][] array_ = StructureToArray.ConvertToArray(newStructure_); //StructureToArray(newStructure_);
 			
-			if (!FileXML.Write(pageName_ + "_PagePostsList.xml", Comm.checkEnv() + "data/", array_, StructureType.POSTS)) {
+			if (!FileXML.Write(pageName_ + "_PagePostsList", Comm.checkEnv() + "data/", array_, StructureType.POSTS)) {
 				return false;
 			}
 			
