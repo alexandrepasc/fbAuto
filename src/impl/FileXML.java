@@ -46,6 +46,9 @@ public class FileXML {
 			else if (type_ == StructureType.PAGE) {
 				source = new DOMSource(DocAddPageValues(doc_, data_));
 			}
+			else if (type_ == StructureType.POSTS) {
+				source = new DOMSource(DocAddPagePostsValues(doc_, data_));
+			}
 			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Get Values: " + path_ + fileName_, "info");
 			
@@ -128,6 +131,41 @@ public class FileXML {
 				Element url_ = doc_.createElement("url");
 				url_.appendChild(doc_.createTextNode(values_[i][1]));
 				group_.appendChild(url_);
+			}
+			
+			return doc_;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	private static Document DocAddPagePostsValues(Document doc_, String[][] values_) {
+		try {
+			Element rootElement_ = doc_.createElement("posts");
+			doc_.appendChild(rootElement_);
+			
+			Element total_ = doc_.createElement("total");
+			total_.appendChild(doc_.createTextNode(String.valueOf(values_.length)));
+			rootElement_.appendChild(total_);
+			
+			for (int i = 0; i < values_.length; i++) {
+				Element post_ = doc_.createElement("post");
+				rootElement_.appendChild(post_);
+
+				// set attribute to group element
+				Attr attr_ = doc_.createAttribute("id");
+				attr_.setValue(String.valueOf(i));
+				post_.setAttributeNode(attr_);
+				
+				Element url_ = doc_.createElement("url");
+				url_.appendChild(doc_.createTextNode(values_[i][0]));
+				post_.appendChild(url_);
+				
+				Element text_ = doc_.createElement("text");
+				text_.appendChild(doc_.createTextNode(values_[i][1]));
+				post_.appendChild(text_);
 			}
 			
 			return doc_;
