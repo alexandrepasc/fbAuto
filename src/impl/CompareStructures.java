@@ -270,7 +270,9 @@ public class CompareStructures {
 				}
 			}
 			
-			for (int i = 0; i < (bigStructure_.length - smallStructure_.length); i++) {
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Number of DIFFERECES: " + (bigStructure_.length - smallStructure_.length), "info");
+			
+			for (int i = smallStructure_.length; i < bigStructure_.length; i++) {
 				
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - DIFFERECE ON NUMB: " + i, "info");
 				
