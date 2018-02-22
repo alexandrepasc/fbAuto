@@ -29,11 +29,16 @@ Example for the file XML files on the toPost folder.
 <br>
 <br>
 \<?xml version="1.0" encoding="UTF-8"?>
-\<toPost>
-	\<groups>
-		\<group>
-			\<name> \</name>
-			\<url> \</url> \</group> \</groups>
-	\<posts>
-		\<post>
-			\<url> \</url> \</post> \</posts> \</toPost>
+\<toPost> <br>
+	\<groups> <br>
+		\<group> <br>
+			\<name> \</name> <br>
+			\<url> \</url> <br>
+		\</group> <br>
+	\</groups> <br>
+	\<posts> <br>
+		\<post> <br>
+			\<url> \</url> <br>
+		\</post> <br>
+	\</posts> <br>
+\</toPost>
