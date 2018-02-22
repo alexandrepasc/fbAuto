@@ -19,6 +19,7 @@ import impl.ManageGroupsListFiles;
 import impl.ManagePagesFiles;
 import impl.PagePostsFiles;
 import impl.Posts;
+import impl.group.GoToGroup;
 
 public class Start {
 
@@ -155,6 +156,8 @@ public class Start {
 	
 	private static boolean Posting() {
 		try {
+			
+			GoToGroup.Go();
 			
 			return true;
 		}
