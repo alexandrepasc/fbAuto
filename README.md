@@ -7,8 +7,9 @@ The file should be located on the project root folder.
 \<?xml version="1.0" encoding="UTF-8"?> <br>
 \<config> </br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<url>https://facebook.com/ \</url> <br>
-	\<login>name@mail.com \</login> <br>
-	\<pwd>password \</pwd> <br> \</config>
+&nbsp;&nbsp;&nbsp;&nbsp;\<login>name@mail.com \</login> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\<pwd>password \</pwd> <br> \
+</config>
 <br>
 <br>
 <br>
@@ -17,10 +18,10 @@ The file should be located on the project root folder. <br>
 The data for this file have to be copied from the file data/PagesList.xml, created by the app. <br><br>
 \<?xml version="1.0" encoding="UTF-8"?> <br>
 \<search> <br>
-	\<pageId>1 \</pageId> <br>
-	\<pageName>Test \</pageName> <br>
-	\<pageUrl>https://www.facebook.com/Test/ \</pageUrl> <br>
-	\<postsNum>5 \</postsNum> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\<pageId>1 \</pageId> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\<pageName>Test \</pageName> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\<pageUrl>https://www.facebook.com/Test/ \</pageUrl> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\<postsNum>5 \</postsNum> <br>
 \</search>
 <br>
 <br>
@@ -30,15 +31,15 @@ Example for the file XML files on the toPost folder.
 <br>
 \<?xml version="1.0" encoding="UTF-8"?> <br>
 \<toPost> <br>
-	\<groups> <br>
-		\<group> <br>
-			\<name>Group Name \</name> <br>
-			\<url>http://facebook.com/group \</url> <br>
-		\</group> <br>
-	\</groups> <br>
-	\<posts> <br>
-		\<post> <br>
-			\<url>http://facebook.com/post \</url> <br>
-		\</post> <br>
-	\</posts> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\<groups> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<group> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<name>Group Name \</name> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<url>http://facebook.com/group \</url> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</group> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\</groups> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\<posts> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<post> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<url>http://facebook.com/post \</url> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</post> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\</posts> <br>
 \</toPost>
