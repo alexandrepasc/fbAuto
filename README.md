@@ -9,7 +9,7 @@ The file should be located on the project root folder.
 &nbsp;&nbsp;&nbsp;&nbsp;\<url>https://facebook.com/ \</url> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<login>name@mail.com \</login> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<pwd>password \</pwd> <br> 
-/</config>
+\</config>
 <br>
 <br>
 <br>
