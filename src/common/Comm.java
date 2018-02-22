@@ -96,7 +96,7 @@ public class Comm {
 			File theDir_ = new File (path_);
 			if (!theDir_.exists()) {
 				theDir_.mkdir();
-				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Directory created: " + path_, "info");
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Folder created: " + path_, "info");
 			}
 		}
 		catch (Exception e) {

@@ -19,6 +19,7 @@ import impl.ManageGroupsListFiles;
 import impl.ManagePagesFiles;
 import impl.PagePostsFiles;
 import impl.Posts;
+import impl.group.GetFiles;
 import impl.group.GoToGroup;
 
 public class Start {
@@ -60,6 +61,10 @@ public class Start {
 			}
 			
 			if (!PagePosts(driver, searchStructure_)) {
+				EndApp(driver);
+			}
+			
+			if (!Posting("toPost/", searchStructure_)) {
 				EndApp(driver);
 			}
 			
@@ -154,10 +159,12 @@ public class Start {
 		}
 	}
 	
-	private static boolean Posting() {
+	private static boolean Posting(String folder_, SearchStructure searchStructure_) {
 		try {
 			
 			GoToGroup.Go();
+			
+			GetFiles.FilesList(Comm.checkEnv() + folder_, searchStructure_.pageName);
 			
 			return true;
 		}
