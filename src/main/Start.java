@@ -153,6 +153,17 @@ public class Start {
 		}
 	}
 	
+	private static boolean Posting() {
+		try {
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	
 	private static void LogStartEndApp(boolean start_) {
 		try {
 			if (start_) {
