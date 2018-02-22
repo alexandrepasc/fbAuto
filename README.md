@@ -8,8 +8,8 @@ The file should be located on the project root folder.
 \<config> </br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<url>https://facebook.com/ \</url> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<login>name@mail.com \</login> <br>
-&nbsp;&nbsp;&nbsp;&nbsp;\<pwd>password \</pwd> <br> \
-</config>
+&nbsp;&nbsp;&nbsp;&nbsp;\<pwd>password \</pwd> <br> 
+/</config>
 <br>
 <br>
 <br>
