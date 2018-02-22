@@ -1,7 +1,7 @@
 # fbAuto
 
-Example for the file.
-config.xml <br>
+Example for the file
+config.xml. <br>
 The file should be located on the project root folder.
 
 \<?xml version="1.0" encoding="UTF-8"?> <br>
@@ -28,17 +28,17 @@ The data for this file have to be copied from the file data/PagesList.xml, creat
 Example for the file XML files on the toPost folder.
 <br>
 <br>
-\<?xml version="1.0" encoding="UTF-8"?>
+\<?xml version="1.0" encoding="UTF-8"?> <br>
 \<toPost> <br>
 	\<groups> <br>
 		\<group> <br>
-			\<name> \</name> <br>
-			\<url> \</url> <br>
+			\<name>Group Name \</name> <br>
+			\<url>http://facebook.com/group \</url> <br>
 		\</group> <br>
 	\</groups> <br>
 	\<posts> <br>
 		\<post> <br>
-			\<url> \</url> <br>
+			\<url>http://facebook.com/post \</url> <br>
 		\</post> <br>
 	\</posts> <br>
 \</toPost>
