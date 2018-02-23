@@ -12,6 +12,7 @@ import org.w3c.dom.NodeList;
 
 import common.Logger_;
 import common.structures.ToPost;
+import common.structures.ToPostGroup;
 
 public class ReadFile {
 
@@ -100,6 +101,16 @@ public class ReadFile {
 			}
 			
 			return toPostStructure_;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	private static ToPostGroup[] GetGroupsValues() {
+		try {
+			
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
