@@ -15,6 +15,10 @@ public class ManageFiles {
 				return false;
 			}
 			
+			if (!ReadFiles(fileList_)) {
+				return false;
+			}
+			
 			return true;
 		}
 		catch (Exception e) {
@@ -25,6 +29,13 @@ public class ManageFiles {
 	
 	private static boolean ReadFiles(File[] fileList_) {
 		try {
+			
+			for (int i = 0; i < fileList_.length; i++) {
+				
+				if (!ReadFile.Reading(fileList_[i])) {
+					return false;
+				}
+			}
 			
 			return true;
 		}

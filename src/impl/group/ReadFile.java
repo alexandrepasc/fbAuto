@@ -29,6 +29,10 @@ public class ReadFile {
 			if ((toPostStructure_ = ReadToStructure(doc_, toPostStructure_)) == null) {
 				return false;
 			}
+			
+			//System.out.println(toPostStructure_.done);
+			//System.out.println(toPostStructure_.postText);
+			//System.out.println(toPostStructure_.postUrl);
 						
 			return true;
 		}
@@ -60,6 +64,7 @@ public class ReadFile {
 			if (doc_.hasChildNodes()) {
 				
 				Node tempNode_ = doc_.getChildNodes().item(0);
+				//System.out.println(tempNode_.getNodeName());
 					
 				NodeList nList_ = tempNode_.getChildNodes();
 				
@@ -81,9 +86,17 @@ public class ReadFile {
 			
 			for (int i = 0; i < (nList_.getLength() - 1); i++) {
 				
-				Field structField_ = toPostStructure_.getClass().getDeclaredField(nList_.item(i).getNodeName());
-				
-				structField_.set(toPostStructure_, nList_.item(i).getTextContent());
+				if (nList_.item(i).getNodeType() == Node.ELEMENT_NODE) {
+					
+					if (nList_.item(i).getNodeName().equals("groups")) {
+						break;
+					}
+					
+					System.out.println(nList_.item(i).getNodeName());
+					Field structField_ = toPostStructure_.getClass().getDeclaredField(nList_.item(i).getNodeName());
+					
+					structField_.set(toPostStructure_, nList_.item(i).getTextContent());
+				}
 			}
 			
 			return toPostStructure_;
