@@ -31,6 +31,7 @@ Example for the file XML files on the toPost folder.
 <br>
 \<?xml version="1.0" encoding="UTF-8"?> <br>
 \<toPost> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;\<done>0 \</done>
 &nbsp;&nbsp;&nbsp;&nbsp;\<groups> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<group> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<name>Group Name \</name> <br>
@@ -40,6 +41,7 @@ Example for the file XML files on the toPost folder.
 &nbsp;&nbsp;&nbsp;&nbsp;\<posts> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<post> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<url>http://facebook.com/post \</url> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<text>Text to the post \</text>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</post> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;\</posts> <br>
 \</toPost>
