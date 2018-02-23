@@ -8,21 +8,24 @@ import common.Logger_;
 
 public class GetFiles {
 
-	public static boolean FilesList(String folderPath_, String pageName_) {
+	public static File[] FilesList(String folderPath_, String pageName_) {
 		
 		try {
 			
 			if (!CheckFolder(folderPath_)) {
-				return false;
+				return null;
 			}
 			
-			List(folderPath_, pageName_);
+			File filesList_[] = List(folderPath_, pageName_);
+			/*if (filesList_ == null) {
+				return false;
+			}*/
 			
-			return true;
+			return filesList_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
+			return null;
 		}
 	}
 	
@@ -47,13 +50,15 @@ public class GetFiles {
 			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - List Files on " + path_, "info");
 			
-			File folder_ = new File("path_");
+			File folder_ = new File(path_);
 			
 			File[] files_ = folder_.listFiles();
 			
 			File[] aux_ = new File[0];
 			
 			for (int i = 0; i < files_.length; i++) {
+				
+				//System.out.println(files_[i].getPath());
 				
 				if (files_[i].getPath().split("/")[files_[i].getPath().split("/").length - 1].contains(pageName_)) {
 					
@@ -64,6 +69,10 @@ public class GetFiles {
 			}
 			
 			return aux_;
+		}
+		catch (NullPointerException e) {
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - No Files Found on: " + path_, "info");
+			return null;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);

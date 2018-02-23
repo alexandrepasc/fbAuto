@@ -19,8 +19,8 @@ import impl.ManageGroupsListFiles;
 import impl.ManagePagesFiles;
 import impl.PagePostsFiles;
 import impl.Posts;
-import impl.group.GetFiles;
 import impl.group.GoToGroup;
+import impl.group.ManageFiles;
 
 public class Start {
 
@@ -162,9 +162,11 @@ public class Start {
 	private static boolean Posting(String folder_, SearchStructure searchStructure_) {
 		try {
 			
-			GoToGroup.Go();
+			if (!ManageFiles.Manage(Comm.checkEnv() + folder_, searchStructure_.pageName)) {
+				return false;
+			}
 			
-			GetFiles.FilesList(Comm.checkEnv() + folder_, searchStructure_.pageName);
+			GoToGroup.Go();
 			
 			return true;
 		}
