@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import common.Comm;
 import common.Configurations;
 import common.Logger_;
+import common.structures.ToPost;
 import impl.CheckNotifications;
 import impl.DoLogin;
 import impl.DoLogout;
@@ -162,7 +163,8 @@ public class Start {
 	private static boolean Posting(String folder_, SearchStructure searchStructure_) {
 		try {
 			
-			if (!ManageFiles.Manage(Comm.checkEnv() + folder_, searchStructure_.pageName)) {
+			ToPost[] structureToPost_ = ManageFiles.Manage(Comm.checkEnv() + folder_, searchStructure_.pageName);
+			if (structureToPost_ == null) {
 				return false;
 			}
 			

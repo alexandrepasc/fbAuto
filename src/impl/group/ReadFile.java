@@ -16,7 +16,7 @@ import common.structures.ToPostGroup;
 
 public class ReadFile {
 
-	public static boolean Reading(File file_) {
+	public static ToPost Reading(File file_) {
 		try {
 			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Read File: " + file_, "info");
@@ -24,29 +24,31 @@ public class ReadFile {
 			Document doc_;
 			
 			if ((doc_ = OpenXML(file_)) == null) {
-				return false;
+				return null;
 			}
 			
 			ToPost toPostStructure_ = new ToPost();
 			
 			if ((toPostStructure_ = ReadToStructure(doc_, toPostStructure_)) == null) {
-				return false;
+				return null;
 			}
 			
 			//System.out.println(toPostStructure_.done);
 			//System.out.println(toPostStructure_.postText);
 			//System.out.println(toPostStructure_.postUrl);
 						
-			return true;
+			return toPostStructure_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
+			return null;
 		}
 	}
 	
 	private static Document OpenXML(File file_) {
 		try {
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Open File: " + file_, "info");
 			
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -63,6 +65,8 @@ public class ReadFile {
 	
 	private static ToPost ReadToStructure(Document doc_, ToPost toPostStructure_) {
 		try {
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Read File Values", "info");
 			
 			if (doc_.hasChildNodes()) {
 				
