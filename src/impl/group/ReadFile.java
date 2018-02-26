@@ -19,6 +19,8 @@ public class ReadFile {
 	public static boolean Reading(File file_) {
 		try {
 			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Read File: " + file_, "info");
+			
 			Document doc_;
 			
 			if ((doc_ = OpenXML(file_)) == null) {
@@ -72,6 +74,10 @@ public class ReadFile {
 				if ((toPostStructure_ = GetPostValues(nList_, toPostStructure_)) == null) {
 					return null;
 				}
+				
+				if ((toPostStructure_.groups  = GetGroupsValues(nList_)) == null) {
+					return null;
+				}
 			}
 			
 			return toPostStructure_;
@@ -93,7 +99,7 @@ public class ReadFile {
 						break;
 					}
 					
-					System.out.println(nList_.item(i).getNodeName());
+					//System.out.println(nList_.item(i).getNodeName());
 					Field structField_ = toPostStructure_.getClass().getDeclaredField(nList_.item(i).getNodeName());
 					
 					structField_.set(toPostStructure_, nList_.item(i).getTextContent());
@@ -108,9 +114,58 @@ public class ReadFile {
 		}
 	}
 	
-	private static ToPostGroup[] GetGroupsValues() {
+	private static ToPostGroup[] GetGroupsValues(NodeList nList_) {
 		try {
 			
+			ToPostGroup[] postGoups_ = null;
+			
+			for (int i = 0; i < (nList_.getLength() - 1); i++) {
+				
+				if (nList_.item(i).getNodeType() == Node.ELEMENT_NODE) {
+					
+					if (nList_.item(i).getNodeName().equals("groups")) {
+						
+						NodeList groupNodesList_ = nList_.item(i).getChildNodes();
+						
+						//System.out.println(nList_.item(i).getNodeName());
+						//System.out.println(groupNodesList_.item(1).getTextContent());
+						postGoups_ = new ToPostGroup[Integer.parseInt(groupNodesList_.item(1).getTextContent())];
+						int aux_ = 0;
+						
+						for (int x = 0; x < groupNodesList_.getLength(); x++) {
+							
+							//System.out.println("groupNodesList_: " + groupNodesList_.item(x).getNodeName());
+							if (groupNodesList_.item(x).getNodeName().equals("group")) {
+								
+								postGoups_[aux_] = new ToPostGroup();
+								
+								NodeList groupNode_ = groupNodesList_.item(x).getChildNodes();
+								
+								Field structField_ = postGoups_[aux_].getClass().getDeclaredField(groupNode_.item(1).getNodeName());
+								structField_.set(postGoups_[aux_], groupNode_.item(1).getTextContent());
+								
+								structField_ = postGoups_[aux_].getClass().getDeclaredField(groupNode_.item(3).getNodeName());
+								structField_.set(postGoups_[aux_], groupNode_.item(3).getTextContent());
+								
+								//System.out.println("groupNode_: " + groupNode_.item(1).getNodeName());
+								
+								aux_ += 1;
+							}
+							
+							if (aux_ >= postGoups_.length) {
+								break;
+							}
+						}
+					}
+				}
+			}
+			
+			/*for (int i = 0; i < postGoups_.length; i++) {
+				System.out.println(postGoups_[i].name);
+				System.out.println(postGoups_[i].url);
+			}*/
+			
+			return postGoups_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
