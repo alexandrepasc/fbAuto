@@ -20,8 +20,8 @@ import impl.ManageGroupsListFiles;
 import impl.ManagePagesFiles;
 import impl.PagePostsFiles;
 import impl.Posts;
-import impl.group.GoToGroup;
 import impl.group.ManageFiles;
+import impl.group.Publish;
 
 public class Start {
 
@@ -168,7 +168,7 @@ public class Start {
 				return false;
 			}
 			
-			GoToGroup.Go();
+			Publish.GoPost(structureToPost_);
 			
 			return true;
 		}
