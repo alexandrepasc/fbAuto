@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import common.Comm;
 import common.Configurations;
 import common.Logger_;
+import common.structures.ToPost;
 import impl.CheckNotifications;
 import impl.DoLogin;
 import impl.DoLogout;
@@ -19,6 +20,8 @@ import impl.ManageGroupsListFiles;
 import impl.ManagePagesFiles;
 import impl.PagePostsFiles;
 import impl.Posts;
+import impl.group.GoToGroup;
+import impl.group.ManageFiles;
 
 public class Start {
 
@@ -59,6 +62,10 @@ public class Start {
 			}
 			
 			if (!PagePosts(driver, searchStructure_)) {
+				EndApp(driver);
+			}
+			
+			if (!Posting("toPost/", searchStructure_)) {
 				EndApp(driver);
 			}
 			
@@ -144,6 +151,24 @@ public class Start {
 			if (!PagePostsFiles.GetAndComparePagePostsList(driver_, listSelectedPagePosts_, searchStructure_.pageName)) {
 				return false;
 			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	
+	private static boolean Posting(String folder_, SearchStructure searchStructure_) {
+		try {
+			
+			ToPost[] structureToPost_ = ManageFiles.Manage(Comm.checkEnv() + folder_, searchStructure_.pageName);
+			if (structureToPost_ == null) {
+				return false;
+			}
+			
+			GoToGroup.Go();
 			
 			return true;
 		}
