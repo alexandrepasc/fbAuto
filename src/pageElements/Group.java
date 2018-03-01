@@ -52,6 +52,17 @@ public class Group {
 		}
 	}
 	
+	public static WebElement PostOpenTextFormInput(WebDriver driver_) {
+		try {
+			
+			return driver_.findElement(By.xpath("//div[contains(@class,'clearfix _ikh')]/div[2]/div/div/div/div/div/div/div"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
 	public static WebElement PublishPostBut(WebDriver driver_) {
 		try {
 			

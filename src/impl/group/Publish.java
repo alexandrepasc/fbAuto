@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 import common.Logger_;
 import common.structures.ToPost;
-import common.structures.ToPostGroup;
 
 public class Publish {
 	
@@ -16,7 +15,7 @@ public class Publish {
 				
 				if (CheckPost(driver_, structureToPost_[i])) {
 					
-					OpenGroups(driver_, structureToPost_[i].groups);
+					OpenGroups(driver_, structureToPost_[i]);
 				}
 			}
 			
@@ -65,12 +64,14 @@ public class Publish {
 		}
 	}
 	
-	private static boolean OpenGroups(WebDriver driver_, ToPostGroup[] structureToPostGroup_) {
+	private static boolean OpenGroups(WebDriver driver_, ToPost structureToPost_) {
 		try {
 			
-			for (int i = 0; i < structureToPostGroup_.length; i++) {
+			for (int i = 0; i < structureToPost_.groups.length; i++) {
 				
-				GoToGroup.Go(driver_, structureToPostGroup_[i]);
+				GoToGroup.Go(driver_, structureToPost_.groups[i]);
+				
+				PublishPost.Pub(driver_, structureToPost_.postText, structureToPost_.postUrl);
 			}
 			
 			return true;

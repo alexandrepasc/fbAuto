@@ -1,5 +1,6 @@
 package impl.group;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import common.Logger_;
@@ -10,13 +11,16 @@ public class PublishPost {
 	public static boolean Pub(WebDriver driver_, String text_, String link_) {
 		try {
 			
-			if (!OpenText(driver_)) {
+			/*if (!OpenText(driver_)) {
 				return false;
-			}
+			}*/
 			
 			if (!PasteText(driver_, text_, link_)) {
 				return false;
 			}
+			
+			//FOR TESTING
+			Thread.sleep(15000);
 			
 			return true;
 		}
@@ -43,7 +47,7 @@ public class PublishPost {
 	private static boolean PasteText(WebDriver driver_, String text_, String link_) {
 		try {
 			
-			Group.PostOpenTextForm(driver_).sendKeys(text_ + link_);
+			Group.PostOpenTextFormInput(driver_).sendKeys(text_ + link_);
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Post Text Open Form Set Text", "info");
 			
 			return true;

@@ -88,13 +88,15 @@ public class GoToGroup {
 				return false;
 			}
 			
-			if (!Comm.checkElement(Group.PostOpenCloseBut(driver_), driver_)) {
+			/*if (!Comm.checkElement(Group.PostOpenCloseBut(driver_), driver_)) {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Close Post Open Button IS NOT Present and/or Visible", "info");
 				return false;
-			}
+			}*/
 			
-			Group.PostOpenCloseBut(driver_).click();
+			/*Group.PostOpenCloseBut(driver_).click();
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Close Post Open Button Click", "info");
+			
+			Thread.sleep(500);*/
 			
 			return true;
 		}
