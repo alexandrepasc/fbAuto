@@ -29,6 +29,17 @@ public class Group {
 			return null;
 		}
 	}
+	
+	public static WebElement PostOpenCloseBut(WebDriver driver_) {
+		try {
+			
+			return driver_.findElement(By.xpath("//*[contains(@class,'_3u17 _37nh')]"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
 
 	public static WebElement PostOpenTextForm(WebDriver driver_) {
 		try {

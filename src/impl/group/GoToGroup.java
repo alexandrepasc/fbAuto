@@ -75,10 +75,26 @@ public class GoToGroup {
 				return false;
 			}
 			
-			if (!Comm.checkElement(Group.PublishPostBut(driver_), driver_)) {
-				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Publish Post Button IS NOT Present and/or Visible", "info");
+			Group.PostTextForm(driver_).click();
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Post Text Form Click", "info");
+			
+			if (!Comm.checkElement(Group.PostOpenTextForm(driver_), driver_)) {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Post Text Open Form IS NOT Present and/or Visible", "info");
 				return false;
 			}
+			
+			if (!Comm.checkElement(Group.PublishPostBut(driver_), driver_)) {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Publish Post Open Button IS NOT Present and/or Visible", "info");
+				return false;
+			}
+			
+			if (!Comm.checkElement(Group.PostOpenCloseBut(driver_), driver_)) {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Close Post Open Button IS NOT Present and/or Visible", "info");
+				return false;
+			}
+			
+			Group.PostOpenCloseBut(driver_).click();
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Close Post Open Button Click", "info");
 			
 			return true;
 		}
