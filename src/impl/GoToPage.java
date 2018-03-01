@@ -53,7 +53,7 @@ public class GoToPage {
 				return WrongPage(pageName_);
 			}
 			
-			if (!Page.TitlePage(driver_).getAttribute("href").equals(pageUrl_)) {
+			if (!Page.TitlePage(driver_).getAttribute("href").contains(pageUrl_)) {
 				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - EXIT WRONG Page: " + pageName_, "info");
 				return WrongPage(pageName_);
 			}
