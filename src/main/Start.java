@@ -20,8 +20,8 @@ import impl.ManageGroupsListFiles;
 import impl.ManagePagesFiles;
 import impl.PagePostsFiles;
 import impl.Posts;
-import impl.group.GoToGroup;
 import impl.group.ManageFiles;
+import impl.group.Publish;
 
 public class Start {
 
@@ -65,7 +65,7 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			if (!Posting("toPost/", searchStructure_)) {
+			if (!Posting(driver, "toPost/", searchStructure_)) {
 				EndApp(driver);
 			}
 			
@@ -160,7 +160,7 @@ public class Start {
 		}
 	}
 	
-	private static boolean Posting(String folder_, SearchStructure searchStructure_) {
+	private static boolean Posting(WebDriver driver_, String folder_, SearchStructure searchStructure_) {
 		try {
 			
 			ToPost[] structureToPost_ = ManageFiles.Manage(Comm.checkEnv() + folder_, searchStructure_.pageName);
@@ -168,7 +168,7 @@ public class Start {
 				return false;
 			}
 			
-			GoToGroup.Go();
+			Publish.GoPost(driver_, structureToPost_);
 			
 			return true;
 		}
