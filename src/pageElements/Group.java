@@ -55,7 +55,8 @@ public class Group {
 	public static WebElement PostOpenTextFormInput(WebDriver driver_) {
 		try {
 			
-			return driver_.findElement(By.xpath("//div[contains(@class,'clearfix _ikh')]/div[2]/div/div/div/div/div/div/div"));
+			//return driver_.findElement(By.xpath("//div[contains(@class,'clearfix _ikh')]/div[2]/div/div/div/div/div/div/div/div/div/div/span/span"));
+			return driver_.findElement(By.xpath("//div[@data-testid='status-attachment-mentions-input']"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
