@@ -53,12 +53,16 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			if (!Groups(driver, groupStructure_)) {
-				EndApp(driver);
+			if (Integer.parseInt(configStructure_.groups) > 0) {
+				if (!Groups(driver, groupStructure_)) {
+					EndApp(driver);
+				}
 			}
 			
-			if (!ManagePages(driver, pageStructure_)) {
-				EndApp(driver);
+			if (Integer.parseInt(configStructure_.pages) > 0) {
+				if (!ManagePages(driver, pageStructure_)) {
+					EndApp(driver);
+				}
 			}
 			
 			if (!PagePosts(driver, searchStructure_)) {
