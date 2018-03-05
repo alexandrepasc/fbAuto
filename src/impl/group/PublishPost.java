@@ -29,7 +29,7 @@ public class PublishPost {
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Publish Post Buttton Click", "info");
 			
 			//FOR TESTING
-			Thread.sleep(15000);
+			Thread.sleep(1000);
 			
 			return true;
 		}
@@ -104,7 +104,7 @@ public class PublishPost {
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Post Text Open Form Set Text", "info");
 			
 			//JUST FOR TESTS
-			//Thread.sleep(50000);
+			Thread.sleep(1000);
 			
 			return true;
 		}
