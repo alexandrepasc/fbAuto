@@ -2,13 +2,17 @@
 
 Example for the file
 config.xml. <br>
-The file should be located on the project root folder.
+The file should be located on the project root folder. <br>
+The values for the fields groups, pages and pagePosts have to be 0 or 1. If the value is 1 the application will run that part, if 0 it will not.
 
 \<?xml version="1.0" encoding="UTF-8"?> <br>
 \<config> </br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<url>https://facebook.com/ \</url> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<login>name@mail.com \</login> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<pwd>password\</pwd> <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;\<groups>0\</groups> <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;\<pages>0\</pages> <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;\<pagePosts>1\</pagePosts> <br> 
 \</config>
 <br>
 <br>
