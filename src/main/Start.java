@@ -65,8 +65,10 @@ public class Start {
 				}
 			}
 			
-			if (!PagePosts(driver, searchStructure_)) {
-				EndApp(driver);
+			if (Integer.parseInt(configStructure_.pagePosts) > 0) {
+				if (!PagePosts(driver, searchStructure_)) {
+					EndApp(driver);
+				}
 			}
 			
 			if (!Posting(driver, "toPost/", searchStructure_)) {

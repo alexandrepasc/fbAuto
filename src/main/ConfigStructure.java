@@ -11,4 +11,6 @@ public class ConfigStructure {
 	public String groups;
 	
 	public String pages;
+	
+	public String pagePosts;
 }

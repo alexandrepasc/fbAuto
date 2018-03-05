@@ -26,6 +26,7 @@ public class Configurations {
 			config_.pwd = configs_[2];
 			config_.groups = configs_[3];
 			config_.pages = configs_[4];
+			config_.pagePosts = configs_[5];
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
