@@ -12,7 +12,7 @@ The values for the fields groups, pages and pagePosts have to be 0 or 1. If the 
 &nbsp;&nbsp;&nbsp;&nbsp;\<pwd>password\</pwd> <br> 
 &nbsp;&nbsp;&nbsp;&nbsp;\<groups>0\</groups> <br> 
 &nbsp;&nbsp;&nbsp;&nbsp;\<pages>0\</pages> <br> 
-&nbsp;&nbsp;&nbsp;&nbsp;\<pages>1\</pages> <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;\<pagePosts>1\</pagePosts> <br> 
 \</config>
 <br>
 <br>
