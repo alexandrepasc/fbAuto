@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import common.Comm;
 import common.Configurations;
 import common.Logger_;
+import common.structures.ConfigStructure;
 import common.structures.ToPost;
 import impl.CheckNotifications;
 import impl.DoLogin;
@@ -53,16 +54,22 @@ public class Start {
 				EndApp(driver);
 			}
 			
-			if (!Groups(driver, groupStructure_)) {
-				EndApp(driver);
+			if (Integer.parseInt(configStructure_.groups) > 0) {
+				if (!Groups(driver, groupStructure_)) {
+					EndApp(driver);
+				}
 			}
 			
-			if (!ManagePages(driver, pageStructure_)) {
-				EndApp(driver);
+			if (Integer.parseInt(configStructure_.pages) > 0) {
+				if (!ManagePages(driver, pageStructure_)) {
+					EndApp(driver);
+				}
 			}
 			
-			if (!PagePosts(driver, searchStructure_)) {
-				EndApp(driver);
+			if (Integer.parseInt(configStructure_.pagePosts) > 0) {
+				if (!PagePosts(driver, searchStructure_)) {
+					EndApp(driver);
+				}
 			}
 			
 			if (!Posting(driver, "toPost/", searchStructure_)) {

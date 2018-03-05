@@ -20,7 +20,7 @@ import org.w3c.dom.NodeList;
 import common.Comm;
 import common.Logger_;
 import common.StructureType;
-import main.ConfigStructure;
+import common.structures.ConfigStructure;
 import main.GroupStructure;
 import main.PagePostsStructure;
 import main.PageStructure;
