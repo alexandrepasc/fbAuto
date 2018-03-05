@@ -25,11 +25,20 @@ public class PublishPost {
 				return false;
 			}
 			
+			//FOR TESTS
+			//Group.PostOpenCloseBut(driver_).click();
+			//driver_.navigate().refresh();
+			/*if (!PasteText(driver_, text_, link_)) {
+				return false;
+			}*/
+			
 			Group.PublishPostBut(driver_).click();
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Publish Post Buttton Click", "info");
 			
+			Comm.WaitingUntil(driver_, Group.PostTextForm(driver_), 5, 2);
+			
 			//FOR TESTING
-			Thread.sleep(1000);
+			//Thread.sleep(2000);
 			
 			return true;
 		}
@@ -104,7 +113,7 @@ public class PublishPost {
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Post Text Open Form Set Text", "info");
 			
 			//JUST FOR TESTS
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			
 			return true;
 		}

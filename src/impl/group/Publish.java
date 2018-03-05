@@ -71,6 +71,8 @@ public class Publish {
 				
 				GoToGroup.Go(driver_, structureToPost_.groups[i]);
 				
+				//driver_.navigate().refresh();
+				
 				PublishPost.Pub(driver_, structureToPost_.postText, structureToPost_.postUrl);
 			}
 			
