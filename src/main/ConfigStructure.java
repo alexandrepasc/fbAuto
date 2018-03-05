@@ -7,4 +7,8 @@ public class ConfigStructure {
 	public String login;
 	
 	public String pwd;
+	
+	public String groups;
+	
+	public String pages;
 }
