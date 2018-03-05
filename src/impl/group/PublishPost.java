@@ -1,5 +1,11 @@
 package impl.group;
 
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
 import org.openqa.selenium.WebDriver;
 
 import common.Logger_;
@@ -56,7 +62,18 @@ public class PublishPost {
 				//System.out.println(aux_[i]);
 			}
 			
-			Group.PostOpenTextFormInput(driver_).sendKeys(link_);
+			Toolkit toolkit = Toolkit.getDefaultToolkit();
+			Clipboard clipboard = toolkit.getSystemClipboard();
+			StringSelection strSel = new StringSelection(link_);
+			clipboard.setContents(strSel, null);
+			
+			Robot robot = new Robot();
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_V); 
+			robot.keyRelease(KeyEvent.VK_V); 
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+			
+			//Group.PostOpenTextFormInput(driver_).sendKeys(link_);
 						
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Post Text Open Form Set Text", "info");
 			
