@@ -1,7 +1,7 @@
 package common;
 
+import common.structures.ConfigStructure;
 import impl.FileXML;
-import main.ConfigStructure;
 
 public class Configurations {
 	
