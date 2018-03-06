@@ -25,6 +25,8 @@ public class PublishPost {
 				return false;
 			}
 			
+			Thread.sleep(2000);
+			
 			//FOR TESTS
 			//Group.PostOpenCloseBut(driver_).click();
 			//driver_.navigate().refresh();
