@@ -99,16 +99,16 @@ public class PublishPost {
 				//System.out.println(aux_[i]);
 			}
 			
-			Toolkit toolkit = Toolkit.getDefaultToolkit();
-			Clipboard clipboard = toolkit.getSystemClipboard();
-			StringSelection strSel = new StringSelection(link_);
-			clipboard.setContents(strSel, null);
+			Toolkit toolkit_ = Toolkit.getDefaultToolkit();
+			Clipboard clipboard_ = toolkit_.getSystemClipboard();
+			StringSelection strSel_ = new StringSelection(link_);
+			clipboard_.setContents(strSel_, null);
 			
-			Robot robot = new Robot();
-			robot.keyPress(KeyEvent.VK_CONTROL);
-			robot.keyPress(KeyEvent.VK_V); 
-			robot.keyRelease(KeyEvent.VK_V); 
-			robot.keyRelease(KeyEvent.VK_CONTROL);
+			Robot robot_ = new Robot();
+			robot_.keyPress(KeyEvent.VK_CONTROL);
+			robot_.keyPress(KeyEvent.VK_V); 
+			robot_.keyRelease(KeyEvent.VK_V); 
+			robot_.keyRelease(KeyEvent.VK_CONTROL);
 			
 			//Group.PostOpenTextFormInput(driver_).sendKeys(link_);
 						
