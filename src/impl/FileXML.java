@@ -21,7 +21,7 @@ import common.Comm;
 import common.Logger_;
 import common.StructureType;
 import common.structures.ConfigStructure;
-import main.GroupStructure;
+import common.structures.GroupStructure;
 import main.PagePostsStructure;
 import main.PageStructure;
 import main.SearchStructure;

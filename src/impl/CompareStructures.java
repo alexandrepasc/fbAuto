@@ -1,7 +1,7 @@
 package impl;
 
 import common.Logger_;
-import main.GroupStructure;
+import common.structures.GroupStructure;
 import main.PagePostsStructure;
 import main.PageStructure;
 

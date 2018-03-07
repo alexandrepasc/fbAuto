@@ -1,4 +1,4 @@
-package impl;
+package impl.groups;
 
 import java.lang.reflect.Field;
 
@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import common.Comm;
 import common.Logger_;
 import common.Translations;
-import main.GroupStructure;
+import common.structures.GroupStructure;
 import pageElements.Groups;
 
 public class MembershipGroups {

@@ -1,6 +1,6 @@
 package common;
 
-import main.GroupStructure;
+import common.structures.GroupStructure;
 import main.PagePostsStructure;
 import main.PageStructure;
 
