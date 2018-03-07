@@ -1,5 +1,10 @@
 # fbAuto
 
+
+To run the application it is needed the Selenium for java, Commons io libraries and the Geckodriver binary. <br>
+Running the application from the dev ide you just need to clone the repository or download any release. 
+To run it with a .jar file it is needed to have the Geckodriver on the same folder. <br> 
+The other required file to run this is the config.xml file on the root of the project or on the same folder as the .jar. <br><br><br> 
 Example for the file
 config.xml. <br>
 The file should be located on the project root folder. <br>
