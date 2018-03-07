@@ -1,8 +1,8 @@
 package common;
 
-import main.GroupStructure;
-import main.PagePostsStructure;
-import main.PageStructure;
+import common.structures.GroupStructure;
+import common.structures.PagePostsStructure;
+import common.structures.PageStructure;
 
 public class StructureToArray {
 

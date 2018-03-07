@@ -1,10 +1,10 @@
-package impl;
+package impl.pagePosts;
 
 import org.openqa.selenium.WebDriver;
 
 import common.Comm;
 import common.Logger_;
-import main.SearchStructure;
+import common.structures.SearchStructure;
 import pageElements.Page;
 
 public class GoToPage {

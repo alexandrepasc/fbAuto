@@ -1,4 +1,4 @@
-package impl;
+package impl.groups;
 
 import org.openqa.selenium.WebDriver;
 

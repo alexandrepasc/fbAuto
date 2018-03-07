@@ -21,10 +21,10 @@ import common.Comm;
 import common.Logger_;
 import common.StructureType;
 import common.structures.ConfigStructure;
-import main.GroupStructure;
-import main.PagePostsStructure;
-import main.PageStructure;
-import main.SearchStructure;
+import common.structures.GroupStructure;
+import common.structures.PagePostsStructure;
+import common.structures.PageStructure;
+import common.structures.SearchStructure;
 
 public class FileXML {
 

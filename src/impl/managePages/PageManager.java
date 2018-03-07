@@ -1,4 +1,4 @@
-package impl;
+package impl.managePages;
 
 import java.lang.reflect.Field;
 
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import common.Comm;
 import common.Logger_;
-import main.PageStructure;
+import common.structures.PageStructure;
 import pageElements.ManagePages;
 
 public class PageManager {

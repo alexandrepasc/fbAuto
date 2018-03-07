@@ -1,4 +1,4 @@
-package impl;
+package impl.pagePosts;
 
 import java.lang.reflect.Field;
 
@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 
 import common.Comm;
 import common.Logger_;
-import main.PagePostsStructure;
-import main.SearchStructure;
+import common.structures.PagePostsStructure;
+import common.structures.SearchStructure;
 import pageElements.Page;
 import pageElements.PagePosts;
 

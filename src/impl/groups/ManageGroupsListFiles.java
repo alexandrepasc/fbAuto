@@ -1,4 +1,4 @@
-package impl;
+package impl.groups;
 
 import org.openqa.selenium.WebDriver;
 
@@ -6,7 +6,9 @@ import common.Comm;
 import common.Logger_;
 import common.StructureToArray;
 import common.StructureType;
-import main.GroupStructure;
+import common.structures.GroupStructure;
+import impl.CompareStructures;
+import impl.FileXML;
 
 public class ManageGroupsListFiles {
 	
