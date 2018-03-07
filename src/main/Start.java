@@ -153,10 +153,15 @@ public class Start {
 	private static boolean PagePosts(WebDriver driver_, SearchStructure searchStructure_) {
 		try {
 			
-			PagePostsStructure[] listSelectedPagePosts_= Posts.GetPagePosts(driver_, searchStructure_);
-			
-			if (!PagePostsFiles.GetAndComparePagePostsList(driver_, listSelectedPagePosts_, searchStructure_.pageName)) {
-				return false;
+			if (searchStructure_ != null) {
+				PagePostsStructure[] listSelectedPagePosts_= Posts.GetPagePosts(driver_, searchStructure_);
+				
+				if (!PagePostsFiles.GetAndComparePagePostsList(driver_, listSelectedPagePosts_, searchStructure_.pageName)) {
+					return false;
+				}
+			}
+			else {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - No page to search", "info");
 			}
 			
 			return true;
@@ -170,12 +175,17 @@ public class Start {
 	private static boolean Posting(WebDriver driver_, String folder_, SearchStructure searchStructure_) {
 		try {
 			
-			ToPost[] structureToPost_ = ManageFiles.Manage(Comm.checkEnv() + folder_, searchStructure_.pageName);
-			if (structureToPost_ == null) {
-				return false;
+			if (searchStructure_ != null) {
+				ToPost[] structureToPost_ = ManageFiles.Manage(Comm.checkEnv() + folder_, searchStructure_.pageName);
+				if (structureToPost_ == null) {
+					return false;
+				}
+				
+				Publish.GoPost(driver_, structureToPost_);
 			}
-			
-			Publish.GoPost(driver_, structureToPost_);
+			else {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - No posts to publish", "info");
+			}
 			
 			return true;
 		}
