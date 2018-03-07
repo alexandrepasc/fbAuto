@@ -2,8 +2,8 @@ package impl;
 
 import common.Logger_;
 import common.structures.GroupStructure;
+import common.structures.PageStructure;
 import main.PagePostsStructure;
-import main.PageStructure;
 
 public class CompareStructures {
 

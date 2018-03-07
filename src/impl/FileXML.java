@@ -22,8 +22,8 @@ import common.Logger_;
 import common.StructureType;
 import common.structures.ConfigStructure;
 import common.structures.GroupStructure;
+import common.structures.PageStructure;
 import main.PagePostsStructure;
-import main.PageStructure;
 import main.SearchStructure;
 
 public class FileXML {

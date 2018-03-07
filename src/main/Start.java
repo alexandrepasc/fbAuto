@@ -11,19 +11,20 @@ import common.Configurations;
 import common.Logger_;
 import common.structures.ConfigStructure;
 import common.structures.GroupStructure;
+import common.structures.PageStructure;
 import common.structures.ToPost;
 import impl.CheckNotifications;
 import impl.DoLogin;
 import impl.DoLogout;
 import impl.FileXML;
-import impl.GoToManagePages;
-import impl.ManagePagesFiles;
 import impl.PagePostsFiles;
 import impl.Posts;
 import impl.group.ManageFiles;
 import impl.group.Publish;
 import impl.groups.GoToGroups;
 import impl.groups.ManageGroupsListFiles;
+import impl.managePages.GoToManagePages;
+import impl.managePages.ManagePagesFiles;
 
 public class Start {
 

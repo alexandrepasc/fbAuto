@@ -1,4 +1,4 @@
-package impl;
+package impl.managePages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import common.Comm;
 import common.Logger_;
 import common.Translations;
+import impl.GetDropMenuElement;
 import pageElements.UserMenu;
 import pageElements.ManagePages;
 
