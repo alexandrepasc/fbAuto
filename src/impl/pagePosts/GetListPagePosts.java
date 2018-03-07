@@ -1,4 +1,4 @@
-package impl;
+package impl.pagePosts;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

@@ -1,4 +1,4 @@
-package impl;
+package impl.pagePosts;
 
 import org.openqa.selenium.WebDriver;
 
@@ -6,7 +6,9 @@ import common.Comm;
 import common.Logger_;
 import common.StructureToArray;
 import common.StructureType;
-import main.PagePostsStructure;
+import common.structures.PagePostsStructure;
+import impl.CompareStructures;
+import impl.FileXML;
 
 public class PagePostsFiles {
 

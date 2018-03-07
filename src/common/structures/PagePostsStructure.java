@@ -1,4 +1,4 @@
-package main;
+package common.structures;
 
 public class PagePostsStructure {
 
