@@ -21,6 +21,7 @@ import impl.DoLogout;
 import impl.FileXML;
 import impl.group.ManageFiles;
 import impl.group.Publish;
+import impl.group.WriteFiles;
 import impl.groups.GoToGroups;
 import impl.groups.ManageGroupsListFiles;
 import impl.managePages.GoToManagePages;
@@ -186,6 +187,8 @@ public class Start {
 				}
 				
 				structureToPost_ = Publish.GoPost(driver_, structureToPost_);
+				
+				WriteFiles.Write(structureToPost_);
 			}
 			else {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - No posts to publish", "info");

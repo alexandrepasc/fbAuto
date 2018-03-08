@@ -15,13 +15,15 @@ public class Publish {
 			
 			for (int i = 0; i < structureToPost_.length; i++) {
 				
+				System.out.println(structureToPost_[i].done);
+				
 				if (CheckPost(driver_, structureToPost_[i])) {
 					
-					newStructureToPost_[i] = OpenGroups(driver_, structureToPost_[i]);
+					structureToPost_[i] = OpenGroups(driver_, structureToPost_[i]);
 				}
 			}
 			
-			return newStructureToPost_;
+			return structureToPost_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
