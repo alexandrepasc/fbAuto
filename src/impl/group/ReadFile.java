@@ -33,7 +33,8 @@ public class ReadFile {
 				return null;
 			}
 			
-			//System.out.println(toPostStructure_.done);
+			toPostStructure_.fileName = file_.getPath();
+			//System.out.println(toPostStructure_.fileName);
 			//System.out.println(toPostStructure_.postText);
 			//System.out.println(toPostStructure_.postUrl);
 						

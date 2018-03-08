@@ -1,6 +1,8 @@
 package common.structures;
 
 public class ToPost {
+	
+	public String fileName;
 
 	public String done;
 	
