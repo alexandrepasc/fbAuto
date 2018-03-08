@@ -7,23 +7,25 @@ import common.structures.ToPost;
 
 public class Publish {
 	
-	public static boolean GoPost(WebDriver driver_, ToPost[] structureToPost_) {
+	public static ToPost[] GoPost(WebDriver driver_, ToPost[] structureToPost_) {
 
 		try {
+			
+			ToPost[] newStructureToPost_ = structureToPost_;
 			
 			for (int i = 0; i < structureToPost_.length; i++) {
 				
 				if (CheckPost(driver_, structureToPost_[i])) {
 					
-					OpenGroups(driver_, structureToPost_[i]);
+					newStructureToPost_[i] = OpenGroups(driver_, structureToPost_[i]);
 				}
 			}
 			
-			return true;
+			return newStructureToPost_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
+			return null;
 		}
 	}
 	
@@ -64,7 +66,7 @@ public class Publish {
 		}
 	}
 	
-	private static boolean OpenGroups(WebDriver driver_, ToPost structureToPost_) {
+	private static ToPost OpenGroups(WebDriver driver_, ToPost structureToPost_) {
 		try {
 			
 			for (int i = 0; i < structureToPost_.groups.length; i++) {
@@ -76,11 +78,13 @@ public class Publish {
 				PublishPost.Pub(driver_, structureToPost_.postText, structureToPost_.postUrl);
 			}
 			
-			return true;
+			structureToPost_.done = "1";
+			
+			return structureToPost_;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
-			return false;
+			return null;
 		}
 	}
 }

@@ -185,7 +185,7 @@ public class Start {
 					return false;
 				}
 				
-				Publish.GoPost(driver_, structureToPost_);
+				structureToPost_ = Publish.GoPost(driver_, structureToPost_);
 			}
 			else {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - No posts to publish", "info");
