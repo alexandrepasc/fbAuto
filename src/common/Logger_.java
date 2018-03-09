@@ -72,10 +72,10 @@ public class Logger_ {
 			Comm.createFolder(Comm.checkEnv() + "logs/");
 			switch (type_) {
 			case "info":
-				fh = new FileHandler(Comm.checkEnv() + "logs/FO_InfoLogger.log", true);
+				fh = new FileHandler(Comm.checkEnv() + "logs/InfoLogger.log", true);
 				break;
 			case "severe":
-				fh = new FileHandler(Comm.checkEnv() + "logs/FO_ErrorLogger.log", true);
+				fh = new FileHandler(Comm.checkEnv() + "logs/ErrorLogger.log", true);
 				break;
 			}
 			fh.setFormatter(new SimpleFormatter());
@@ -94,7 +94,7 @@ public class Logger_ {
 				}
 			}
 			Comm.createFolder(Comm.checkEnv() + "logs/");
-			fh = new FileHandler(Comm.checkEnv() + "logs/" + TimeStamp + "_FO_Test_" + test_ + "_Logger.log", true);
+			fh = new FileHandler(Comm.checkEnv() + "logs/" + TimeStamp + "_Test_" + test_ + "_Logger.log", true);
 			fh.setFormatter(new SimpleFormatter());
 		}
 		catch (Exception e) {
