@@ -16,6 +16,7 @@ public class Publish {
 			for (int i = 0; i < structureToPost_.length; i++) {
 				
 				//System.out.println(structureToPost_[i].done);
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Start publish flow: " + structureToPost_[i].fileName, "info");
 				
 				if (CheckPost(driver_, structureToPost_[i])) {
 					
@@ -35,7 +36,7 @@ public class Publish {
 		try {
 			
 			if (IsDone(structureToPost_.done)) {
-				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - The post is already published.", "info");
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - The post is already published: " + structureToPost_.fileName, "info");
 				return false;
 			}
 			else if (IsDone(structureToPost_.done) == null) {
