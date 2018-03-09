@@ -6,6 +6,8 @@ public class ToPost {
 
 	public String done;
 	
+	public String doneOld;
+	
 	public String postText;
 	
 	public String postUrl;

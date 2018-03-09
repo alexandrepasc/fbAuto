@@ -35,6 +35,8 @@ public class ReadFile {
 			
 			toPostStructure_.fileName = file_.getPath();
 			
+			toPostStructure_.doneOld = toPostStructure_.done;
+			
 			//TO TESTS
 			/*System.out.println("Reading: " + toPostStructure_.done);
 			System.out.println("Reading: " + toPostStructure_.fileName);
