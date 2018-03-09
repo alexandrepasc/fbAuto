@@ -11,11 +11,11 @@ public class Publish {
 
 		try {
 			
-			ToPost[] newStructureToPost_ = structureToPost_;
+			//ToPost[] newStructureToPost_ = structureToPost_;
 			
 			for (int i = 0; i < structureToPost_.length; i++) {
 				
-				System.out.println(structureToPost_[i].done);
+				//System.out.println(structureToPost_[i].done);
 				
 				if (CheckPost(driver_, structureToPost_[i])) {
 					

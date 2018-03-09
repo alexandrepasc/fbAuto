@@ -34,9 +34,17 @@ public class ReadFile {
 			}
 			
 			toPostStructure_.fileName = file_.getPath();
-			//System.out.println(toPostStructure_.fileName);
-			//System.out.println(toPostStructure_.postText);
-			//System.out.println(toPostStructure_.postUrl);
+			
+			//TO TESTS
+			/*System.out.println("Reading: " + toPostStructure_.done);
+			System.out.println("Reading: " + toPostStructure_.fileName);
+			System.out.println("Reading: " + toPostStructure_.postText);
+			System.out.println("Reading: " + toPostStructure_.postUrl);
+			
+			for (int i = 0; i < toPostStructure_.groups.length; i++) {
+				System.out.println("Reading: " + toPostStructure_.groups[i].name);
+				System.out.println("Reading: " + toPostStructure_.groups[i].url);
+			}*/
 						
 			return toPostStructure_;
 		}
@@ -79,6 +87,12 @@ public class ReadFile {
 				if ((toPostStructure_ = GetPostValues(nList_, toPostStructure_)) == null) {
 					return null;
 				}
+				
+				//FOR TESTS
+				/*System.out.println("ReadToStructure: " + toPostStructure_.done);
+				System.out.println("ReadToStructure: " + toPostStructure_.fileName);
+				System.out.println("ReadToStructure: " + toPostStructure_.postText);
+				System.out.println("ReadToStructure: " + toPostStructure_.postUrl);*/
 				
 				if ((toPostStructure_.groups  = GetGroupsValues(nList_)) == null) {
 					return null;
@@ -124,15 +138,73 @@ public class ReadFile {
 			
 			ToPostGroup[] postGoups_ = null;
 			
-			for (int i = 0; i < (nList_.getLength() - 1); i++) {
+			//System.out.println("GetGroupsValues: " + nList_.getLength());
+			
+			//System.out.println("GetGroupsValues: " + nList_.item(7).getNodeName());
+			NodeList groupNodesList_ = null;
+			
+			for (int i = 0; i < (nList_.getLength()); i++) {
+				if (nList_.item(i).getNodeName().equals("groups")) {
+					//System.out.println("GetGroupsValues: " + nList_.item(i).getNodeName());
+					
+					groupNodesList_ = nList_.item(i).getChildNodes();
+					
+					//System.out.println("GetGroupsValues: " + groupNodesList__.getLength());
+				}
+			}
+			
+			for (int i = 0; i < groupNodesList_.getLength(); i++) {
+				if (groupNodesList_.item(i).getNodeName().equals("total")) {
+					postGoups_ = new ToPostGroup[Integer.parseInt(groupNodesList_.item(i).getTextContent())];
+					
+					//System.out.println("GetGroupsValues: " + groupNodesList__.item(i).getTextContent());
+				}
+			}
+			
+			int aux_ = 0;
+			NodeList group_ = null;
+			
+			for (int i = 0; i < groupNodesList_.getLength(); i++) {
 				
-				if (nList_.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				if (aux_ >= postGoups_.length) {
+					break;
+				}
+				
+				if (groupNodesList_.item(i).getNodeName().equals("group")) {
+					
+					postGoups_[aux_] = new ToPostGroup();
+					
+					//System.out.println("GetGroupsValues: " + groupNodesList__.item(i).getNodeName());
+					group_ = groupNodesList_.item(i).getChildNodes();
+					
+					for (int x = 0; x < group_.getLength(); x++) {
+						
+						//System.out.println("GetGroupsValues: " + group_.getLength());
+						
+						if (group_.item(x).getNodeType() == Node.ELEMENT_NODE) {
+							//System.out.println("GetGroupsValues: " + group_.item(x).getNodeName());
+							//System.out.println("GetGroupsValues: " + group_.item(x).getTextContent());
+							
+							Field structField_ = postGoups_[aux_].getClass().getDeclaredField(group_.item(x).getNodeName());
+							structField_.set(postGoups_[aux_], group_.item(x).getTextContent());
+						}
+					}
+					
+					aux_ += 1;
+				}
+			}
+			
+			/*for (int i = 0; i < (nList_.getLength() - 1); i++) {
+				
+				//if (nList_.item(i).getNodeType() == Node.ELEMENT_NODE) {
+					
+					//System.out.println("GetGroupsValues: " + nList_.item(i).getNodeName());
 					
 					if (nList_.item(i).getNodeName().equals("groups")) {
 						
 						NodeList groupNodesList_ = nList_.item(i).getChildNodes();
 						
-						//System.out.println(nList_.item(i).getNodeName());
+						System.out.println("GetGroupsValues: " + nList_.item(i).getNodeName());
 						//System.out.println(groupNodesList_.item(1).getTextContent());
 						postGoups_ = new ToPostGroup[Integer.parseInt(groupNodesList_.item(1).getTextContent())];
 						int aux_ = 0;
@@ -162,12 +234,12 @@ public class ReadFile {
 							}
 						}
 					}
-				}
-			}
+				//}
+			}*/
 			
 			/*for (int i = 0; i < postGoups_.length; i++) {
-				System.out.println(postGoups_[i].name);
-				System.out.println(postGoups_[i].url);
+				System.out.println("GetGroupsValues: " + postGoups_[i].name);
+				System.out.println("GetGroupsValues: " + postGoups_[i].url);
 			}*/
 			
 			return postGoups_;
