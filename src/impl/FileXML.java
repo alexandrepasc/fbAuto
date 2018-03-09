@@ -49,6 +49,9 @@ public class FileXML {
 			else if (type_ == StructureType.POSTS) {
 				source = new DOMSource(DocAddPagePostsValues(doc_, data_));
 			}
+			else if (type_ == StructureType.TOPOST) {
+				source = new DOMSource(DocAddToPostValues(doc_, data_));
+			}
 			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Get Values: " + path_ + fileName_, "info");
 			
@@ -166,6 +169,53 @@ public class FileXML {
 				Element text_ = doc_.createElement("text");
 				text_.appendChild(doc_.createTextNode(values_[i][1]));
 				post_.appendChild(text_);
+			}
+			
+			return doc_;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
+		}
+	}
+	
+	private static Document DocAddToPostValues(Document doc_, String[][] values_) {
+		try {
+			Element rootElement_ = doc_.createElement("toPost");
+			doc_.appendChild(rootElement_);
+			
+			Element done_ = doc_.createElement("done");
+			done_.appendChild(doc_.createTextNode(values_[0][0]));
+			rootElement_.appendChild(done_);
+			
+			Element postText_ = doc_.createElement("postText");
+			postText_.appendChild(doc_.createTextNode(values_[0][1]));
+			rootElement_.appendChild(postText_);
+			
+			Element postUrl_ = doc_.createElement("postUrl");
+			postUrl_.appendChild(doc_.createTextNode(values_[0][2]));
+			rootElement_.appendChild(postUrl_);
+			
+			Element groups_ = doc_.createElement("groups");
+			rootElement_.appendChild(groups_);
+			
+			Element total_ = doc_.createElement("total");
+			total_.appendChild(doc_.createTextNode(values_[0][3]));
+			groups_.appendChild(total_);
+			
+			for (int i = 4; i < values_[0].length; i++) {
+				Element group_ = doc_.createElement("group");
+				groups_.appendChild(group_);
+				
+				Element name_ = doc_.createElement("name");
+				name_.appendChild(doc_.createTextNode(values_[0][i]));
+				group_.appendChild(name_);
+				
+				i += 1;
+				
+				Element url_ = doc_.createElement("url");
+				url_.appendChild(doc_.createTextNode(values_[0][i]));
+				group_.appendChild(url_);
 			}
 			
 			return doc_;

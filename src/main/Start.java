@@ -21,6 +21,7 @@ import impl.DoLogout;
 import impl.FileXML;
 import impl.group.ManageFiles;
 import impl.group.Publish;
+import impl.group.WriteFiles;
 import impl.groups.GoToGroups;
 import impl.groups.ManageGroupsListFiles;
 import impl.managePages.GoToManagePages;
@@ -185,7 +186,21 @@ public class Start {
 					return false;
 				}
 				
-				Publish.GoPost(driver_, structureToPost_);
+				//FOR TESTS
+				/*for (int i = 0; i < structureToPost_.length; i++) {
+					System.out.println(structureToPost_[i].postText);
+					System.out.println(structureToPost_[i].postUrl);
+					System.out.println(structureToPost_[i].done);
+					System.out.println(structureToPost_[i].fileName);
+					for (int x = 0; x < structureToPost_[i].groups.length; x++) {
+						System.out.println(structureToPost_[i].groups[x].name);
+						System.out.println(structureToPost_[i].groups[x].url);
+					}
+				}*/
+				
+				structureToPost_ = Publish.GoPost(driver_, structureToPost_);
+				
+				WriteFiles.Write(structureToPost_);
 			}
 			else {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - No posts to publish", "info");
