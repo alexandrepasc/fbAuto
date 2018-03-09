@@ -186,6 +186,18 @@ public class Start {
 					return false;
 				}
 				
+				//FOR TESTS
+				/*for (int i = 0; i < structureToPost_.length; i++) {
+					System.out.println(structureToPost_[i].postText);
+					System.out.println(structureToPost_[i].postUrl);
+					System.out.println(structureToPost_[i].done);
+					System.out.println(structureToPost_[i].fileName);
+					for (int x = 0; x < structureToPost_[i].groups.length; x++) {
+						System.out.println(structureToPost_[i].groups[x].name);
+						System.out.println(structureToPost_[i].groups[x].url);
+					}
+				}*/
+				
 				structureToPost_ = Publish.GoPost(driver_, structureToPost_);
 				
 				WriteFiles.Write(structureToPost_);
