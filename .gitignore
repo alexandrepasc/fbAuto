@@ -6,4 +6,5 @@
 /data/
 /toPost/
 /docker/Dockerfile
+/docker/config
 /docker/config.xml
