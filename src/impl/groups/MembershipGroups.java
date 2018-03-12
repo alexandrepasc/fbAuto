@@ -32,7 +32,7 @@ public class MembershipGroups {
 			action_.moveToElement(Groups.AboutFooter(driver_));
 			action_.perform();*/
 			
-			if (!DoScrollDown(driver_, 5)) {
+			if (!DoScrollDown(driver_/*, 5*/)) {
 				return null;
 			}
 			
@@ -163,12 +163,12 @@ public class MembershipGroups {
 		}
 	}
 	
-	private static boolean DoScrollDown(WebDriver driver_, int scrollDownNumb_) {
+	private static boolean DoScrollDown(WebDriver driver_/*, int scrollDownNumb_*/) {
 		try {
 			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Scrolling page", "info");
 			
-			for (int i = 0; i < scrollDownNumb_; i++) {
+			while (Comm.isPresent(Groups.LoadingMembershipGroups(driver_))) {
 				
 				if (!CheckScrollDown(driver_)) {
 					return false;
