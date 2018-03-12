@@ -5,3 +5,5 @@
 /search.xml
 /data/
 /toPost/
+/docker/Dockerfile
+/docker/config.xml
