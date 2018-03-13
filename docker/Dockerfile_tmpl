@@ -1,0 +1,12 @@
+FROM selenium/standalone-firefox:latest
+
+ADD https://github.com/alexandrepasc/fbAuto/releases/download/$LATEST_VERSION$/fbAuto.jar /home/seluser/fbAuto/
+
+ADD https://github.com/alexandrepasc/fbAuto/releases/download/$LATEST_VERSION$/geckodriver /home/seluser/fbAuto/
+
+ADD config.xml /home/seluser/fbAuto/
+
+ADD run.sh /home/seluser/fbAuto/
+RUN sudo chmod +x /home/seluser/fbAuto/run.sh
+
+WORKDIR /home/seluser/fbAuto/
