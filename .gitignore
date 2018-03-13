@@ -8,3 +8,4 @@
 /docker/Dockerfile
 /docker/config
 /docker/config.xml
+/docker/scripts/createDockerFile.jar
