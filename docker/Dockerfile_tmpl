@@ -1,11 +1,8 @@
 FROM selenium/standalone-firefox:latest
 
-LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/alexandrepasc/fbAuto/releases/latest)
-LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')
+ADD https://github.com/alexandrepasc/fbAuto/releases/download/$LATEST_VERSION$/fbAuto.jar /home/seluser/
 
-ADD https://github.com/alexandrepasc/fbAuto/releases/download/$LATEST_VERSION/fbAuto.jar /home/seluser/
-
-ADD https://github.com/alexandrepasc/fbAuto/releases/download/$LATEST_VERSION/geckodriver /home/seluser/
+ADD https://github.com/alexandrepasc/fbAuto/releases/download/$LATEST_VERSION$/geckodriver /home/seluser/
 
 ADD config.xml /home/seluser/
 
