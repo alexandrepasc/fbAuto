@@ -4,7 +4,7 @@
 To run the application it is needed the Selenium for java, Commons io libraries and the Geckodriver binary. <br>
 Running the application from the dev ide you just need to clone the repository or download any release. 
 To run it with a .jar file it is needed to have the Geckodriver on the same folder. All other files should be on a folder, on the root named "app", you have to create the folder by hand. <br> 
-The other required file to run this is the config.xml file on the root of the project or on the same folder as the .jar. <br><br><br> 
+The other required file to run this is the config.xml file on the app folder. <br><br><br> 
 Example for the file
 config.xml. <br>
 The file should be located on the project app folder. <br>
