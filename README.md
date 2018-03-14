@@ -63,3 +63,12 @@ If you need to add multiple lines on the text, use the /n for the application to
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</group> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;\</groups> <br>
 \</toPost>
+<br>
+<br>
+<br>
+<br>
+# Docker
+
+
+Added the structure to be able to run the application on a docker. <br>
+To use it you just have to get
