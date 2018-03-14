@@ -3,11 +3,11 @@
 
 To run the application it is needed the Selenium for java, Commons io libraries and the Geckodriver binary. <br>
 Running the application from the dev ide you just need to clone the repository or download any release. 
-To run it with a .jar file it is needed to have the Geckodriver on the same folder. <br> 
+To run it with a .jar file it is needed to have the Geckodriver on the same folder. All other files should be on a folder, on the root named "app", you have to create the folder by hand. <br> 
 The other required file to run this is the config.xml file on the root of the project or on the same folder as the .jar. <br><br><br> 
 Example for the file
 config.xml. <br>
-The file should be located on the project root folder. <br>
+The file should be located on the project app folder. <br>
 The values for the fields groups, pages and pagePosts have to be 0 or 1. If the value is 1 the application will run that part, if 0 it will not.
 
 \<?xml version="1.0" encoding="UTF-8"?> <br>
@@ -24,8 +24,8 @@ The values for the fields groups, pages and pagePosts have to be 0 or 1. If the 
 <br>
 <br>
 Example for the file search.xml. <br>
-The file should be located on the project root folder. <br>
-The data for this file have to be copied from the file data/PagesList.xml, created by the app. <br><br>
+The file should be located on the app folder. <br>
+The data for this file have to be copied from the file app/data/PagesList.xml, created by the application. <br><br>
 \<?xml version="1.0" encoding="UTF-8"?> <br>
 \<search> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<pageId>1\</pageId> <br>
@@ -38,7 +38,7 @@ The data for this file have to be copied from the file data/PagesList.xml, creat
 <br>
 <br>
 Example for the file XML files on the toPost folder. <br>
-Create a folder named toPost, on the project root. <br>
+Create a folder named toPost, on the app folder. <br>
 On that folder add XML files with the name of the page where you want to share the post. Example PageName1_.xml, PageName2_.xml <br>
 You can only add one post and multiple groups, to each file. The total value should be the number of groups you have inserted below. <br>
 The values to fill the file content should be gotten from the files on the data folder. <br>
