@@ -71,4 +71,9 @@ If you need to add multiple lines on the text, use the /n for the application to
 
 
 Added the structure to be able to run the application on a docker. <br>
-To use it you just have to get
+You to have the Docker application installed on your PC, https://www.docker.com/community-edition#/download <br>
+To use it you just have to get the docker.zip from the release, uncompress the folder on it. <br>
+<br>
+Create a config.xml file like the text above, and drop it on the extracted folder. <br>
+On the same folder create a another file named config. On it paste the full path where you want the application to create the logs and all the other files, and configurations. <br>
+Don't need to download the Geckodriver and the fbAuto.jar, these files will be downloaded when the docker is created. <br>
