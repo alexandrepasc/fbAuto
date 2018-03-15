@@ -81,4 +81,14 @@ Don't need to download the Geckodriver and the fbAuto.jar, these files will be d
 After creating the two configuration files on the docker folder run the rebuild.sh, it will create the docker image. To create the container execute the start.sh file after the rebuild. <br>
 Both these files are located on the folder scripts. <br>
 <br>
-Now you just have to enter the container and run the script run.sh.
+Now you just have to enter the container and run the script run.sh. <br>
+To do this you just need to run the following command "docker exec -it fbauto bash". After executing you will be working on the bash of the container, on the folder /home/seluser/fbAuto.
+<br>
+<br>
+### Files
+
+
+**Dockerfile_tmpl** - The template with the basic info to create the dockerfile. This will be used by rebuild.sh to create the docker image. <br>
+**permissions.sh** - Will be used to change the permissions of files and folders on the docker after the container is created. <br>
+**run.sh** - Is the script that will run the application on the container, it will be copied to the container image when it is created. <br>
+**rebuild.sh** -
