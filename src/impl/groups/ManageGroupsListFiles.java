@@ -59,7 +59,7 @@ public class ManageGroupsListFiles {
 	private static boolean WriteFile(GroupStructure[] newStructure_) { //COULD BE RENAMED
 		try {
 			
-			String[][] array_ = StructureToArray.ConvertToArray(newStructure_); //StructureToArray(newStructure_);
+			String[][] array_ = StructureToArray.ConvertToArray(newStructure_);
 			
 			if (!FileXML.Write("GroupsList", Comm.checkEnv() + "data/", array_, StructureType.GROUP)) {
 				return false;
