@@ -14,10 +14,6 @@ public class GetListPagePosts {
 			
 			WebElement[] listPosts_ = GetNumListUrl(driver_, GetListUrl(driver_), postsNum_);
 			
-			/*for (int i = 0; i < listPosts_.length; i++) {
-				System.out.println("listPosts_: " + listPosts_[i].getText());
-			}*/
-			
 			return listPosts_;
 		}
 		catch (Exception e) {
@@ -31,10 +27,6 @@ public class GetListPagePosts {
 		try {
 			
 			WebElement[] listPosts_ = GetNumListText(driver_, GetListText(driver_), postsNum_);
-			
-			/*for (int i = 0; i < listPosts_.length; i++) {
-				System.out.println("listPosts_: " + listPosts_[i].getText());
-			}*/
 			
 			return listPosts_;
 		}
@@ -78,13 +70,6 @@ public class GetListPagePosts {
 			
 			int aux_ = 0;
 			
-			/*for (int i = 0; i < allPosts_.length; i++) {
-				if ((!allPosts_[i].getAttribute("href").contains("?ref=page_internal#")) && (!allPosts_[i].getAttribute("href").contains("uren.guren.1"))) {
-					aux_ += 1;
-					System.out.println("allPosts_: " + allPosts_[i].getAttribute("href"));
-				}
-			}*/
-			
 			WebElement[] listPosts_ = new WebElement[postsNum_];
 			
 			for (int i = 0; i < allPosts_.length; i++) {
@@ -98,10 +83,6 @@ public class GetListPagePosts {
 				if (aux_ >= postsNum_) {
 					break;
 				}
-				//System.out.println("listPosts_: " + listPosts_[aux_].getText());
-				//System.out.println("allPosts_: " + allPosts_[i].getText());
-				
-				//aux_ += 1;
 			}
 			
 			return listPosts_;
@@ -118,13 +99,6 @@ public class GetListPagePosts {
 			
 			int aux_ = 0;
 			
-			/*for (int i = 0; i < allPosts_.length; i++) {
-				if ((!allPosts_[i].getAttribute("href").contains("?ref=page_internal#")) && (!allPosts_[i].getAttribute("href").contains("uren.guren.1"))) {
-					aux_ += 1;
-					System.out.println("allPosts_: " + allPosts_[i].getAttribute("href"));
-				}
-			}*/
-			
 			WebElement[] listPosts_ = new WebElement[postsNum_];
 			
 			for (int i = 0; i < allPosts_.length; i++) {
@@ -136,10 +110,6 @@ public class GetListPagePosts {
 				if (aux_ >= postsNum_) {
 					break;
 				}
-				//System.out.println("listPosts_: " + listPosts_[aux_].getText());
-				//System.out.println("allPosts_: " + allPosts_[i].getText());
-				
-				//aux_ += 1;
 			}
 			
 			return listPosts_;

@@ -44,17 +44,14 @@ public class GoToPage {
 	private static boolean CheckPage(WebDriver driver_, String pageName_, String pageUrl_) {
 		try {
 			if (!Comm.checkElement(Page.TitlePage(driver_), driver_)) {
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - EXIT WRONG Page: " + pageName_, "info");
 				return WrongPage(pageName_);
 			}
 			
 			if (!Page.TitlePage(driver_).getText().equals(pageName_)) {
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - EXIT WRONG Page: " + pageName_, "info");
 				return WrongPage(pageName_);
 			}
 			
 			if (!Page.TitlePage(driver_).getAttribute("href").contains(pageUrl_)) {
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - EXIT WRONG Page: " + pageName_, "info");
 				return WrongPage(pageName_);
 			}
 			
