@@ -9,4 +9,10 @@ ADD config.xml /home/seluser/fbAuto/
 ADD run.sh /home/seluser/fbAuto/
 RUN sudo chmod +x /home/seluser/fbAuto/run.sh
 
+ADD permissions.sh /home/seluser/fbAuto/
+RUN sudo chmod +x /home/seluser/fbAuto/permissions.sh
+
+VOLUME /home/seluser/fbAuto/app
+RUN sudo chmod -R 777 /home/seluser/fbAuto/app
+
 WORKDIR /home/seluser/fbAuto/

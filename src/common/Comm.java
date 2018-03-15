@@ -22,7 +22,7 @@ public class Comm {
 					pathName_ = pathName_.substring(1, pathName_.lastIndexOf("/"));
 				}
 				//return pathName_ + "/";
-				return pathName_;
+				return pathName_ + "app/";
 			}
 		}
 		catch (Exception e) {
