@@ -92,6 +92,6 @@ To do this you just need to run the following command "docker exec -it fbauto ba
 **permissions.sh** - Will be used to change the permissions of files and folders on the docker after the container is created. <br>
 **run.sh** - Is the script that will run the application on the container, it will be copied to the container image when it is created. <br>
 **rebuild.sh** - Will use the createDockerFile.jar to create the Dockerfile, build the docker image from it, and after building delete the Dockerfile. <br>
-**createDockerFile.jar** - It reads from the Github the latest release from this repository, read the Dockerfile_tmpl, and with those create the Dockerfile for the rebuild.sh to use.
+**createDockerFile.jar** - It reads from the Github the latest release from this repository, read the Dockerfile_tmpl, and with those create the Dockerfile for the rebuild.sh to use. <br>
 **start.sh** - Create the container from the image. With the path on the config file will define the volume folder on the host. Use the permissions.sh and copy the config.xml to the wright folder. <br>
 **destroy.sh** - Executing this will delete the container fbauto, if used parameter "all" (ex. ./destroy.sh all) it will destroy the container and the image.
