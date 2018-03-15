@@ -214,13 +214,11 @@ public class CompareStructures {
 					
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - SOURCE: " + nameS_, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NUMB: " + smallStructure_[i].pageNum, "info");
-					//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - ID: " + smallStructure_[i].id, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NAME: " + smallStructure_[i].name, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - URL: " + smallStructure_[i].url, "info");
 					
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - SOURCE: " + nameB_, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NUMB: " + bigStructure_[i].pageNum, "info");
-					//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - ID: " + bigStructure_[i].id, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NAME: " + bigStructure_[i].name, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - URL: " + bigStructure_[i].url, "info");
 				}
@@ -232,7 +230,6 @@ public class CompareStructures {
 				
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - SOURCE: " + nameB_, "info");
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NUMB: " + bigStructure_[i].pageNum, "info");
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - ID: " + bigStructure_[i].id, "info");
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NAME: " + bigStructure_[i].name, "info");
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - URL: " + bigStructure_[i].url, "info");
 			}
@@ -258,14 +255,10 @@ public class CompareStructures {
 					
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - SOURCE: " + nameS_, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NUMB: " + smallStructure_[i].url, "info");
-					//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - ID: " + smallStructure_[i].id, "info");
-					//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NAME: " + smallStructure_[i].name, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - URL: " + smallStructure_[i].text, "info");
 					
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - SOURCE: " + nameB_, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NUMB: " + bigStructure_[i].url, "info");
-					//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - ID: " + bigStructure_[i].id, "info");
-					//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NAME: " + bigStructure_[i].name, "info");
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - URL: " + bigStructure_[i].text, "info");
 				}
 			}
@@ -278,8 +271,6 @@ public class CompareStructures {
 				
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - SOURCE: " + nameB_, "info");
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NUMB: " + bigStructure_[i].url, "info");
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - ID: " + bigStructure_[i].id, "info");
-				//Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - NAME: " + bigStructure_[i].name, "info");
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - URL: " + bigStructure_[i].text, "info");
 			}
 			
