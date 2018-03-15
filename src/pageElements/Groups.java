@@ -105,8 +105,6 @@ public class Groups {
 		try {
 			List<WebElement> list_ = LeftListMembership(driver_).findElements(By.tagName("li"));
 			
-			//System.out.println(list_.size());
-			
 			return list_.toArray(new WebElement[0]);
 		}
 		catch (Exception e) {
@@ -128,8 +126,6 @@ public class Groups {
 	public static WebElement[] GroupsRightListMembership(WebDriver driver_) {
 		try {
 			List<WebElement> list_ = RightListMembership(driver_).findElements(By.tagName("li"));
-			
-			//System.out.println(list_.size());
 			
 			return list_.toArray(new WebElement[0]);
 		}

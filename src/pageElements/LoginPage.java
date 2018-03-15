@@ -11,7 +11,6 @@ public class LoginPage {
 	public static WebElement Banner(WebDriver driver_) {
 		try {
 			return driver_.findElement(By.xpath("//*[@id='blueBarDOMInspector']/div/div/div/div[1]/h1/a/i"));
-			//return driver_.findElement(By.xpath("//*[@id='blueBarDOMInspector']/div/div/div/div[1]/h1/a/i/u"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
@@ -62,7 +61,6 @@ public class LoginPage {
 	public static WebElement ButLogin(WebDriver driver_) {
 		try {
 			return driver_.findElement(By.xpath("//*[@id='loginbutton']"));
-			//return driver_.findElement(By.id("u_0_5"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);

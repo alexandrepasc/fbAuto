@@ -53,7 +53,6 @@ public class Start {
 			GroupStructure[] groupStructure_ = FileXML.ReadGroup(Comm.checkEnv() + "data/", "GroupsList.xml");
 			PageStructure[] pageStructure_ = FileXML.ReadPage(Comm.checkEnv() + "data/", "PagesList.xml");
 			SearchStructure searchStructure_ = FileXML.ReadSearch(Comm.checkEnv(), "search.xml");
-			//SearchStructure searchStructure_ = null;
 			
 			if (!GoToPage(driver, configStructure_.url, configStructure_.login, configStructure_.pwd)) {
 				EndApp(driver);
@@ -185,18 +184,6 @@ public class Start {
 				if (structureToPost_ == null) {
 					return false;
 				}
-				
-				//FOR TESTS
-				/*for (int i = 0; i < structureToPost_.length; i++) {
-					System.out.println(structureToPost_[i].postText);
-					System.out.println(structureToPost_[i].postUrl);
-					System.out.println(structureToPost_[i].done);
-					System.out.println(structureToPost_[i].fileName);
-					for (int x = 0; x < structureToPost_[i].groups.length; x++) {
-						System.out.println(structureToPost_[i].groups[x].name);
-						System.out.println(structureToPost_[i].groups[x].url);
-					}
-				}*/
 				
 				structureToPost_ = Publish.GoPost(driver_, structureToPost_);
 				

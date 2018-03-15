@@ -61,7 +61,7 @@ public class ManagePagesFiles {
 	private static boolean WriteFile(PageStructure[] newStructure_) { //COULD BE RENAMED
 		try {
 			
-			String[][] array_ = StructureToArray.ConvertToArray(newStructure_); //StructureToArray(newStructure_);
+			String[][] array_ = StructureToArray.ConvertToArray(newStructure_);
 			
 			if (!FileXML.Write("PagesList", Comm.checkEnv() + "data/", array_, StructureType.PAGE)) {
 				return false;
@@ -78,11 +78,11 @@ public class ManagePagesFiles {
 	private static boolean WriteFile(PageStructure[] oldStructure_, PageStructure[] newStructure_) { //COULD BE RENAMED
 		try {
 			
-			if (!FileXML.Write("PagesList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.PAGE)) { //StructureToArray(oldStructure_)
+			if (!FileXML.Write("PagesList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.PAGE)) {
 				return false;
 			}
 			
-			if (!FileXML.Write("PagesList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.PAGE)) { //StructureToArray(newStructure_)
+			if (!FileXML.Write("PagesList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.PAGE)) {
 				return false;
 			}
 			

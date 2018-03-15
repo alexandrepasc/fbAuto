@@ -122,7 +122,7 @@ public class FileXML {
 				Element group_ = doc_.createElement("page");
 				rootElement_.appendChild(group_);
 
-				// set attribute to group element
+				// set attribute to page element
 				Attr attr_ = doc_.createAttribute("id");
 				attr_.setValue(String.valueOf(i));
 				group_.setAttributeNode(attr_);
@@ -157,7 +157,7 @@ public class FileXML {
 				Element post_ = doc_.createElement("post");
 				rootElement_.appendChild(post_);
 
-				// set attribute to group element
+				// set attribute to page posts element
 				Attr attr_ = doc_.createAttribute("id");
 				attr_.setValue(String.valueOf(i));
 				post_.setAttributeNode(attr_);
@@ -269,7 +269,7 @@ public class FileXML {
 		}
 	}
 	
-	public static SearchStructure ReadSearch(String path_, String fileName_/*, SearchStructure structure_*/) {
+	public static SearchStructure ReadSearch(String path_, String fileName_) {
 		try {
 			File fXmlFile_ = new File(path_ + fileName_);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -293,9 +293,6 @@ public class FileXML {
 						
 						for (int x = 1; x < nList_.getLength(); x++) {
 							if (nList_.item(x).getNodeType() == Node.ELEMENT_NODE) {
-								
-								//System.out.println(nList_.item(x).getNodeName());
-								//System.out.println(nList_.item(x).getTextContent());
 								
 								Field structField_ = structure_.getClass().getDeclaredField(nList_.item(x).getNodeName());
 								structField_.set(structure_, nList_.item(x).getTextContent());

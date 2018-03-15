@@ -19,11 +19,6 @@ public class PagePostsFiles {
 				return false;
 			}
 			
-			/*for (int i = 0; i < webPagePostsStructure_.length; i++) {
-				System.out.println(webPagePostsStructure_[i].postsNum);
-				System.out.println(webPagePostsStructure_[i].text);
-			}*/
-			
 			PagePostsStructure[] pagePostsStructure_ = FileXML.ReadPosts(Comm.checkEnv() + "data/", pageName_ + "_PagePostsList.xml");
 			
 			if (pagePostsStructure_ == null) {
@@ -66,7 +61,7 @@ public class PagePostsFiles {
 	private static boolean WriteFile(PagePostsStructure[] newStructure_, String pageName_) { //COULD BE RENAMED
 		try {
 			
-			String[][] array_ = StructureToArray.ConvertToArray(newStructure_); //StructureToArray(newStructure_);
+			String[][] array_ = StructureToArray.ConvertToArray(newStructure_);
 			
 			if (!FileXML.Write(pageName_ + "_PagePostsList", Comm.checkEnv() + "data/", array_, StructureType.POSTS)) {
 				return false;
@@ -83,11 +78,11 @@ public class PagePostsFiles {
 	private static boolean WriteFile(PagePostsStructure[] oldStructure_, PagePostsStructure[] newStructure_, String pageName_) { //COULD BE RENAMED
 		try {
 			
-			if (!FileXML.Write(pageName_ + "_PagePostsList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.POSTS)) { //StructureToArray(oldStructure_)
+			if (!FileXML.Write(pageName_ + "_PagePostsList_OLD", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(oldStructure_), StructureType.POSTS)) {
 				return false;
 			}
 			
-			if (!FileXML.Write(pageName_ + "_PagePostsList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.POSTS)) { //StructureToArray(newStructure_)
+			if (!FileXML.Write(pageName_ + "_PagePostsList", Comm.checkEnv() + "data/", StructureToArray.ConvertToArray(newStructure_), StructureType.POSTS)) {
 				return false;
 			}
 			

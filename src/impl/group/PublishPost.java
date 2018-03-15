@@ -27,20 +27,10 @@ public class PublishPost {
 			
 			Thread.sleep(2000);
 			
-			//FOR TESTS
-			//Group.PostOpenCloseBut(driver_).click();
-			//driver_.navigate().refresh();
-			/*if (!PasteText(driver_, text_, link_)) {
-				return false;
-			}*/
-			
 			Group.PublishPostBut(driver_).click();
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Publish Post Buttton Click", "info");
 			
 			Comm.WaitingUntil(driver_, Group.PostTextForm(driver_), 5, 2);
-			
-			//FOR TESTING
-			//Thread.sleep(2000);
 			
 			return true;
 		}
@@ -96,7 +86,6 @@ public class PublishPost {
 			for (int i = 0; i < aux_.length; i++) {
 				
 				Group.PostOpenTextFormInput(driver_).sendKeys(aux_[i] + "\n");
-				//System.out.println(aux_[i]);
 			}
 			
 			Toolkit toolkit_ = Toolkit.getDefaultToolkit();
@@ -109,13 +98,8 @@ public class PublishPost {
 			robot_.keyPress(KeyEvent.VK_V); 
 			robot_.keyRelease(KeyEvent.VK_V); 
 			robot_.keyRelease(KeyEvent.VK_CONTROL);
-			
-			//Group.PostOpenTextFormInput(driver_).sendKeys(link_);
 						
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Post Text Open Form Set Text", "info");
-			
-			//JUST FOR TESTS
-			//Thread.sleep(1000);
 			
 			return true;
 		}

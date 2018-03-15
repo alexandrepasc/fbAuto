@@ -40,7 +40,6 @@ public class Page {
 	
 	public static WebElement ButPostsLeftMenu(WebDriver driver_) {
 		try {
-			//return driver_.findElement(By.xpath("//div[@id='u_fetchstream_2_6']/div[2]/a"));
 			return driver_.findElement(By.xpath("//div[@data-key='tab_posts']/a"));
 		}
 		catch (Exception e) {
@@ -51,7 +50,6 @@ public class Page {
 	
 	public static WebElement ButPostsLeftMenuSelected(WebDriver driver_) {
 		try {
-			//return driver_.findElement(By.xpath("//div[@id='u_fetchstream_2_6']/div[2]"));
 			return driver_.findElement(By.xpath("//div[@data-key='tab_posts']"));
 		}
 		catch (Exception e) {

@@ -27,12 +27,7 @@ public class MembershipGroups {
 				return null;
 			}
 			
-			//NEEDS TO BE REVIEWED
-			/*Actions action_ = new Actions(driver_);
-			action_.moveToElement(Groups.AboutFooter(driver_));
-			action_.perform();*/
-			
-			if (!DoScrollDown(driver_/*, 5*/)) {
+			if (!DoScrollDown(driver_)) {
 				return null;
 			}
 			
@@ -163,7 +158,7 @@ public class MembershipGroups {
 		}
 	}
 	
-	private static boolean DoScrollDown(WebDriver driver_/*, int scrollDownNumb_*/) {
+	private static boolean DoScrollDown(WebDriver driver_) {
 		try {
 			
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Scrolling page", "info");

@@ -11,11 +11,8 @@ public class Publish {
 
 		try {
 			
-			//ToPost[] newStructureToPost_ = structureToPost_;
-			
 			for (int i = 0; i < structureToPost_.length; i++) {
 				
-				//System.out.println(structureToPost_[i].done);
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Start publish flow: " + structureToPost_[i].fileName, "info");
 				
 				if (CheckPost(driver_, structureToPost_[i])) {
@@ -75,8 +72,6 @@ public class Publish {
 			for (int i = 0; i < structureToPost_.groups.length; i++) {
 				
 				GoToGroup.Go(driver_, structureToPost_.groups[i]);
-				
-				//driver_.navigate().refresh();
 				
 				PublishPost.Pub(driver_, structureToPost_.postText, structureToPost_.postUrl);
 			}

@@ -17,9 +17,6 @@ public class ManageFiles {
 			}
 			
 			ToPost[] structureToPost_ = ReadFiles(fileList_);
-			/*if (structureToPost_ == null) {
-				return false;
-			}*/
 			
 			return structureToPost_;
 		}
@@ -37,9 +34,6 @@ public class ManageFiles {
 			for (int i = 0; i < fileList_.length; i++) {
 				
 				structureToPost_[i] = ReadFile.Reading(fileList_[i]);
-				/*if ((structureToPost[i] = ReadFile.Reading(fileList_[i])) == null) {
-					return false;
-				}*/
 			}
 			
 			return structureToPost_;

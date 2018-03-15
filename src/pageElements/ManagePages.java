@@ -12,7 +12,6 @@ public class ManagePages {
 
 	public static WebElement TitleManagePages(WebDriver driver_) {
 		try {
-			//return driver_.findElement(By.className("uiHeaderTitle"));
 			return driver_.findElement(By.xpath("//h2[contains(@class, 'uiHeaderTitle')]"));
 		}
 		catch (Exception e) {
