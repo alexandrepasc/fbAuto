@@ -17,9 +17,6 @@ public class GetFiles {
 			}
 			
 			File filesList_[] = List(folderPath_, pageName_);
-			/*if (filesList_ == null) {
-				return false;
-			}*/
 			
 			return filesList_;
 		}
@@ -57,8 +54,6 @@ public class GetFiles {
 			File[] aux_ = new File[0];
 			
 			for (int i = 0; i < files_.length; i++) {
-				
-				//System.out.println(files_[i].getPath());
 				
 				if (files_[i].getPath().split("/")[files_[i].getPath().split("/").length - 1].contains(pageName_)) {
 					
