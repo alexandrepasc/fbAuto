@@ -8,7 +8,7 @@ public class Translations {
 	
 	private static Languages GetLanguage(WebDriver driver_) {
 		try {
-			final String aux_ = TopBar.ButHomePage(driver_).getText();//.substring(0, TopBar.ButHomePage(driver_).getText().length() - 1);
+			final String aux_ = TopBar.ButHomePage(driver_).getText();
 			
 			switch (aux_) {
 				case "Home":

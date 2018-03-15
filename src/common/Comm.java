@@ -21,7 +21,7 @@ public class Comm {
 				if (pathName_.contains(":")) {
 					pathName_ = pathName_.substring(1, pathName_.lastIndexOf("/"));
 				}
-				//return pathName_ + "/";
+				
 				return pathName_ + "app/";
 			}
 		}
