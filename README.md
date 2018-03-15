@@ -77,3 +77,8 @@ To use it you just have to get the docker.zip from the release, uncompress the f
 Create a config.xml file like the text above, and drop it on the extracted folder. <br>
 On the same folder create a another file named config. On it paste the full path where you want the application to create the logs and all the other files, and configurations. <br>
 Don't need to download the Geckodriver and the fbAuto.jar, these files will be downloaded when the docker is created. <br>
+<br>
+After creating the two configuration files on the docker folder run the rebuild.sh, it will create the docker image. To create the container execute the start.sh file after the rebuild. <br>
+Both these files are located on the folder scripts. <br>
+<br>
+Now you just have to enter the container and run the script run.sh.
