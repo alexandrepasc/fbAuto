@@ -6,7 +6,9 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import common.Comm;
 import common.Logger_;
@@ -31,6 +33,10 @@ public class PublishPost {
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Publish Post Buttton Click", "info");
 			
 			Comm.WaitingUntil(driver_, Group.PostTextForm(driver_), 5, 2);
+			
+			if (!CheckIsPublished(driver_)) {
+				return false;
+			}
 			
 			return true;
 		}
@@ -119,6 +125,76 @@ public class PublishPost {
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 			return null;
+		}
+	}
+	
+	private static boolean CheckIsPublished(WebDriver driver_) {
+		try {
+			////div[@role='feed']/div[2]/div/div[2]/div/div[2]
+			if (!CheckFeedElement(driver_)) {
+				return false;
+			}
+			
+			//FOR TEST
+			System.out.println("CheckIsPublished: " + Group.GroupPostFeedList(driver_)[1].findElement(By.xpath("//div/div[2]/div/div[2]")).getText());
+			
+			if (!CheckFeedPostElement(driver_, Group.GroupPostFeedList(driver_)[1])) {
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return false;
+		}
+	}
+	
+	private static boolean CheckFeedElement(WebDriver driver_) {
+		try {
+			
+			if(!Comm.checkElement(Group.GroupPostFeed(driver_), driver_)) {
+				
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Group Post Feed IS NOT Present and/or Visible", "info");
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
+	
+	private static boolean CheckFeedPostElement(WebDriver driver_, WebElement post_) {
+		try {
+			
+			if (!Comm.checkElement(post_, driver_)) {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Group Post IS NOT Present and/or Visible", "info");
+				return false;
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
+		}
+	}
+	
+	private static boolean CheckPostContent(WebDriver driver_, WebElement post_) {
+		try {
+			
+			//POST HEADER
+			if (!Comm.checkElement(post_.findElement(By.xpath("//div[1]")), driver_)) {
+				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Group Post Header IS NOT Present and/or Visible", "info");
+				return false;
+			}
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return false;
 		}
 	}
 }
