@@ -204,4 +204,22 @@ public class Translations {
 			return null;
 		}
 	}
+	
+	public static String PublishPostHeader(WebDriver driver_) {
+		try {
+			switch (GetLanguage(driver_)) {
+				case ENG:
+					return "shared";
+				case PT:
+					return "partilhou a publicação de";
+				default:
+					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Problem Getting Language", "info");
+					return null;
+			}
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage() + " - Problem Getting Language", "severe", e);
+			return null;
+		}
+	}
 }
