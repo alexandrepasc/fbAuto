@@ -136,9 +136,13 @@ public class PublishPost {
 			}
 			
 			//FOR TEST
-			System.out.println("CheckIsPublished: " + Group.GroupPostFeedList(driver_)[1].findElement(By.xpath("//div/div[2]/div/div[2]")).getText());
+			System.out.println("CheckIsPublished: " + Group.GroupPostFeedList(driver_)[2].findElement(By.xpath("//div/div[2]/div/div[2]")).getText());
 			
-			if (!CheckFeedPostElement(driver_, Group.GroupPostFeedList(driver_)[1])) {
+			if (!CheckFeedPostElement(driver_, Group.GroupPostFeedList(driver_)[2])) {
+				return false;
+			}
+			
+			if (!CheckPostContent(driver_, Group.GroupPostFeedList(driver_)[2])) {
 				return false;
 			}
 			
@@ -191,6 +195,11 @@ public class PublishPost {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Group Post Header IS NOT Present and/or Visible", "info");
 				return false;
 			}
+			
+			//FOR TEST
+			System.out.println("CheckPostContent: " + post_.findElement(By.xpath("/div[1]")).getText());
+			
+			return true;
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
