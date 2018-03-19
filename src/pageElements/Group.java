@@ -97,4 +97,34 @@ public class Group {
 			return null;
 		}
 	}
+	
+	public static WebElement GroupPostedNow(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@class='composerPostSection']/div"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement GroupPostedNowHeader(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@class='composerPostSection']/div/div/div[2]/div[1]/div[2]/div[1]"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement GroupPostedNowContent(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@class='composerPostSection']/div/div/div[2]/div[1]/div[2]/div[2]"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
 }

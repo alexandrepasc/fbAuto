@@ -222,4 +222,22 @@ public class Translations {
 			return null;
 		}
 	}
+	
+	public static String PublishPostPending(WebDriver driver_) {
+		try {
+			switch (GetLanguage(driver_)) {
+				case ENG:
+					return "Your post has been submitted and is pending approval by an admin.";
+				case PT:
+					return "A tua publicação foi enviada e está a aguardar a aprovação de um administrador.";
+				default:
+					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Problem Getting Language", "info");
+					return null;
+			}
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage() + " - Problem Getting Language", "severe", e);
+			return null;
+		}
+	}
 }
