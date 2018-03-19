@@ -1,5 +1,7 @@
 package pageElements;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,6 +69,58 @@ public class Group {
 		try {
 			
 			return driver_.findElement(By.xpath("//button[contains(@data-testid,'react-composer-post-button')]")); 
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement GroupPostFeed(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@role='feed']"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement[] GroupPostFeedList(WebDriver driver_) {
+		try {
+			List<WebElement> list_ = driver_.findElements(By.xpath("//div[@role='feed']/div"));
+			
+			return list_.toArray(new WebElement[0]);
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement GroupPostedNow(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@class='composerPostSection']/div"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement GroupPostedNowHeader(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@class='composerPostSection']/div/div/div[2]/div[1]/div[2]/div[1]"));
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
+			return null;
+		}
+	}
+	
+	public static WebElement GroupPostedNowContent(WebDriver driver_) {
+		try {
+			return driver_.findElement(By.xpath("//div[@class='composerPostSection']/div/div/div[2]/div[1]/div[2]/div[2]"));
 		}
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
