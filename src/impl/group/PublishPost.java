@@ -19,6 +19,12 @@ public class PublishPost {
 	public static boolean Pub(WebDriver driver_, String text_, String link_) {
 		try {
 			
+			//FOR TEST
+			System.out.println("Pub: " + Group.GroupPostFeedList(driver_)[1].findElement(By.xpath("div/div[2]/div/div[2]/div[1]")).getText());
+			/*for (int i = 0; i < Group.GroupPostFeedList(driver_).length; i++) {
+				System.out.println("Pub: " + Group.GroupPostFeedList(driver_)[i].getText());
+			}*/
+			
 			if (!OpenText(driver_)) {
 				return false;
 			}
@@ -136,13 +142,13 @@ public class PublishPost {
 			}
 			
 			//FOR TEST
-			System.out.println("CheckIsPublished: " + Group.GroupPostFeedList(driver_)[2].findElement(By.xpath("//div/div[2]/div/div[2]")).getText());
+			//System.out.println("CheckIsPublished: " + Group.GroupPostFeedList(driver_)[2].findElement(By.xpath("//div/div[2]/div/div[2]")).getText());
 			
-			if (!CheckFeedPostElement(driver_, Group.GroupPostFeedList(driver_)[2])) {
+			if (!CheckFeedPostElement(driver_, Group.GroupPostFeedList(driver_)[1])) {
 				return false;
 			}
 			
-			if (!CheckPostContent(driver_, Group.GroupPostFeedList(driver_)[2])) {
+			if (!CheckPostContent(driver_, Group.GroupPostFeedList(driver_)[1])) {
 				return false;
 			}
 			
@@ -191,13 +197,13 @@ public class PublishPost {
 		try {
 			
 			//POST HEADER
-			if (!Comm.checkElement(post_.findElement(By.xpath("//div[1]")), driver_)) {
+			if (!Comm.checkElement(post_.findElement(By.xpath("div/div[2]/div/div[2]/div[1]")), driver_)) {
 				Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Group Post Header IS NOT Present and/or Visible", "info");
 				return false;
 			}
 			
 			//FOR TEST
-			System.out.println("CheckPostContent: " + post_.findElement(By.xpath("/div[1]")).getText());
+			System.out.println("CheckPostContent: " + post_.findElement(By.xpath("div/div[2]/div/div[2]/div[1]")).getText());
 			
 			return true;
 		}
