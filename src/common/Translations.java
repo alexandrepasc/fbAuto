@@ -209,9 +209,9 @@ public class Translations {
 		try {
 			switch (GetLanguage(driver_)) {
 				case ENG:
-					return "shared";
+					return "Just now";
 				case PT:
-					return "partilhou a publicação de";
+					return "Agora mesmo";
 				default:
 					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Problem Getting Language", "info");
 					return null;
