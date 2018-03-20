@@ -43,6 +43,8 @@ On that folder add XML files with the name of the page where you want to share t
 You can only add one post and multiple groups, to each file. The total value should be the number of groups you have inserted below. <br>
 The values to fill the file content should be gotten from the files on the data folder. <br>
 The done value is to verify if the post has to be publish or not. The value 0 means that it will be posted the next time the application run. <br>
+The group has the done value to, that works the same way as the previous one. During the application run if it is 0 it will try to publish on that group, and if it is successful change it to 1. <br>
+After finish posting if on any one of the groups the publish was not successful, that post will not be marked as done (done = 1). <br>
 If you need to add multiple lines on the text, use the /n for the application to add a new line for the next text. Example Line 1./nLine2
 <br>
 <br>
@@ -54,10 +56,12 @@ If you need to add multiple lines on the text, use the /n for the application to
 &nbsp;&nbsp;&nbsp;&nbsp;\<groups> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<total>2\</total> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<group> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<done>0\</done> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<name>Group Name\</name> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<url>http://facebook.com/group \</url> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</group> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<group> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<done>1\</done> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<name>Group Name2\</name> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<url>http://facebook.com/group2 \</url> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\</group> <br>
