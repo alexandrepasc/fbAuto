@@ -207,6 +207,12 @@ public class FileXML {
 				Element group_ = doc_.createElement("group");
 				groups_.appendChild(group_);
 				
+				Element doneGroup_ = doc_.createElement("done");
+				doneGroup_.appendChild(doc_.createTextNode(values_[0][i]));
+				group_.appendChild(doneGroup_);
+				
+				i += 1;
+				
 				Element name_ = doc_.createElement("name");
 				name_.appendChild(doc_.createTextNode(values_[0][i]));
 				group_.appendChild(name_);
