@@ -85,7 +85,9 @@ public class Publish {
 				}
 			}
 			
-			structureToPost_.done = "1";
+			if (IsAllDone(structureToPost_.groups)) {
+				structureToPost_.done = "1";
+			}
 			
 			return structureToPost_;
 		}
@@ -111,6 +113,24 @@ public class Publish {
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 			return false;
+		}
+	}
+	
+	private static Boolean IsAllDone(ToPostGroup[] groups_) {
+		try {
+			
+			for (int i = 0; i < groups_.length; i++) {
+				if (groups_[i].done.equals("0")) {
+					Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - The post HAS NOT been Published to all the groups", "info");
+					return false;
+				}
+			}
+			
+			return true;
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
+			return null;
 		}
 	}
 }
