@@ -63,7 +63,7 @@ public class StructureToArray {
 
 	public static String[][] ConvertToArray(ToPost toPostStructure_) { //COULD BE CHANGES TO NOT BE HARD CODED
 		try {
-			String[][] array_ = new String[1][4 + (toPostStructure_.groups.length * 2)];
+			String[][] array_ = new String[1][4 + (toPostStructure_.groups.length * 3)];
 			
 			array_[0][0] = toPostStructure_.done;
 			array_[0][1] = toPostStructure_.postText;
@@ -72,6 +72,10 @@ public class StructureToArray {
 			
 			int aux_ = 0;
 			for (int i = 4; i < array_[0].length; i++) {
+				
+				array_[0][i] = toPostStructure_.groups[aux_].done;
+				
+				i += 1;
 				
 				array_[0][i] = toPostStructure_.groups[aux_].name;
 				

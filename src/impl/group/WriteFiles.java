@@ -14,12 +14,12 @@ public class WriteFiles {
 			
 			for (int i = 0; i < structureToPost_.length; i++) {
 				
-				if (Integer.parseInt(structureToPost_[i].doneOld) == 0) {
+				//if (Integer.parseInt(structureToPost_[i].doneOld) == 0) {
 				
-					String[][] aux_ = ToArray(structureToPost_[i]);
-					
-					ToFile(aux_, structureToPost_[i].fileName);
-				}
+				String[][] aux_ = ToArray(structureToPost_[i]);
+				
+				ToFile(aux_, structureToPost_[i].fileName);
+				//}
 			}
 			
 			return true;
