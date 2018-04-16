@@ -8,7 +8,7 @@ import common.structures.ToPostGroup;
 
 public class Publish {
 	
-	public static ToPost[] GoPost(WebDriver driver_, ToPost[] structureToPost_) {
+	public static ToPost[] GoPost(WebDriver driver_, ToPost[] structureToPost_, String sleepTime_) {
 
 		try {
 			
@@ -18,7 +18,7 @@ public class Publish {
 				
 				if (CheckPost(driver_, structureToPost_[i])) {
 					
-					structureToPost_[i] = OpenGroups(driver_, structureToPost_[i]);
+					structureToPost_[i] = OpenGroups(driver_, structureToPost_[i], sleepTime_);
 				}
 			}
 			
@@ -67,7 +67,7 @@ public class Publish {
 		}
 	}
 	
-	private static ToPost OpenGroups(WebDriver driver_, ToPost structureToPost_) {
+	private static ToPost OpenGroups(WebDriver driver_, ToPost structureToPost_, String sleepTime_) {
 		try {
 			
 			for (int i = 0; i < structureToPost_.groups.length; i++) {
@@ -75,7 +75,7 @@ public class Publish {
 				if (IsDoneGroup(structureToPost_.groups[i])) {
 					GoToGroup.Go(driver_, structureToPost_.groups[i]);
 					
-					if (PublishPost.Pub(driver_, structureToPost_.postText, structureToPost_.postUrl)) {
+					if (PublishPost.Pub(driver_, structureToPost_.postText, structureToPost_.postUrl,sleepTime_)) {
 						structureToPost_.groups[i].done = "1";
 					}
 					else {

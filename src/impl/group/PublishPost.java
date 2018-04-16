@@ -16,7 +16,7 @@ import pageElements.Group;
 
 public class PublishPost {
 
-	public static boolean Pub(WebDriver driver_, String text_, String link_) {
+	public static boolean Pub(WebDriver driver_, String text_, String link_, String sleepTime_) {
 		try {
 			
 			//FOR TEST
@@ -45,7 +45,7 @@ public class PublishPost {
 				return false;
 			}
 			
-			SetSleeping(6);
+			SetSleeping(Integer.parseInt(sleepTime_));
 			
 			return true;
 		}
