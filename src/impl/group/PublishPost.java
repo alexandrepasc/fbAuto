@@ -16,7 +16,7 @@ import pageElements.Group;
 
 public class PublishPost {
 
-	public static boolean Pub(WebDriver driver_, String text_, String link_) {
+	public static boolean Pub(WebDriver driver_, String text_, String link_, String sleepTime_) {
 		try {
 			
 			//FOR TEST
@@ -33,7 +33,8 @@ public class PublishPost {
 				return false;
 			}
 			
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SetSleeping(2);
 			
 			Group.PublishPostBut(driver_).click();
 			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Publish Post Buttton Click", "info");
@@ -43,6 +44,8 @@ public class PublishPost {
 			if (!CheckIsPublished(driver_, text_, link_)) {
 				return false;
 			}
+			
+			SetSleeping(Integer.parseInt(sleepTime_));
 			
 			return true;
 		}
@@ -242,6 +245,20 @@ public class PublishPost {
 		catch (Exception e) {
 			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e, driver_);
 			return false;
+		}
+	}
+	
+	private static void SetSleeping(int timeSec_) {
+		try {
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - Start Sleeping", "info");
+			
+			Thread.sleep(timeSec_ * 1000);
+			
+			Logger_.Logging_(Thread.currentThread().getStackTrace()[1] + " - End Sleeping", "info");
+		}
+		catch (Exception e) {
+			Logger_.Logging_(e.getMessage() + e.getLocalizedMessage(), "severe", e);
 		}
 	}
 }

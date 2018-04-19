@@ -76,7 +76,7 @@ public class Start {
 				}
 			}
 			
-			if (!Posting(driver, "toPost/", searchStructure_)) {
+			if (!Posting(driver, "toPost/", searchStructure_, configStructure_.sleepPost)) {
 				EndApp(driver);
 			}
 			
@@ -176,7 +176,7 @@ public class Start {
 		}
 	}
 	
-	private static boolean Posting(WebDriver driver_, String folder_, SearchStructure searchStructure_) {
+	private static boolean Posting(WebDriver driver_, String folder_, SearchStructure searchStructure_, String sleepTime_) {
 		try {
 			
 			if (searchStructure_ != null) {
@@ -185,7 +185,7 @@ public class Start {
 					return false;
 				}
 				
-				structureToPost_ = Publish.GoPost(driver_, structureToPost_);
+				structureToPost_ = Publish.GoPost(driver_, structureToPost_, sleepTime_);
 				
 				WriteFiles.Write(structureToPost_);
 			}

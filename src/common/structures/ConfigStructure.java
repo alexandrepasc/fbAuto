@@ -8,6 +8,8 @@ public class ConfigStructure {
 	
 	public String pwd;
 	
+	public String sleepPost;
+	
 	public String groups;
 	
 	public String pages;
